@@ -46,7 +46,7 @@ export function Header() {
       <div className="container flex h-16 items-center">
         <Link href="/" className="mr-6 flex items-center gap-2">
           <Code className="h-6 w-6 text-primary" />
-          <span className="font-headline text-lg font-bold">CodeCanvas</span>
+          <span className="font-headline text-lg font-bold">ShawkyDev</span>
         </Link>
         <nav className="hidden items-center gap-6 md:flex">
           {navItems}
@@ -63,7 +63,7 @@ export function Header() {
               <nav className="grid gap-6 text-lg font-medium mt-8">
                 <Link href="/" className="flex items-center gap-2 text-lg font-semibold">
                   <Code className="h-6 w-6 text-primary" />
-                  <span className="sr-only">CodeCanvas</span>
+                  <span className="sr-only">ShawkyDev</span>
                 </Link>
                 {navItems}
               </nav>

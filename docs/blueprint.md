@@ -1,4 +1,4 @@
-# **App Name**: CodeCanvas Portfolio
+# **App Name**: ShawkyDev Portfolio
 
 ## Core Features:
 

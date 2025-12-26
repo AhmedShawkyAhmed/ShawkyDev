@@ -11,7 +11,7 @@ export function Projects() {
           <p className="mt-2 text-lg text-muted-foreground">{description}</p>
         </div>
 
-        <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {projects.map(project => (
             <ProjectCard key={project.title} {...project} />
           ))}
