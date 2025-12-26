@@ -15,7 +15,7 @@ type ProjectCardProps = {
 
 export function ProjectCard({ title, image, githubUrl, appStoreUrl, playStoreUrl }: ProjectCardProps) {
   return (
-    <Card className="group relative aspect-[4/3] w-full overflow-hidden rounded-lg">
+    <Card className="group relative aspect-[26/15] w-full overflow-hidden rounded-lg">
       <Image
         src={image.imageUrl}
         alt={image.description}
