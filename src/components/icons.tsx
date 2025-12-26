@@ -1,6 +1,6 @@
 import type { SVGProps } from "react";
 
-export function AppStore(props: SVGProps<SVGSVGElement>) {
+export function Apple(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -14,11 +14,8 @@ export function AppStore(props: SVGProps<SVGSVGElement>) {
       strokeLinejoin="round"
       {...props}
     >
-      <path d="M10.2 2.5H13.8C15.1 2.5 16.2 3.6 16.2 4.9V4.9C16.2 6.2 15.1 7.3 13.8 7.3H10.2C8.9 7.3 7.8 6.2 7.8 4.9V4.9C7.8 3.6 8.9 2.5 10.2 2.5Z" />
-      <path d="M12 12L12 2.5" />
-      <path d="M15.5 12L18.4 4" />
-      <path d="M8.5 12L5.6 4" />
-      <path d="M18.8 12H5.2C3.2 12 1.6 13.6 1.6 15.6V15.6C1.6 17.6 3.2 19.2 5.2 19.2H18.8C20.8 19.2 22.4 17.6 22.4 15.6V15.6C22.4 13.6 20.8 12 18.8 12Z" />
+      <path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z" />
+      <path d="M10 2c1 .5 2 2 2 5" />
     </svg>
   );
 }
