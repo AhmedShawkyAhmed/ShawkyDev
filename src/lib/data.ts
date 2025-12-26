@@ -16,15 +16,14 @@ export const NAV_LINKS = [
 ];
 
 export const PROFILE_DATA = {
-  name: 'Alex Doe',
-  headline: 'Senior Software Engineer & Creative Technologist',
-  bio: "I'm a passionate software engineer with a knack for building beautiful, functional, and accessible digital experiences. With over a decade in the industry, I specialize in full-stack development, with a deep focus on modern frontend technologies.",
+  name: 'Ahmed Shawky',
+  headline: 'Senior Mobile Engineer',
+  bio: "Senior Mobile Engineer with 5+ years of experience building and scaling mobile applications across Flutter, Android (Kotlin), and iOS (Objective-C, Swift, SwiftUI).Started as a native Android Developer, transitioned to Flutter, and delivered 30+ production apps across multiple industries.",
   avatar: avatar!,
   social: [
-    { name: 'GitHub', url: '#', icon: Github },
-    { name: 'LinkedIn', url: '#', icon: Linkedin },
-    { name: 'Twitter', url: '#', icon: Twitter },
-    { name: 'Email', url: 'mailto:alex.doe@email.com', icon: Mail },
+    { name: 'GitHub', url: 'https://github.com/AhmedShawkyAhmed', icon: Github },
+    { name: 'LinkedIn', url: 'https://www.linkedin.com/in/ahmed-shawky-ahmed/', icon: Linkedin },
+    { name: 'Email', url: 'mailto:shawkyahmed392@email.com', icon: Mail },
   ],
 };
 
@@ -43,22 +42,22 @@ export const EXPERIENCE_DATA = {
   description: "A timeline of my career, highlighting my roles and accomplishments.",
   experiences: [
     {
-      role: 'Senior Software Engineer',
-      company: 'Innovate Inc.',
-      period: '2020 - Present',
-      description: 'Led the development of a new design system and component library, improving development velocity by 30%. Architected and built a new serverless backend for the flagship product, enhancing scalability and reducing costs.'
+      role: 'Senior Mobile Engineer',
+      company: 'intalio',
+      period: 'Oct 2024 – Present',
+      description: 'Deliver and maintain Flutter and iOS (Objective-C, Swift, SwiftUI) applications across multiple business domains, define and enforce mobile engineering standards, lead code reviews, mentor and support senior engineers with architectural guidance, design and maintain CI/CD pipelines using GitHub Actions and Codemagic, modernize legacy Objective-C apps to Swift/SwiftUI, and develop internal packages and tooling to standardize functionality and enhance team productivity.'
     },
     {
-      role: 'Software Engineer',
-      company: 'Tech Solutions',
-      period: '2016 - 2020',
-      description: 'Developed and maintained a large-scale e-commerce platform using React and Node.js. Collaborated with cross-functional teams to deliver high-quality features and improve user experience.'
+      role: 'Senior Mobile Engineer',
+      company: 'Alhawsaba',
+      period: 'Oct 2022 – Sep 2024',
+      description: 'Delivered and maintained multiple production Flutter apps, implemented native Kotlin and Swift features via Platform Channels, built reusable Google Maps Heatmap and internal Flutter packages, developed a modular real-time chat system, led GetX-to-BLoC migrations, optimized performance and stability, and collaborated with backend engineers to deliver high-quality mobile solutions.'
     },
     {
-      role: 'Junior Developer',
-      company: 'CodeCrafters',
-      period: '2014 - 2016',
-      description: 'Assisted in the development of various client websites and internal tools. Gained foundational experience in web development, version control with Git, and agile methodologies.'
+      role: 'Mobile Application Developer',
+      company: 'Magdsoft',
+      period: 'May 2020 – Oct 2022',
+      description: 'Developed and maintained native Android apps with Kotlin, transitioned to Flutter as a core cross-platform contributor, delivered 20+ production apps including live tracking, Google Maps, and e-commerce solutions, built reusable Flutter components, integrated real-time features and location services, and optimized performance to improve app quality and user experience.'
     }
   ]
 };

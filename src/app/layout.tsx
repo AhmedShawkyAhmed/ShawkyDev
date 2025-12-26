@@ -4,7 +4,7 @@ import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
   title: 'CodeCanvas Portfolio',
-  description: 'A portfolio by Alex Doe, a Senior Software Engineer & Creative Technologist.',
+  description: 'A portfolio by Ahmed Shawky, a Senior Mobile Engineer.',
 };
 
 export default function RootLayout({
