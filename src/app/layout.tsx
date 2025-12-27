@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: 'ShawkyDev',
   description: 'A portfolio by Ahmed Shawky, a Senior Mobile Engineer.',
   icons: {
-    icon: '/images/logo.png',
+    icon: 'ShawkyDev/images/logo.png',
   },
 };
 
