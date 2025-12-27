@@ -3,7 +3,7 @@
     {
       "id": "avatar",
       "description": "A portrait of a smiling person.",
-      "imageUrl": "public/images/appLogo.png",
+      "imageUrl": "/images/appLogo.png",
       "imageHint": "portrait person"
     },
     {
