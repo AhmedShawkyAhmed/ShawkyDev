@@ -8,6 +8,28 @@ const project3 = PlaceHolderImages.find(p => p.id === 'project-3');
 const project4 = PlaceHolderImages.find(p => p.id === 'project-4');
 const project5 = PlaceHolderImages.find(p => p.id === 'project-5');
 const project6 = PlaceHolderImages.find(p => p.id === 'project-6');
+const project7 = PlaceHolderImages.find(p => p.id === 'project-7');
+const project8 = PlaceHolderImages.find(p => p.id === 'project-8');
+const project9 = PlaceHolderImages.find(p => p.id === 'project-9');
+const project10 = PlaceHolderImages.find(p => p.id === 'project-10');
+const project11 = PlaceHolderImages.find(p => p.id === 'project-11');
+const project12 = PlaceHolderImages.find(p => p.id === 'project-12');
+const project13 = PlaceHolderImages.find(p => p.id === 'project-13');
+const project14 = PlaceHolderImages.find(p => p.id === 'project-14');
+const project15 = PlaceHolderImages.find(p => p.id === 'project-15');
+const project16 = PlaceHolderImages.find(p => p.id === 'project-16');
+const project17 = PlaceHolderImages.find(p => p.id === 'project-17');
+const project18 = PlaceHolderImages.find(p => p.id === 'project-18');
+const project19 = PlaceHolderImages.find(p => p.id === 'project-19');
+const project20 = PlaceHolderImages.find(p => p.id === 'project-20');
+const project21 = PlaceHolderImages.find(p => p.id === 'project-21');
+const project22 = PlaceHolderImages.find(p => p.id === 'project-22');
+const project23 = PlaceHolderImages.find(p => p.id === 'project-23');
+const project24 = PlaceHolderImages.find(p => p.id === 'project-24');
+const project25 = PlaceHolderImages.find(p => p.id === 'project-25');
+const project26 = PlaceHolderImages.find(p => p.id === 'project-26');
+const project27 = PlaceHolderImages.find(p => p.id === 'project-27');
+
 
 
 export const NAV_LINKS = [
@@ -73,44 +95,170 @@ export const PROJECTS_DATA = {
   description: "A selection of projects that showcase my skills and passion for building.",
   projects: [
     {
-      title: 'Tawreed',
+      title: 'BeTrend',
       image: project1!,
       githubUrl: 'https://github.com/AhmedShawkyAhmed/Tawreed',
       appStoreUrl: 'https://apps.apple.com/us/app/tawreed/id1661793471',
       playStoreUrl: 'https://play.google.com/store/apps/details?id=com.alhawsabah.tawreed'
     },
     {
-      title: 'Moments',
+      title: 'Bird Store',
       image: project2!,
       githubUrl: 'https://github.com/AhmedShawkyAhmed/Moments',
       appStoreUrl: 'https://apps.apple.com/us/app/moments-event/id6449982436',
       playStoreUrl: 'https://play.google.com/store/apps/details?id=com.alhawsabah.moments'
     },
     {
-      title: 'Hayakum',
+      title: 'Blue Wave',
       image: project3!,
       githubUrl: '#',
       appStoreUrl: 'https://apps.apple.com/us/app/hayakum/id1573012871',
       playStoreUrl: 'https://play.google.com/store/apps/details?id=com.magdsoft.hayakum'
     },
     {
-      title: 'iClosed',
+      title: 'CeFoure',
       image: project4!,
       githubUrl: '#',
       appStoreUrl: 'https://apps.apple.com/us/app/iclosed/id1535388383',
       playStoreUrl: '#'
     },
     {
-        title: 'Bazar',
+        title: 'HiShare',
         image: project5!,
         githubUrl: '#',
         playStoreUrl: 'https://play.google.com/store/apps/details?id=com.magdsoft.bazar',
     },
     {
-        title: 'Asas',
+        title: 'Imtyazat',
         image: project6!,
         githubUrl: '#',
         playStoreUrl: 'https://play.google.com/store/apps/details?id=com.magdsoft.asas',
+    },
+    {
+      title: 'JetCare',
+      image: project7!,
+      githubUrl: '#',
+      playStoreUrl: '#',
+    },
+    {
+      title: 'My Expenses',
+      image: project8!,
+      githubUrl: '#',
+      playStoreUrl: '#',
+    },
+    {
+      title: 'Osta',
+      image: project9!,
+      githubUrl: '#',
+      playStoreUrl: '#',
+    },
+    {
+      title: 'Osta Provider',
+      image: project10!,
+      githubUrl: '#',
+      playStoreUrl: '#',
+    },
+    {
+      title: 'Otlop',
+      image: project11!,
+      githubUrl: '#',
+      playStoreUrl: '#',
+    },
+    {
+      title: 'Seda',
+      image: project12!,
+      githubUrl: '#',
+      playStoreUrl: '#',
+    },
+    {
+      title: 'Seda Driver',
+      image: project13!,
+      githubUrl: '#',
+      playStoreUrl: '#',
+    },
+    {
+      title: 'Sehtak Tehmna',
+      image: project14!,
+      githubUrl: '#',
+      playStoreUrl: '#',
+    },
+    {
+      title: 'ShawkyCLI',
+      image: project15!,
+      githubUrl: '#',
+      playStoreUrl: '#',
+    },
+    {
+      title: 'Sonic Mobility',
+      image: project16!,
+      githubUrl: '#',
+      playStoreUrl: '#',
+    },
+    {
+      title: 'Steps Tracker',
+      image: project17!,
+      githubUrl: '#',
+      playStoreUrl: '#',
+    },
+    {
+      title: 'Tripta',
+      image: project18!,
+      githubUrl: '#',
+      playStoreUrl: '#',
+    },
+    {
+      title: 'Tripta Hero',
+      image: project19!,
+      githubUrl: '#',
+      playStoreUrl: '#',
+    },
+    {
+      title: 'Hive Service',
+      image: project20!,
+      githubUrl: '#',
+      playStoreUrl: '#',
+    },
+    {
+      title: 'Location Service',
+      image: project21!,
+      githubUrl: '#',
+      playStoreUrl: '#',
+    },
+    {
+      title: 'Maps Plugin',
+      image: project22!,
+      githubUrl: '#',
+      playStoreUrl: '#',
+    },
+    {
+      title: 'Network Service',
+      image: project23!,
+      githubUrl: '#',
+      playStoreUrl: '#',
+    },
+    {
+      title: 'Notification Service',
+      image: project24!,
+      githubUrl: '#',
+      playStoreUrl: '#',
+    },
+    {
+      title: 'Permission Service',
+      image: project25!,
+      githubUrl: '#',
+      playStoreUrl: '#',
+    },
+    {
+      title: 'Security Service',
+      image: project26!,
+      githubUrl: '#',
+      playStoreUrl: '#',
+    },
+    {
+      title: 'Socket Service',
+      image: project27!,
+      githubUrl: '#',
+      playStoreUrl: '#',
     }
   ]
 };
