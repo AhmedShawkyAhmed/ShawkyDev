@@ -36,6 +36,7 @@ export const NAV_LINKS = [
   { label: 'About', href: '#about' },
   { label: 'Experience', href: '#experience' },
   { label: 'Projects', href: '#projects' },
+  { label: 'Packages', href: '#packages' },
   { label: 'Skills', href: '#skills' },
   // { label: 'Contact', href: '#contact' },
 ];
@@ -183,6 +184,25 @@ export const PROJECTS_DATA = {
       playStoreUrl: '#',
     },
     {
+      title: 'Tripta',
+      image: project18!,
+      githubUrl: '#',
+      playStoreUrl: '#',
+    },
+    {
+      title: 'Tripta Hero',
+      image: project19!,
+      githubUrl: '#',
+      playStoreUrl: '#',
+    },
+  ]
+};
+
+export const PACKAGES_DATA = {
+  title: "Reusable Packages",
+  description: "A collection of my open-source and internal packages.",
+  packages: [
+    {
       title: 'ShawkyCLI',
       image: project15!,
       githubUrl: '#',
@@ -197,18 +217,6 @@ export const PROJECTS_DATA = {
     {
       title: 'Steps Tracker',
       image: project17!,
-      githubUrl: '#',
-      playStoreUrl: '#',
-    },
-    {
-      title: 'Tripta',
-      image: project18!,
-      githubUrl: '#',
-      playStoreUrl: '#',
-    },
-    {
-      title: 'Tripta Hero',
-      image: project19!,
       githubUrl: '#',
       playStoreUrl: '#',
     },
@@ -261,7 +269,7 @@ export const PROJECTS_DATA = {
       playStoreUrl: '#',
     }
   ]
-};
+}
 
 export const CONTACT_DATA = {
   title: "Get in Touch",

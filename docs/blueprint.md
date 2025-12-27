@@ -1,4 +1,4 @@
-# **App Name**: ShawkyDev Portfolio
+# **App Name**: ShawkyDev
 
 ## Core Features:
 
