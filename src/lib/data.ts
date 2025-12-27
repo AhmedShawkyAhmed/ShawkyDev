@@ -76,10 +76,10 @@ export const SKILLS_DATA = {
     {
       title: "Mobile Engineering",
       skills: [
-        { name: "Flutter", icon: FlutterIcon },
-        { name: "Dart", icon: DartIcon },
-        { name: "Android (Kotlin)", icon: KotlinIcon },
-        { name: "iOS (Swift, SwiftUI)", icon: SwiftIcon },
+        { name: "Flutter" },
+        { name: "Dart" },
+        { name: "Android (Kotlin)" },
+        { name: "iOS (Swift, SwiftUI)" },
         { name: "Jetpack Compose" },
         { name: "Platform Channels" },
         { name: "SDK Integration" },
@@ -100,7 +100,7 @@ export const SKILLS_DATA = {
     {
       title: "Backend & Real-Time Systems",
       skills: [
-        { name: "Firebase", icon: FirebaseIcon },
+        { name: "Firebase" },
         { name: "Laravel" },
         { name: "REST APIs" },
         { name: "WebSocket" },
@@ -110,13 +110,13 @@ export const SKILLS_DATA = {
     {
       title: "DevOps, CI/CD & Testing",
       skills: [
-        { name: "GitHub Actions", icon: GitHubActionsIcon },
+        { name: "GitHub Actions" },
         { name: "Fastlane" },
         { name: "Unit & Integration Testing" },
         { name: "App Store & Play Store" },
-        { name: "Git", icon: GitIcon },
-        { name: "GitHub", icon: Github },
-        { name: "GitLab", icon: GitLabIcon },
+        { name: "Git" },
+        { name: "GitHub" },
+        { name: "GitLab" },
       ],
     },
     {
@@ -135,8 +135,8 @@ export const SKILLS_DATA = {
         { name: "Mobile Standards" },
         { name: "Mentoring" },
         { name: "Agile/Scrum" },
-        { name: "Jira", icon: JiraIcon },
-        { name: "Asana", icon: AsanaIcon },
+        { name: "Jira" },
+        { name: "Asana" },
       ],
     },
   ],

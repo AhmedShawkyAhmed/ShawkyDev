@@ -8,12 +8,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import type { IconProps } from "@/lib/data";
-
-const SkillIcon = ({ icon: Icon }: { icon?: React.FC<IconProps> }) => {
-  if (!Icon) return null;
-  return <Icon className="mr-2 h-4 w-4" />;
-};
 
 export function Skills() {
   const { title, description, skillCategories } = SKILLS_DATA;
@@ -41,9 +35,8 @@ export function Skills() {
                   <Badge
                     key={skill.name}
                     variant="secondary"
-                    className="flex items-center px-3 py-1 text-sm font-normal"
+                    className="px-3 py-1 text-sm font-normal"
                   >
-                    <SkillIcon icon={skill.icon} />
                     {skill.name}
                   </Badge>
                 ))}
