@@ -167,6 +167,12 @@
       "description": "Socket Service",
       "imageUrl": "/ShawkyDev/images/SocketService.png",
       "imageHint": "mobile app"
+    },
+    {
+      "id": "project-28",
+      "description": "Aero Scope",
+      "imageUrl": "/ShawkyDev/images/AeroScope.png",
+      "imageHint": "mobile app"
     }
   ]
 }

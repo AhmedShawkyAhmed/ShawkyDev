@@ -45,6 +45,7 @@ const project24 = PlaceHolderImages.find(p => p.id === 'project-24');
 const project25 = PlaceHolderImages.find(p => p.id === 'project-25');
 const project26 = PlaceHolderImages.find(p => p.id === 'project-26');
 const project27 = PlaceHolderImages.find(p => p.id === 'project-27');
+const project28 = PlaceHolderImages.find(p => p.id === 'project-28');
 
 
 
@@ -182,6 +183,11 @@ export const PROJECTS_DATA = {
       playStoreUrl: 'https://play.google.com/store/apps/details?id=com.SonicMobility.sonic&pcampaignid=web_share',
     },
     {
+      title: 'Aero Scope',
+      image: project28!,
+      githubUrl: 'https://github.com/AhmedShawkyAhmed/AeroScope.git',
+    },
+    {
       title: 'Imtyazat',
       image: project6!,
       appStoreUrl: 'https://apps.apple.com/bh/app/imtyazat-%D8%A7%D9%85%D8%AA%D9%8A%D8%A7%D8%B2%D8%A7%D8%AA/id6744577970',
@@ -212,6 +218,12 @@ export const PROJECTS_DATA = {
       playStoreUrl: 'https://play.google.com/store/apps/details?id=com.sihatukTuhumuna.sihatukTuhumuna&pcampaignid=web_share',
     },
     {
+      title: 'JetCare',
+      image: project7!,
+      appStoreUrl: 'https://apps.apple.com/bh/app/jet-care/id6446169634',
+      playStoreUrl: 'https://play.google.com/store/apps/details?id=com.jetcareeg.jetcare&pcampaignid=web_share',
+    },
+    {
       title: 'Tripta',
       image: project18!,
       appStoreUrl: 'https://apps.apple.com/bh/app/tripta-eg/id1640910594',
@@ -224,14 +236,8 @@ export const PROJECTS_DATA = {
       playStoreUrl: 'https://play.google.com/store/apps/details?id=com.tripta.driver&pcampaignid=web_share',
     },
     {
-      title: 'Bird Store',
-      image: project2!,
-      githubUrl: 'https://github.com/AhmedShawkyAhmed/bird_store_ios.git'
-    },
-    {
       title: 'Blue Wave',
       image: project3!,
-      githubUrl: '#'
     },
     {
       title: 'Steps Tracker',
@@ -239,30 +245,9 @@ export const PROJECTS_DATA = {
       githubUrl: 'https://github.com/AhmedShawkyAhmed/step_tracker.git',
     },
     {
-      title: 'JetCare',
-      image: project7!,
-      appStoreUrl: 'https://apps.apple.com/bh/app/jet-care/id6446169634',
-      playStoreUrl: 'https://play.google.com/store/apps/details?id=com.jetcareeg.jetcare&pcampaignid=web_share',
-    },
-    {
-      title: 'Osta',
-      image: project9!,
-      githubUrl: '#',
-    },
-    {
-      title: 'Osta Provider',
-      image: project10!,
-      githubUrl: '#',
-    },
-    {
-      title: 'Seda',
-      image: project12!,
-      playStoreUrl: '#',
-    },
-    {
-      title: 'Seda Driver',
-      image: project13!,
-      playStoreUrl: '#',
+      title: 'Bird Store',
+      image: project2!,
+      githubUrl: 'https://github.com/AhmedShawkyAhmed/bird_store_ios.git'
     },
     {
       title: 'My Expenses',
@@ -270,9 +255,27 @@ export const PROJECTS_DATA = {
       githubUrl: 'https://github.com/AhmedShawkyAhmed/shawky.git',
     },
     {
+      title: 'Osta',
+      image: project9!,
+      githubUrl: 'https://github.com/AhmedShawkyAhmed/RouteMe_Mobile.git',
+    },
+    {
+      title: 'Osta Provider',
+      image: project10!,
+      githubUrl: 'https://github.com/AhmedShawkyAhmed/RouteMe_Mobile.git',
+    },
+    {
       title: 'Otlop',
       image: project11!,
-      githubUrl: '#',
+      githubUrl: 'https://github.com/AhmedShawkyAhmed/otlop.git',
+    },
+    {
+      title: 'Seda',
+      image: project12!,
+    },
+    {
+      title: 'Seda Driver',
+      image: project13!,
     },
   ]
 };
