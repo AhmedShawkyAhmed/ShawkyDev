@@ -24,7 +24,7 @@ export function Hero() {
             </Button>
           ))}
            <Button asChild>
-              <Link href="#" target="_blank" rel="noopener noreferrer">
+              <Link href="https://drive.google.com/uc?export=view&id=1fCMZPHw5aH69eGm5m7RTAL1FbLuiLmBF" target="_blank" rel="noopener noreferrer">
                 <Download />
                 Download CV
               </Link>
