@@ -7,14 +7,13 @@ import { Button } from "@/components/ui/button";
 
 type ProjectCardProps = {
   title: string;
-  description: string;
   image: ImagePlaceholder;
   githubUrl?: string;
   appStoreUrl?: string;
   playStoreUrl?: string;
 };
 
-export function ProjectCard({ title, description, image, githubUrl, appStoreUrl, playStoreUrl }: ProjectCardProps) {
+export function ProjectCard({ title, image, githubUrl, appStoreUrl, playStoreUrl }: ProjectCardProps) {
   return (
     <Card className="flex flex-col overflow-hidden rounded-lg shadow-lg transition-shadow hover:shadow-xl">
       <div className="relative aspect-[26/15] w-full">
@@ -28,8 +27,7 @@ export function ProjectCard({ title, description, image, githubUrl, appStoreUrl,
       </div>
       <div className="flex flex-1 flex-col p-6">
         <h3 className="font-headline text-xl font-bold">{title}</h3>
-        <p className="mt-2 flex-1 text-muted-foreground">{description}</p>
-        <div className="mt-4 flex items-center gap-3">
+        <div className="mt-auto flex items-center gap-3 pt-4">
           {githubUrl && githubUrl !== '#' && (
             <Button variant="outline" size="icon" asChild>
               <Link href={githubUrl} target="_blank" rel="noopener noreferrer">
