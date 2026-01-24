@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { PROFILE_DATA } from "@/lib/data";
 import { Button } from "@/components/ui/button";
-import { Download } from "lucide-react";
 
 export function Hero() {
   const { name, headline, bio, avatar, social } = PROFILE_DATA;
@@ -23,12 +22,6 @@ export function Hero() {
               </Link>
             </Button>
           ))}
-           <Button asChild>
-              <Link href="https://drive.google.com/uc?export=view&id=1fCMZPHw5aH69eGm5m7RTAL1FbLuiLmBF" target="_blank" rel="noopener noreferrer">
-                <Download />
-                Download CV
-              </Link>
-            </Button>
         </div>
       </div>
       <div className="relative mx-auto h-64 w-64 md:h-80 md:w-80">
