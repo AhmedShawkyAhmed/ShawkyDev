@@ -2,18 +2,19 @@ import Image from "next/image";
 import Link from "next/link";
 import { Github, Apple, PlayStore } from "@/components/icons";
 import type { ImagePlaceholder } from "@/lib/placeholder-images";
-import { Card } from "@/components/ui/card";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
 type ProjectCardProps = {
   title: string;
+  description: string;
   image: ImagePlaceholder;
   githubUrl?: string;
   appStoreUrl?: string;
   playStoreUrl?: string;
 };
 
-export function ProjectCard({ title, image, githubUrl, appStoreUrl, playStoreUrl }: ProjectCardProps) {
+export function ProjectCard({ title, description, image, githubUrl, appStoreUrl, playStoreUrl }: ProjectCardProps) {
   return (
     <Card className="flex flex-col overflow-hidden rounded-lg shadow-lg transition-shadow hover:shadow-xl">
       <div className="relative aspect-[26/15] w-full">
@@ -25,9 +26,14 @@ export function ProjectCard({ title, image, githubUrl, appStoreUrl, playStoreUrl
           data-ai-hint={image.imageHint}
         />
       </div>
-      <div className="flex flex-1 flex-col p-6">
-        <h3 className="font-headline text-xl font-bold">{title}</h3>
-        <div className="mt-auto flex items-center gap-3 pt-4">
+      <CardHeader>
+        <CardTitle className="font-headline text-xl font-bold">{title}</CardTitle>
+      </CardHeader>
+      <CardContent className="flex-grow">
+        <p className="text-sm text-muted-foreground">{description}</p>
+      </CardContent>
+      <CardFooter>
+        <div className="flex items-center gap-3">
           {githubUrl && githubUrl !== '#' && (
             <Button variant="outline" size="icon" asChild>
               <Link href={githubUrl} target="_blank" rel="noopener noreferrer">
@@ -53,7 +59,7 @@ export function ProjectCard({ title, image, githubUrl, appStoreUrl, playStoreUrl
             </Button>
           )}
         </div>
-      </div>
+      </CardFooter>
     </Card>
   );
 }
