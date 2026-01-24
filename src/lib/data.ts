@@ -178,103 +178,122 @@ export const PROJECTS_DATA = {
   projects: [
     {
       title: 'Sonic Mobility',
+      description: 'An app for a scooter-sharing service for easy urban travel.',
       image: project16!,
       appStoreUrl: 'https://apps.apple.com/eg/app/sonic-mobility-sharing-scooter/id6447569706',
       playStoreUrl: 'https://play.google.com/store/apps/details?id=com.SonicMobility.sonic&pcampaignid=web_share',
     },
     {
       title: 'Aero Scope',
+      description: 'A weather forecasting app providing detailed atmospheric data.',
       image: project28!,
       githubUrl: 'https://github.com/AhmedShawkyAhmed/AeroScope.git',
     },
     {
       title: 'Imtyazat',
+      description: 'A loyalty and rewards platform for customers in Bahrain.',
       image: project6!,
       appStoreUrl: 'https://apps.apple.com/bh/app/imtyazat-%D8%A7%D9%85%D8%AA%D9%8A%D8%A7%D8%B2%D8%A7%D8%AA/id6744577970',
       playStoreUrl: 'https://play.google.com/store/apps/details?id=qa.gov.mofa.imtyazatpublic&pcampaignid=web_share',
     },
     {
       title: 'CeFoure',
+      description: 'An e-commerce platform for a variety of products.',
       image: project4!,
       appStoreUrl: 'https://apps.apple.com/bh/app/cefour/id6476445911',
       playStoreUrl: 'https://play.google.com/store/apps/details?id=com.cefour.cefour&pcampaignid=web_share',
     },
     {
       title: 'HiShare',
+      description: 'A social sharing platform for connecting with friends.',
       image: project5!,
       appStoreUrl: 'https://apps.apple.com/bh/app/%D9%87%D8%A7%D9%8A-%D8%B4%D9%8A%D8%B1/id6739570429',
       playStoreUrl: 'https://play.google.com/store/apps/details?id=com.hishare.platform&pcampaignid=web_share',
     },
     {
       title: 'BeTrend',
+      description: 'A fashion and trend discovery application.',
       image: project1!,
       appStoreUrl: 'https://apps.apple.com/bh/app/be-trend-%D8%A8%D9%8A-%D8%AA%D8%B1%D9%86%D8%AF/id1658865427',
       playStoreUrl: 'https://play.google.com/store/apps/details?id=com.diwan.beTrend&pcampaignid=web_share',
     },
     {
       title: 'Sehtak Tehmna',
+      description: 'A health and wellness application for users in Bahrain.',
       image: project14!,
       appStoreUrl: 'https://apps.apple.com/bh/app/%D8%B5%D8%AD%D8%AA%D9%83-%D8%AA%D9%87%D9%85%D9%86%D8%A7/id6477756584',
       playStoreUrl: 'https://play.google.com/store/apps/details?id=com.sihatukTuhumuna.sihatukTuhumuna&pcampaignid=web_share',
     },
     {
       title: 'JetCare',
+      description: 'A car wash and detailing service booking application.',
       image: project7!,
       appStoreUrl: 'https://apps.apple.com/bh/app/jet-care/id6446169634',
       playStoreUrl: 'https://play.google.com/store/apps/details?id=com.jetcareeg.jetcare&pcampaignid=web_share',
     },
     {
       title: 'Tripta',
+      description: 'A ride-hailing application for booking trips.',
       image: project18!,
       appStoreUrl: 'https://apps.apple.com/bh/app/tripta-eg/id1640910594',
       playStoreUrl: 'https://play.google.com/store/apps/details?id=com.tripta.user&pcampaignid=web_share',
     },
     {
       title: 'Tripta Hero',
+      description: 'The driver-facing application for the Tripta ride-hailing service.',
       image: project19!,
       appStoreUrl: 'https://apps.apple.com/bh/app/tripta-hero/id1640911684',
       playStoreUrl: 'https://play.google.com/store/apps/details?id=com.tripta.driver&pcampaignid=web_share',
     },
     {
       title: 'Blue Wave',
+      description: 'A business utility application with custom features.',
       image: project3!,
     },
     {
       title: 'Steps Tracker',
+      description: 'A fitness app to track daily steps and activity.',
       image: project17!,
       githubUrl: 'https://github.com/AhmedShawkyAhmed/step_tracker.git',
     },
     {
       title: 'Bird Store',
+      description: 'An e-commerce app for a pet store specializing in birds.',
       image: project2!,
       githubUrl: 'https://github.com/AhmedShawkyAhmed/bird_store_ios.git'
     },
     {
       title: 'My Expenses',
+      description: 'A personal finance app for tracking expenses.',
       image: project8!,
       githubUrl: 'https://github.com/AhmedShawkyAhmed/shawky.git',
     },
     {
       title: 'Osta',
+      description: 'A service marketplace connecting users with local providers.',
       image: project9!,
       githubUrl: 'https://github.com/AhmedShawkyAhmed/RouteMe_Mobile.git',
     },
     {
       title: 'Osta Provider',
+      description: 'The provider-facing app for the Osta service marketplace.',
       image: project10!,
       githubUrl: 'https://github.com/AhmedShawkyAhmed/RouteMe_Mobile.git',
     },
     {
       title: 'Otlop',
+      description: 'A food delivery application for ordering from local restaurants.',
       image: project11!,
       githubUrl: 'https://github.com/AhmedShawkyAhmed/otlop.git',
     },
     {
       title: 'Seda',
+      description: 'A delivery and logistics management application.',
       image: project12!,
     },
     {
       title: 'Seda Driver',
+      description: 'The driver application for the Seda delivery platform.',
       image: project13!,
     },
   ]
@@ -286,46 +305,55 @@ export const PACKAGES_DATA = {
   packages: [
     {
       title: 'ShawkyCLI',
+      description: 'A command-line tool to automate Flutter project creation and management.',
       image: project15!,
       githubUrl: 'https://github.com/AhmedShawkyAhmed/shawky_cli.git',
     },
     {
       title: 'Maps Plugin',
+      description: 'A reusable Flutter package for displaying heatmaps on Google Maps.',
       image: project22!,
       githubUrl: 'https://github.com/AhmedShawkyAhmed/heat_map_plugin.git',
     },
     {
       title: 'Network Service',
+      description: 'A Dart package to handle network requests and API communication.',
       image: project23!,
       githubUrl: 'https://github.com/AhmedShawkyAhmed/network_service.git',
     },
     {
       title: 'Location Service',
+      description: 'A Flutter package for abstracting and managing device location services.',
       image: project21!,
       githubUrl: 'https://github.com/AhmedShawkyAhmed/location_service.git',
     },
     {
       title: 'Security Service',
+      description: 'A package for handling data encryption and secure storage.',
       image: project26!,
       githubUrl: 'https://github.com/AhmedShawkyAhmed/security_service.git',
     },
     {
       title: 'Socket Service',
+      description: 'A Dart package for managing WebSocket and real-time communication.',
       image: project27!,
       githubUrl: 'https://github.com/AhmedShawkyAhmed/socket_service.git',
     },
     {
       title: 'Notification Service',
+      description: 'A Flutter package for integrating and managing push notifications.',
       image: project24!,
       githubUrl: 'https://github.com/AhmedShawkyAhmed/notification_service.git',
     },
     {
       title: 'Permission Service',
+      description: 'A Flutter utility for handling device permission requests.',
       image: project25!,
       githubUrl: 'https://github.com/AhmedShawkyAhmed/permission_service.git',
     },
     {
       title: 'Hive Service',
+      description: 'A wrapper for the Hive database to simplify local data storage in Flutter.',
       image: project20!,
       githubUrl: 'https://github.com/AhmedShawkyAhmed/hive_service.git',
     }
