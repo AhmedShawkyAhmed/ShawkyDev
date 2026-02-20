@@ -18,7 +18,7 @@ export function ProjectCard({ item }: ProjectCardProps) {
 
       <div className="relative aspect-[16/10] w-full overflow-hidden">
         <Image
-          src={item.image.imageUrl}
+          src={item.image.bannerImageUrl}
           alt={item.image.description}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-105"

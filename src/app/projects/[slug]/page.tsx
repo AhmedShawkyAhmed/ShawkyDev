@@ -58,7 +58,7 @@ export default async function ProjectDetailsPage({
           <div className="overflow-hidden rounded-3xl border border-border/60 bg-card/60 shadow-xl">
             <div className="relative h-56 w-full md:h-80">
               <Image
-                src={item.banner.imageUrl}
+                src={item.banner.bannerImageUrl}
                 alt={`${item.title} banner`}
                 fill
                 priority
@@ -73,7 +73,7 @@ export default async function ProjectDetailsPage({
                 <div className="flex items-end gap-4">
                   <div className="relative h-24 w-24 overflow-hidden rounded-2xl border border-border/70 bg-card">
                     <Image
-                      src={item.icon.imageUrl}
+                      src={item.icon.bannerImageUrl}
                       alt={`${item.title} icon`}
                       fill
                       className="object-cover"
@@ -225,7 +225,7 @@ export default async function ProjectDetailsPage({
                   <CarouselItem key={`${item.slug}-${index}`} className="basis-[82%] sm:basis-[48%] lg:basis-[32%]">
                     <div className="relative aspect-[10/16] overflow-hidden rounded-2xl border border-border/70">
                       <Image
-                        src={screenshot.imageUrl}
+                        src={screenshot.bannerImageUrl}
                         alt={`${item.title} screenshot ${index + 1}`}
                         fill
                         className="object-cover"
@@ -245,7 +245,7 @@ export default async function ProjectDetailsPage({
               <h2 className="font-headline text-xl font-semibold">Diagram</h2>
               <div className="relative mt-4 aspect-[16/8] overflow-hidden rounded-2xl border border-border/70">
                 <Image
-                  src={item.diagram.imageUrl}
+                  src={item.diagram.bannerImageUrl}
                   alt={`${item.title} architecture diagram`}
                   fill
                   className="object-cover"
