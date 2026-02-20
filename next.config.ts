@@ -1,13 +1,11 @@
 import type { NextConfig } from 'next';
 
 const repoName = 'ShawkyDev';
+const isGithubPages =
+  process.env.GITHUB_ACTIONS === 'true' ||
+  process.env.DEPLOY_TARGET === 'github';
 
 const nextConfig: NextConfig = {
-  output: 'export',
-
-  basePath: `/${repoName}`,
-  assetPrefix: `/${repoName}/`,
-
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -17,7 +15,8 @@ const nextConfig: NextConfig = {
   },
 
   images: {
-    unoptimized: true, // REQUIRED for GitHub Pages
+    // Keep image URLs static so they work on GitHub Pages (no Next image server).
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
@@ -43,43 +42,10 @@ const nextConfig: NextConfig = {
   },
 };
 
-
-// const nextConfig: NextConfig = {
-//   /* config options here */
-//   typescript: {
-//     ignoreBuildErrors: true,
-//   },
-//   eslint: {
-//     ignoreDuringBuilds: true,
-//   },
-//   images: {
-//     remotePatterns: [
-//       {
-//         protocol: 'https',
-//         hostname: 'placehold.co',
-//         port: '',
-//         pathname: '/**',
-//       },
-//       {
-//         protocol: 'https',
-//         hostname: 'images.unsplash.com',
-//         port: '',
-//         pathname: '/**',
-//       },
-//       {
-//         protocol: 'https',
-//         hostname: 'picsum.photos',
-//         port: '',
-//         pathname: '/**',
-//       },
-//       {
-//         protocol: 'https',
-//         hostname: 'drive.google.com',
-//         port: '',
-//         pathname: '/**',
-//       },
-//     ],
-//   },
-// };
+if (isGithubPages) {
+  nextConfig.output = 'export';
+  nextConfig.basePath = `/${repoName}`;
+  nextConfig.assetPrefix = `/${repoName}/`;
+}
 
 export default nextConfig;
