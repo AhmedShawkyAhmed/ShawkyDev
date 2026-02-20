@@ -487,8 +487,8 @@ export const SKILLS_DATA = {
       skills: [
         { name: "Flutter" },
         { name: "Dart" },
-        { name: "Native Android (Kotlin)" },
         { name: "Native iOS (Swift, SwiftUI)" },
+        { name: "Native Android (Kotlin)" },
         { name: "Jetpack Compose" },
         { name: "Flutter Plugin Development" },
         { name: "Platform Channels" },
@@ -515,7 +515,7 @@ export const SKILLS_DATA = {
         { name: "Socket.IO" },
         { name: "Firebase (Auth, Firestore, Messaging)" },
         { name: "Laravel" },
-        { name: "Serverpod" },
+        { name: "Supabase" },
         { name: "SQL Databases" },
         { name: "Push Notification Systems" },
       ],
@@ -536,6 +536,7 @@ export const SKILLS_DATA = {
       title: "Location, Maps & Mobility Systems",
       skills: [
         { name: "Google Maps API" },
+        { name: "Interactive Map Features" },
         { name: "Live Location Tracking" },
         { name: "Routing & Geofencing" },
         { name: "Heatmaps" },
@@ -614,18 +615,18 @@ export const EXPERIENCE_DATA = {
 
 export const PROJECTS_DATA = {
   title: "Featured Projects",
-  description: "Production apps with measurable impact across mobility, commerce, logistics, and healthcare.",
+  description: "Production applications showcasing scalable mobile architectures, real-time systems, and cross-platform delivery. Includes projects across mobility, e-commerce, logistics, healthcare, and high-volume enterprise environments.",
   projects: PROJECT_ITEMS,
 };
 
 export const PACKAGES_DATA = {
-  title: "Reusable Packages",
-  description: "Tooling and service packages used to accelerate delivery and improve consistency across teams.",
+  title: "Internal Tools & Packages",
+  description: "Reusable packages and internal tooling developed to standardize functionality, accelerate mobile delivery, and improve consistency and maintainability across Flutter and native mobile teams.",
   packages: PACKAGE_ITEMS,
 };
 
 export const CONTACT_DATA = {
   title: "Get in Touch",
   description:
-    "I am open to discussing new product ideas, consulting opportunities, and senior mobile engineering roles.",
+    "Open to discussing product strategy, architecture guidance, consulting, and senior or architect-level mobile engineering opportunities. I focus on building scalable, maintainable mobile platforms that evolve with business needs.",
 };
