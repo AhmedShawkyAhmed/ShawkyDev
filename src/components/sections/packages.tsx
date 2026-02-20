@@ -3,6 +3,7 @@ import { ProjectCard } from "@/components/project-card";
 
 export function Packages() {
   const { title, description, packages } = PACKAGES_DATA;
+
   return (
     <section id="packages" className="bg-muted/30">
       <div className="container">
@@ -12,8 +13,8 @@ export function Packages() {
         </div>
 
         <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {packages.map(pkg => (
-            <ProjectCard key={pkg.title} {...pkg} />
+          {packages.map((pkg) => (
+            <ProjectCard key={pkg.slug} item={pkg} />
           ))}
         </div>
       </div>

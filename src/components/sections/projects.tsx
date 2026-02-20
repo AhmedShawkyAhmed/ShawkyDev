@@ -3,6 +3,7 @@ import { ProjectCard } from "@/components/project-card";
 
 export function Projects() {
   const { title, description, projects } = PROJECTS_DATA;
+
   return (
     <section id="projects">
       <div className="container">
@@ -12,8 +13,8 @@ export function Projects() {
         </div>
 
         <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {projects.map(project => (
-            <ProjectCard key={project.title} {...project} />
+          {projects.map((project) => (
+            <ProjectCard key={project.slug} item={project} />
           ))}
         </div>
       </div>
