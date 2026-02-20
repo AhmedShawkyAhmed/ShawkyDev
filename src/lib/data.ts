@@ -463,13 +463,13 @@ export const NAV_LINKS = [
 
 export const PROFILE_DATA = {
   name: "Ahmed Shawky",
-  headline: "Senior Mobile Engineer",
-  bio: "Senior Mobile Engineer with 5+ years of experience building and scaling Flutter, Android, and iOS products. I focus on architecture quality, performance, and product delivery from idea to production.",
+  headline: "Senior Mobile Engineer | Flutter & Native Mobile (Swift/Kotlin) | Architecture & Scalable Systems",
+  bio: "I architect and build scalable mobile platforms using Flutter and native iOS (Swift) and Android (Kotlin), specializing in clean architecture, real-time systems, and production-grade performance. I focus on designing modular, maintainable systems that power high-scale applications and evolve with business growth.",
   avatar,
   stats: [
     { label: "Years Experience", value: "5+" },
     { label: "Apps Delivered", value: "30+" },
-    { label: "Domains", value: "Mobility, Commerce, Health" },
+    { label: "Domains", value: "Enterprise, Mobility, Commerce" },
   ],
   social: [
     { name: "GitHub", url: "https://github.com/AhmedShawkyAhmed", icon: Github },
@@ -483,56 +483,57 @@ export const SKILLS_DATA = {
   description: "A practical toolkit spanning mobile engineering, architecture, backend integration, and team leadership.",
   skillCategories: [
     {
-      title: "Mobile Engineering",
+      title: "Mobile Platforms & Native Development",
       skills: [
         { name: "Flutter" },
         { name: "Dart" },
-        { name: "Android (Kotlin)" },
-        { name: "iOS (Swift, SwiftUI)" },
+        { name: "Native Android (Kotlin)" },
+        { name: "Native iOS (Swift, SwiftUI)" },
         { name: "Jetpack Compose" },
+        { name: "Flutter Plugin Development" },
         { name: "Platform Channels" },
-        { name: "SDK Integration" },
+        { name: "Performance Optimization" },
       ],
     },
     {
-      title: "Architecture & State Management",
+      title: "Architecture & System Design",
       skills: [
         { name: "Clean Architecture" },
-        { name: "Modular Design" },
-        { name: "OOP & SOLID" },
+        { name: "Modular & Feature-First Design" },
+        { name: "Dependency Injection" },
         { name: "BLoC & Cubit" },
-        { name: "Provider" },
-        { name: "GetX" },
-        { name: "Offline-First" },
+        { name: "Offline-First Architecture" },
+        { name: "Sync Engine Design" },
+        { name: "Scalable Codebases" },
       ],
     },
     {
-      title: "Backend & Real-Time Systems",
+      title: "Backend Integration & Distributed Systems",
       skills: [
-        { name: "Firebase" },
-        { name: "Laravel" },
-        { name: "Supabase" },
-        { name: "GraphQL" },
-        { name: "SQL" },
-        { name: "REST APIs" },
-        { name: "WebSocket" },
+        { name: "REST & GraphQL APIs" },
+        { name: "WebSocket Architecture" },
         { name: "Socket.IO" },
+        { name: "Firebase (Auth, Firestore, Messaging)" },
+        { name: "Laravel" },
+        { name: "Serverpod" },
+        { name: "SQL Databases" },
+        { name: "Push Notification Systems" },
       ],
     },
     {
-      title: "DevOps, CI/CD & Testing",
+      title: "Delivery, Automation & Quality",
       skills: [
+        { name: "CI/CD Pipelines" },
         { name: "GitHub Actions" },
         { name: "Fastlane" },
+        { name: "Release Management" },
         { name: "Unit & Integration Testing" },
-        { name: "App Store & Play Store" },
-        { name: "Git" },
-        { name: "GitHub" },
-        { name: "GitLab" },
+        { name: "Crash & Performance Monitoring" },
+        { name: "App Store & Play Store Deployment" },
       ],
     },
     {
-      title: "Maps & Location Services",
+      title: "Location, Maps & Mobility Systems",
       skills: [
         { name: "Google Maps API" },
         { name: "Live Location Tracking" },
@@ -541,14 +542,25 @@ export const SKILLS_DATA = {
       ],
     },
     {
-      title: "Leadership & Collaboration",
+      title: "Technical Leadership",
       skills: [
+        { name: "Architecture Reviews" },
+        { name: "Mobile Engineering Standards" },
         { name: "Code Reviews" },
-        { name: "Mobile Standards" },
-        { name: "Mentoring" },
+        { name: "Mentoring Engineers" },
         { name: "Agile/Scrum" },
-        { name: "Jira" },
-        { name: "Asana" },
+        { name: "Cross-Team Collaboration" },
+      ],
+    },
+    {
+      title: "Systems & Scalability",
+      skills: [
+        { name: "Real-Time Systems" },
+        { name: "High-Volume Applications" },
+        { name: "Multi-Schema Apps" },
+        { name: "Scalable Networking Layers" },
+        { name: "Environment Configuration" },
+        { name: "Secure Mobile Architecture" },
       ],
     },
   ],
@@ -556,16 +568,19 @@ export const SKILLS_DATA = {
 
 export const EXPERIENCE_DATA = {
   title: "Professional Experience",
-  description: "Progression from native Android to senior cross-platform leadership with strong product delivery outcomes.",
+  description: "Progression from native Android to senior cross-platform leadership with strong architecture and product delivery expertise.",
   experiences: [
     {
       role: "Senior Mobile Engineer",
       company: "Intalio",
       period: "Oct 2024 – Present",
       highlights: [
-        "Delivered and maintained Flutter and iOS applications across multiple business domains.",
-        "Defined engineering standards, reviewed architecture decisions, and mentored senior engineers.",
-        "Built CI/CD pipelines with GitHub Actions and Codemagic and modernized legacy iOS codebases.",
+        "Deliver and maintain production Flutter and iOS applications (Swift, SwiftUI, Objective-C) across multiple business domains.",
+        "Define mobile engineering standards, lead code reviews, and ensure architecture consistency across Flutter and native iOS codebases.",
+        "Mentor senior engineers, provide architectural guidance, debugging support, and best practices for scalable cross-platform development.",
+        "Design and maintain CI/CD pipelines for Flutter and iOS using GitHub Actions and Codemagic, automating build and release workflows.",
+        "Modernize legacy Objective-C apps by migrating to Swift and SwiftUI, delivering new features, critical bug fixes, and improving stability.",
+        "Develop internal mobile packages and tooling to standardize shared functionality, reduce duplication, and boost team productivity."
       ],
     },
     {
@@ -573,9 +588,13 @@ export const EXPERIENCE_DATA = {
       company: "Alhawsaba",
       period: "Oct 2022 – Sep 2024",
       highlights: [
-        "Shipped multiple production Flutter apps and native integrations through Platform Channels.",
-        "Built reusable internal packages including mapping and real-time communication modules.",
-        "Led migration from GetX to BLoC for improved scalability and maintainability.",
+        "Delivered multiple production Flutter apps, serving as the primary mobile contributor across core products.",
+        "Implemented native Android (Kotlin) and iOS (Swift) features via Platform Channels for advanced hardware and SDK integration.",
+        "Built reusable Flutter packages and a Google Maps Heatmap plugin to standardize functionality across projects.",
+        "Designed and implemented a modular real-time chat system using WebSocket-based backend communication.",
+        "Led architectural refactoring from GetX to BLoC, improving state management consistency, stability, and testability.",
+        "Optimized performance, resolved memory leaks, and improved long-term app stability.",
+        "Collaborated with backend engineers and mentored mobile developers, providing technical guidance and best practices."
       ],
     },
     {
@@ -583,9 +602,11 @@ export const EXPERIENCE_DATA = {
       company: "Magdsoft",
       period: "May 2020 – Oct 2022",
       highlights: [
-        "Delivered 20+ production apps across tracking, e-commerce, and service marketplaces.",
-        "Transitioned from Kotlin-native Android to Flutter as a core cross-platform contributor.",
-        "Improved performance and UX quality by optimizing rendering and data-flow bottlenecks.",
+        "Developed and maintained native Android apps using Kotlin, transitioning to Flutter as a core cross-platform contributor.",
+        "Delivered 20+ production apps across live tracking, Google Maps solutions, e-commerce, and service marketplaces.",
+        "Built reusable Flutter components and integrated real-time features including live location tracking and backend sync.",
+        "Optimized app performance and UI/UX, contributing to measurable improvements in app store ratings.",
+        "Collaborated with cross-functional teams to deliver high-quality mobile solutions across multiple client projects."
       ],
     },
   ],

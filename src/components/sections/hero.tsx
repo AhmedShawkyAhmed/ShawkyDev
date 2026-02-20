@@ -15,9 +15,9 @@ export function Hero() {
 
       <div className="container relative z-10 grid items-center gap-14 lg:grid-cols-[1.15fr_0.85fr]">
         <div className="space-y-7 text-center lg:text-left">
-          <div className="stagger-in inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs uppercase tracking-[0.25em] text-primary">
+          {/* <div className="stagger-in inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs uppercase tracking-[0.25em] text-primary">
             Senior Mobile Engineer
-          </div>
+          </div> */}
 
           <h1 className="stagger-in font-headline text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
             {name}
