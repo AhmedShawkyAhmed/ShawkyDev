@@ -50,7 +50,7 @@ export default async function ProjectDetailsPage({
       <section className="relative overflow-hidden py-10 md:py-16">
         <div className="container">
           <Button asChild variant="ghost" className="mb-8">
-            <Link href="/#projects">
+            <Link href="/#projects" prefetch={false}>
               <ArrowLeft className="h-4 w-4" /> Back to portfolio
             </Link>
           </Button>
@@ -260,7 +260,7 @@ export default async function ProjectDetailsPage({
 
           <div className="mt-8 flex justify-end">
             <Button asChild>
-              <Link href="/#projects">
+              <Link href="/#projects" prefetch={false}>
                 Return to homepage <ExternalLink className="h-4 w-4" />
               </Link>
             </Button>

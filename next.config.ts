@@ -6,6 +6,10 @@ const isGithubPages =
   process.env.DEPLOY_TARGET === 'github';
 
 const nextConfig: NextConfig = {
+  env: {
+    NEXT_PUBLIC_BASE_PATH: isGithubPages ? `/${repoName}` : '',
+  },
+
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -46,6 +50,7 @@ if (isGithubPages) {
   nextConfig.output = 'export';
   nextConfig.basePath = `/${repoName}`;
   nextConfig.assetPrefix = `/${repoName}/`;
+  nextConfig.trailingSlash = true;
 }
 
 export default nextConfig;
