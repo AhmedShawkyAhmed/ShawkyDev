@@ -3,6 +3,7 @@ import data from './placeholder-images.json';
 export type ImagePlaceholder = {
   id: string;
   description: string;
+  appIcon: string;
   bannerImageUrl: string;
   imageHint: string;
 };
@@ -17,5 +18,6 @@ const withBasePath = (url: string) => {
 
 export const PlaceHolderImages: ImagePlaceholder[] = data.placeholderImages.map((item) => ({
   ...item,
+  appIcon: withBasePath(item.appIcon),
   bannerImageUrl: withBasePath(item.bannerImageUrl),
 }));

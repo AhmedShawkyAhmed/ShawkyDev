@@ -3,174 +3,203 @@
     {
       "id": "avatar",
       "description": "A portrait of a smiling person.",
+      "appIcon" : "/images/appLogo.png",
       "bannerImageUrl": "/images/appLogo.png",
       "imageHint": "portrait person"
     },
     {
       "id": "project-1",
       "description": "BeTrend",
+      "appIcon" : "/images/BeTrend/banner.png",
       "bannerImageUrl": "/images/BeTrend/banner.png",
       "imageHint": "mobile app"
     },
     {
       "id": "project-2",
       "description": "Bird Store",
+      "appIcon" : "/images/BirdStore/banner.png",
       "bannerImageUrl": "/images/BirdStore/banner.png",
       "imageHint": "mobile app"
     },
     {
       "id": "project-3",
       "description": "Blue Wave",
+      "appIcon" : "/images/BlueWave/banner.png",
       "bannerImageUrl": "/images/BlueWave/banner.png",
       "imageHint": "mobile app"
     },
     {
       "id": "project-4",
       "description": "CeFour",
+      "appIcon" : "/images/CeFour/banner.png",
       "bannerImageUrl": "/images/CeFour/banner.png",
       "imageHint": "mobile app"
     },
     {
       "id": "project-5",
       "description": "HiShare",
+      "appIcon" : "/images/HiShare/banner.png",
       "bannerImageUrl": "/images/HiShare/banner.png",
       "imageHint": "mobile app"
     },
     {
       "id": "project-6",
       "description": "Imtyazat",
+      "appIcon" : "/images/Imtyazat/banner.png",
       "bannerImageUrl": "/images/Imtyazat/banner.png",
       "imageHint": "mobile app"
     },
     {
       "id": "project-7",
       "description": "JetCare",
+      "appIcon" : "/images/JetCare/banner.png",
       "bannerImageUrl": "/images/JetCare/banner.png",
       "imageHint": "mobile app"
     },
     {
       "id": "project-8",
       "description": "My Expenses",
+      "appIcon" : "/images/MyExpenses/banner.png",
       "bannerImageUrl": "/images/MyExpenses/banner.png",
       "imageHint": "mobile app"
     },
     {
       "id": "project-9",
       "description": "Osta",
+      "appIcon" : "/images/Osta/banner.png",
       "bannerImageUrl": "/images/Osta/banner.png",
       "imageHint": "mobile app"
     },
     {
       "id": "project-10",
       "description": "Osta Provider",
+      "appIcon" : "/images/OstaProvider/banner.png",
       "bannerImageUrl": "/images/OstaProvider/banner.png",
       "imageHint": "mobile app"
     },
     {
       "id": "project-11",
       "description": "Otlop",
+      "appIcon" : "/images/Otlop/banner.png",
       "bannerImageUrl": "/images/Otlop/banner.png",
       "imageHint": "mobile app"
     },
     {
       "id": "project-12",
       "description": "Seda",
+      "appIcon" : "/images/Seda/banner.png",
       "bannerImageUrl": "/images/Seda/banner.png",
       "imageHint": "mobile app"
     },
     {
       "id": "project-13",
       "description": "Seda Driver",
+      "appIcon" : "/images/SedaDriver/banner.png",
       "bannerImageUrl": "/images/SedaDriver/banner.png",
       "imageHint": "mobile app"
     },
     {
       "id": "project-14",
       "description": "Sehtak Tehmna",
+      "appIcon" : "/images/Sehtak/banner.png",
       "bannerImageUrl": "/images/Sehtak/banner.png",
       "imageHint": "mobile app"
     },
     {
       "id": "project-15",
       "description": "ShawkyCLI",
+      "appIcon" : "/images/ShawkyCLI/banner.png",
       "bannerImageUrl": "/images/ShawkyCLI/banner.png",
       "imageHint": "mobile app"
     },
     {
       "id": "project-16",
       "description": "Sonic Mobility",
+      "appIcon" : "/images/Sonic/banner.png",
       "bannerImageUrl": "/images/Sonic/banner.png",
       "imageHint": "mobile app"
     },
     {
       "id": "project-17",
       "description": "Steps Tracker",
+      "appIcon" : "/images/StepsTracker/banner.png",
       "bannerImageUrl": "/images/StepsTracker/banner.png",
       "imageHint": "mobile app"
     },
     {
       "id": "project-18",
       "description": "Tripta",
+      "appIcon" : "/images/Tripta/banner.png",
       "bannerImageUrl": "/images/Tripta/banner.png",
       "imageHint": "mobile app"
     },
     {
       "id": "project-19",
       "description": "Tripta Hero",
+      "appIcon" : "/images/TriptaHero/banner.png",
       "bannerImageUrl": "/images/TriptaHero/banner.png",
       "imageHint": "mobile app"
     },
     {
       "id": "project-20",
       "description": "Hive Service",
+      "appIcon" : "/images/HiveService/banner.png",
       "bannerImageUrl": "/images/HiveService/banner.png",
       "imageHint": "mobile app"
     },
     {
       "id": "project-21",
       "description": "Location Service",
+      "appIcon" : "/images/LocationService/banner.png",
       "bannerImageUrl": "/images/LocationService/banner.png",
       "imageHint": "mobile app"
     },
     {
       "id": "project-22",
       "description": "Map Plugin",
+      "appIcon" : "/images/MapPlugin/banner.png",
       "bannerImageUrl": "/images/MapPlugin/banner.png",
       "imageHint": "mobile app"
     },
     {
       "id": "project-23",
       "description": "Network Service",
+      "appIcon" : "/images/NetworkService/banner.png",
       "bannerImageUrl": "/images/NetworkService/banner.png",
       "imageHint": "mobile app"
     },
     {
       "id": "project-24",
       "description": "Notification Service",
+      "appIcon" : "/images/NotificationService/banner.png",
       "bannerImageUrl": "/images/NotificationService/banner.png",
       "imageHint": "mobile app"
     },
     {
       "id": "project-25",
       "description": "Permission Service",
+      "appIcon" : "/images/PermissionService/banner.png",
       "bannerImageUrl": "/images/PermissionService/banner.png",
       "imageHint": "mobile app"
     },
     {
       "id": "project-26",
       "description": "Security Service",
+      "appIcon" : "/images/SecurityService/banner.png",
       "bannerImageUrl": "/images/SecurityService/banner.png",
       "imageHint": "mobile app"
     },
     {
       "id": "project-27",
       "description": "Socket Service",
+      "appIcon" : "/images/SocketService/banner.png",
       "bannerImageUrl": "/images/SocketService/banner.png",
       "imageHint": "mobile app"
     },
     {
       "id": "project-28",
       "description": "Aero Scope",
+      "appIcon" : "/images/AeroScope/banner.png",
       "bannerImageUrl": "/images/AeroScope/banner.png",
       "imageHint": "mobile app"
     }

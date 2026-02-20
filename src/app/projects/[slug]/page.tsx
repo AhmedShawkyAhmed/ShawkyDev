@@ -73,7 +73,7 @@ export default async function ProjectDetailsPage({
                 <div className="flex items-end gap-4">
                   <div className="relative h-24 w-24 overflow-hidden rounded-2xl border border-border/70 bg-card">
                     <Image
-                      src={item.icon.bannerImageUrl}
+                      src={item.icon.appIcon}
                       alt={`${item.title} icon`}
                       fill
                       className="object-cover"
