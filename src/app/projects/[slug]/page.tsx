@@ -211,34 +211,36 @@ export default async function ProjectDetailsPage({
             </ul>
           </div>
 
-          <div className="mt-8 rounded-2xl border border-border/60 bg-card/50 p-6">
-            <h2 className="font-headline text-xl font-semibold">Screenshots</h2>
-            <Carousel
-              className="mt-4"
-              opts={{
-                align: "start",
-                loop: item.screenshots.length > 3,
-              }}
-            >
-              <CarouselContent>
-                {item.screenshots.map((screenshot, index) => (
-                  <CarouselItem key={`${item.slug}-${index}`} className="basis-[82%] sm:basis-[48%] lg:basis-[32%]">
-                    <div className="relative aspect-[10/16] overflow-hidden rounded-2xl border border-border/70">
-                      <Image
-                        src={screenshot.imageUrl}
-                        alt={`${item.title} screenshot ${index + 1}`}
-                        fill
-                        className="object-cover"
-                        data-ai-hint={screenshot.imageHint}
-                      />
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious className="left-2 top-1/2 -translate-y-1/2" />
-              <CarouselNext className="right-2 top-1/2 -translate-y-1/2" />
-            </Carousel>
-          </div>
+          {item.screenshots && item.screenshots.length > 0 && (
+            <div className="mt-8 rounded-2xl border border-border/60 bg-card/50 p-6">
+              <h2 className="font-headline text-xl font-semibold">Screenshots</h2>
+              <Carousel
+                className="mt-4"
+                opts={{
+                  align: "start",
+                  loop: item.screenshots.length > 3,
+                }}
+              >
+                <CarouselContent>
+                  {item.screenshots.map((screenshot, index) => (
+                    <CarouselItem key={`${item.slug}-${index}`} className="basis-[82%] sm:basis-[48%] lg:basis-[32%]">
+                      <div className="relative aspect-[10/16] overflow-hidden rounded-2xl border border-border/70">
+                        <Image
+                          src={screenshot.imageUrl}
+                          alt={`${item.title} screenshot ${index + 1}`}
+                          fill
+                          className="object-cover"
+                          data-ai-hint={screenshot.imageHint}
+                        />
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious className="left-2 top-1/2 -translate-y-1/2" />
+                <CarouselNext className="right-2 top-1/2 -translate-y-1/2" />
+              </Carousel>
+            </div>
+          )}
 
           {item.diagramImage && (
             <div className="mt-8 rounded-2xl border border-border/60 bg-card/50 p-6">

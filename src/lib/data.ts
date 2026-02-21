@@ -42,11 +42,6 @@ const projectMedia = (appName: string) => ({
   appIcon: appAssetImage(appName, "appIcon", `${appName} app icon`, "app icon"),
   cardImage: appAssetImage(appName, "cardImage", `${appName} card image`),
   bannerImage: appAssetImage(appName, "banner", `${appName} banner`, "app banner"),
-  screenshots: [
-    appAssetImage(appName, "screenshot1", `${appName} screenshot 1`, "app screen"),
-    appAssetImage(appName, "screenshot2", `${appName} screenshot 2`, "app screen"),
-  ],
-  diagramImage: appAssetImage(appName, "diagram", `${appName} diagram`, "architecture diagram"),
 });
 
 export type PortfolioItem = {
@@ -64,7 +59,7 @@ export type PortfolioItem = {
   githubUrl?: string;
   appStoreUrl?: string;
   playStoreUrl?: string;
-  screenshots: ImagePlaceholder[];
+  screenshots?: ImagePlaceholder[];
   features: string[];
   projectIdea: string;
   showcase: string;
@@ -107,7 +102,7 @@ const buildPortfolioItem = (item: PartialPortfolioItem): PortfolioItem => ({
   githubUrl: item.githubUrl,
   appStoreUrl: item.appStoreUrl,
   playStoreUrl: item.playStoreUrl,
-  screenshots: item.screenshots ?? [item.cardImage, item.cardImage, item.cardImage],
+  screenshots: item.screenshots,
   features:
     item.features ?? [
       "Modular architecture for maintainability",
@@ -349,103 +344,215 @@ const PACKAGE_ITEMS: PortfolioItem[] = [
   buildPortfolioItem({
     title: "ShawkyCLI",
     category: "package",
-    description: "A command-line tool to streamline Flutter project setup and management.",
+    description:
+      "A powerful developer-friendly CLI that automates Flutter project setup, build, deployment, testing, and maintenance in one workflow.",
     ...projectMedia("ShawkyCLI"),
-    frameworks: ["CLI", "Flutter"],
+    frameworks: ["CLI", "Flutter Tooling", "Firebase CLI", "CocoaPods", "Git"],
     languages: ["Dart", "Shell", "Bash"],
     downloads: "27K+",
     rating: 4.9,
     githubUrl: "https://github.com/AhmedShawkyAhmed/shawky_cli.git",
-    features: ["Project bootstrap automation", "Opinionated folder architecture", "Fast setup for teams"],
-    projectIdea: "Standardize project initialization and reduce repetitive setup work for Flutter teams.",
+    features: [
+      "Project setup automation: install/create/add/make commands for Flutter apps, packages, plugins, flavors, and structure generation.",
+      "Build and release workflow: build APK/IPA, deploy to Firebase App Distribution, and generate localization/build_runner outputs.",
+      "Quality and maintenance tooling: analyze, test, clean, fix, pod, git, version, and remove commands in one CLI.",
+      "Developer-first command model: `shawky <command> [module] [arguments]` with short aliases for fast execution.",
+    ],
+    projectIdea:
+      "Eliminate repetitive Flutter engineering tasks and standardize delivery workflows for individuals and teams through a single high-productivity CLI.",
+    showcase:
+      "Designed ShawkyCLI as an end-to-end mobile delivery command system covering setup, build/release, test/analysis, git operations, CocoaPods management, and long-term project maintenance.",
   }),
   buildPortfolioItem({
     title: "Maps Plugin",
     category: "package",
-    description: "A Flutter plugin for advanced Google Maps features like heatmaps.",
+    description:
+      "A native-backed Flutter heatmap plugin that integrates Google Maps using Swift (iOS) and Kotlin (Android) for high-performance rendering.",
     ...projectMedia("MapPlugin"),
-    frameworks: ["Flutter Plugin", "Google Maps"],
+    frameworks: ["Flutter Plugin", "Google Maps SDK", "Native iOS/Android"],
     languages: ["Dart", "Kotlin", "Swift"],
     downloads: "22K+",
     rating: 4.9,
     githubUrl: "https://github.com/AhmedShawkyAhmed/heat_map_plugin.git",
+    features: [
+      "Native Google Maps heatmap layer integration on iOS and Android.",
+      "Real-time heatmap updates from Flutter with dynamic location datasets.",
+      "Configurable radius, opacity, gradient colors, and weighted visualization behavior.",
+      "Optimized rendering strategy for smooth performance on large geospatial datasets.",
+      "Production setup guidance for iOS Info.plist permissions, Podfile Google Maps integration, and pod install flow.",
+    ],
+    projectIdea:
+      "Provide Flutter teams with a production-ready heatmap capability that keeps Flutter API simplicity while using native Google Maps performance.",
+    showcase:
+      "Designed a cross-platform plugin API (`heat_map`) with native Swift/Kotlin map rendering, enabling real-time map heatmap use cases without custom platform code in each app.",
   }),
   buildPortfolioItem({
     title: "Network Service",
     category: "package",
-    description: "A reusable service layer for handling network requests in Flutter.",
+    description:
+      "A scalable Flutter network layer with centralized Dio setup, interceptors, connectivity-aware execution, unified response models, and structured exception handling.",
     ...projectMedia("NetworkService"),
-    frameworks: ["Flutter Package", "Dio"],
+    frameworks: ["Flutter Package", "Dio", "Freezed", "GraphQL/REST"],
     languages: ["Dart"],
     downloads: "31K+",
     rating: 4.8,
     githubUrl: "https://github.com/AhmedShawkyAhmed/network_service.git",
+    features: [
+      "Centralized Dio factory with configurable secured/unsecured clients and interceptor pipeline.",
+      "Unified API response model (`NetworkBaseModel`) with functional result flow via `NetworkResult`.",
+      "Structured error strategy using `NetworkExceptions` with readable extension-based messages.",
+      "Connectivity tracking using `connectivity_plus` with automatic wait/retry behavior.",
+      "Built-in logging integration (`core_utils`) and extension helpers for cleaner success/failure handling.",
+      "Supports both REST and GraphQL APIs with reusable request execution patterns.",
+    ],
+    projectIdea:
+      "Provide Flutter teams with a production-grade network foundation that standardizes API handling, error management, and connectivity resilience across apps.",
+    showcase:
+      "Implemented a clean network architecture around Dio with interceptors, connectivity state service, response/exception abstractions, and extension-driven result handling to simplify app-layer integration.",
   }),
   buildPortfolioItem({
     title: "Location Service",
     category: "package",
-    description: "A wrapper for handling location services and permissions in Flutter.",
+    description:
+      "A robust Flutter location management package handling permissions, live tracking, periodic refresh, triggered refresh, and scalable error flows.",
     ...projectMedia("LocationService"),
-    frameworks: ["Flutter Package", "Location APIs"],
+    frameworks: ["Flutter Package", "Location APIs", "permission_service", "core_utils"],
     languages: ["Dart"],
     downloads: "16K+",
     rating: 4.7,
     githubUrl: "https://github.com/AhmedShawkyAhmed/location_service.git",
+    features: [
+      "Automatic permission handling for Android and iOS with location service (GPS) state checks.",
+      "Configurable initialization via `LocationServiceConfig` including custom `onError` callback behavior.",
+      "Periodic and manual triggered refresh support for controlled location updates.",
+      "Real-time location stream with internal throttling and significant-move update behavior.",
+      "Utility helpers for instant current location access and coordinate distance calculation.",
+      "Designed for seamless integration with `permission_service` and production logging workflows.",
+    ],
+    projectIdea:
+      "Create a reusable production-ready location layer that standardizes permission handling, refresh strategy, and live tracking behavior across Flutter applications.",
+    showcase:
+      "Implemented a configurable location architecture with periodic refresh, delayed trigger refresh, live stream updates, and centralized error routing to simplify reliable location features in mobile apps.",
   }),
   buildPortfolioItem({
     title: "Security Service",
     category: "package",
-    description: "A service for handling data encryption and secure local storage.",
+    description:
+      "A modular Flutter security layer combining biometric auth, device integrity checks, fraud detection, secure token storage, and protected network interception.",
     ...projectMedia("SecurityService"),
-    frameworks: ["Flutter Package", "Secure Storage"],
+    frameworks: ["Flutter Package", "Secure Storage", "Biometrics", "Fraud Detection", "Network Security"],
     languages: ["Dart"],
     downloads: "14K+",
     rating: 4.8,
     githubUrl: "https://github.com/AhmedShawkyAhmed/security_service.git",
+    features: [
+      "Root/jailbreak, mock-location, and device integrity checks via app protection module.",
+      "Biometric and lock-screen authentication flows with secure token lifecycle handling.",
+      "Encrypted read/write/delete storage operations through a dedicated secure storage service.",
+      "Fraud detection for suspicious login frequency and geolocation behavior with device fingerprinting.",
+      "Network interception guard that blocks requests when device or behavior is not trusted.",
+      "Composable module architecture (`SecureStorageService`, `AppProtectionService`, `FraudDetectionService`, `NetworkSecurityService`, `SecurityAuthService`).",
+    ],
+    projectIdea:
+      "Deliver a single reusable mobile security foundation that combines authentication, storage, fraud prevention, and request validation for production Flutter applications.",
+    showcase:
+      "Implemented end-to-end secure login and request flow by chaining device integrity validation, biometric authentication, encrypted token handling, and guarded API interception.",
   }),
   buildPortfolioItem({
     title: "Socket Service",
     category: "package",
-    description: "Manages WebSocket connections for real-time features in Flutter apps.",
+    description:
+      "A lightweight Socket.IO service layer for Flutter that standardizes real-time connections, channel subscriptions, event emission, and lifecycle management.",
     ...projectMedia("SocketService"),
-    frameworks: ["Flutter Package", "Socket.IO"],
+    frameworks: ["Flutter Package", "Socket.IO", "Realtime Channels"],
     languages: ["Dart"],
     downloads: "19K+",
     rating: 4.8,
     githubUrl: "https://github.com/AhmedShawkyAhmed/socket_service.git",
+    features: [
+      "Singleton-based socket instance for app-wide access and centralized connection control.",
+      "Simple one-time initialization with URL and custom headers before channel connections.",
+      "Multi-channel subscription model with per-channel callbacks (`onEvent`, `onConnect`, `onError`).",
+      "Complete lifecycle handling for connect, disconnect, reconnect, and channel-level management.",
+      "Dynamic header editing with automatic reconnection to refresh auth/session context safely.",
+      "Structured logging support and clean APIs for emit/listen/add/remove/check channel state.",
+    ],
+    projectIdea:
+      "Provide Flutter teams with a consistent, reusable real-time communication layer that reduces boilerplate and stabilizes Socket.IO integration.",
+    showcase:
+      "Implemented a channel-oriented socket architecture with dynamic headers, lifecycle-safe reconnection, and simple event APIs to support scalable real-time product features.",
   }),
   buildPortfolioItem({
     title: "Notification Service",
     category: "package",
-    description: "A unified service for handling local and push notifications.",
+    description:
+      "A production-ready Flutter notification manager combining Firebase Cloud Messaging and Local Notifications with click actions, rich media, and lifecycle-safe handling.",
     ...projectMedia("NotificationService"),
-    frameworks: ["Flutter Package", "Firebase Messaging"],
+    frameworks: ["Flutter Package", "Firebase Cloud Messaging", "Local Notifications"],
     languages: ["Dart"],
     downloads: "21K+",
     rating: 4.7,
     githubUrl: "https://github.com/AhmedShawkyAhmed/notification_service.git",
+    features: [
+      "Unified initialization for Firebase and local notifications in a single setup flow.",
+      "Handles notification delivery and behavior for foreground, background, and terminated app states.",
+      "Supports rich notifications with images, payloads, and customizable display configuration.",
+      "Built-in click-action callback support for deep links and in-app navigation routing.",
+      "Automatic notification permission request flow with Android/iOS compatibility handling.",
+      "Centralized utilities for FCM token retrieval, topic subscriptions, and notification cancel actions.",
+    ],
+    projectIdea:
+      "Provide a single, reliable notification layer that standardizes push/local notification behavior, click flows, and token/topic operations across Flutter apps.",
+    showcase:
+      "Implemented a cohesive notification orchestration service that bridges FCM, local notifications, image-based styles, and click-action handlers to simplify production messaging workflows.",
   }),
   buildPortfolioItem({
     title: "Permission Service",
     category: "package",
-    description: "A simplified way to request and check device permissions in Flutter.",
+    description:
+      "A customizable Flutter permission orchestration service that standardizes request/check flows across Android and iOS with platform-aware media permission handling.",
     ...projectMedia("PermissionService"),
-    frameworks: ["Flutter Package", "Permissions Handler"],
+    frameworks: ["Flutter Package", "permission_handler", "Android 13+", "iOS 14+"],
     languages: ["Dart", "Kotlin", "Swift"],
     downloads: "13K+",
     rating: 4.7,
     githubUrl: "https://github.com/AhmedShawkyAhmed/permission_service.git",
+    features: [
+      "Supports broad Flutter permission coverage through `permission_handler` integration.",
+      "Handles Android 13+ and iOS 14+ storage/media permission replacement automatically.",
+      "Configurable confirmation dialog callback with custom per-permission messaging.",
+      "Retry strategy for denied permissions with configurable repeat attempts.",
+      "Automatic settings redirection flow for permanently denied permissions.",
+      "Localization-friendly permission messaging, including Arabic user-facing names.",
+    ],
+    projectIdea:
+      "Create a single permission workflow layer that reduces platform-specific complexity and ensures consistent UX for permission requests in Flutter apps.",
+    showcase:
+      "Implemented a platform-aware permission engine with SDK/system-version initialization, smart storage/media permission mapping, retry logic, and customizable user confirmation dialogs.",
   }),
   buildPortfolioItem({
     title: "Hive Service",
     category: "package",
-    description: "A service layer for interacting with the Hive local database in Flutter.",
+    description:
+      "A secure lightweight local storage layer on top of Hive for Flutter, with encrypted boxes, adapter/box lifecycle automation, and model serialization helpers.",
     ...projectMedia("HiveService"),
-    frameworks: ["Flutter Package", "Hive"],
+    frameworks: ["Flutter Package", "Hive", "Flutter Secure Storage", "AES Encryption"],
     languages: ["Dart"],
     downloads: "14K+",
     rating: 4.8,
     githubUrl: "https://github.com/AhmedShawkyAhmed/hive_service.git",
+    features: [
+      "Secure AES encryption for all boxes using `HiveAesCipher` with keys managed in Flutter Secure Storage.",
+      "Auto-initialization flow for adapter registration and initially opened encrypted boxes.",
+      "Simple CRUD APIs (`putItem`, `getItem`, `deleteItem`, `clearBox`) for fast local data operations.",
+      "Object serialization helpers for storing/retrieving models via custom `toJson` / `fromJson` mapping.",
+      "Automatic encryption key generation and recovery when key is missing.",
+      "Integrated logging hooks for storage lifecycle and debugging visibility.",
+    ],
+    projectIdea:
+      "Provide Flutter apps with a reusable encrypted local persistence layer that keeps storage APIs simple while enforcing secure defaults.",
+    showcase:
+      "Implemented a production-ready Hive abstraction handling encrypted box setup, adapter orchestration, CRUD operations, and JSON object mapping with minimal app-layer boilerplate.",
   }),
 ];
 
