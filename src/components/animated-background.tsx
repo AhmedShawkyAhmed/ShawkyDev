@@ -8,9 +8,9 @@ const stars = Array.from({ length: 20 }, (_, i) => {
 
   return {
   key: i + 1,
-  duration: 7.5 + (i % 9) * 0.9,
-  delay: i * 0.32,
-  length: 90 + (i % 8) * 24,
+  duration: 10.5 + (i % 9) * 0.9,
+  delay: i * 0.62,
+  length: 300 + (i % 8) * 24,
   thickness: i % 3 === 0 ? 2 : 1,
   endX: `calc(${startX} + ${distance}vw)`,
   endY: `calc(${startY} + ${Math.round(distance * 0.72)}vh)`,

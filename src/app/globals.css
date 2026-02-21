@@ -214,6 +214,36 @@ html {
   }
 }
 
+@keyframes heroDropIn {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -52px, 0) scale(0.97);
+  }
+  75% {
+    opacity: 1;
+    transform: translate3d(0, 8px, 0) scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes heroDropTarget {
+  0% {
+    opacity: 0.2;
+    transform: translate3d(0, -34px, 0) scale(0.985);
+  }
+  75% {
+    opacity: 1;
+    transform: translate3d(0, 6px, 0) scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
 .fade-up {
   opacity: 0;
   animation: fadeUp 650ms ease forwards;
@@ -289,13 +319,23 @@ html {
   pointer-events: none;
 }
 
+.hero-drop {
+  opacity: 0;
+  animation: heroDropIn 900ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+#about:target .hero-drop {
+  animation-name: heroDropTarget;
+  animation-duration: 2000ms;
+}
+
 .hover-motion {
   transition: transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease;
   will-change: transform;
 }
 
 .hover-motion:hover {
-  animation: hoverBob 900ms ease-in-out infinite;
+  transform: translate3d(0, -5px, 0);
   box-shadow: 0 12px 30px hsl(var(--primary) / 0.2);
 }
 

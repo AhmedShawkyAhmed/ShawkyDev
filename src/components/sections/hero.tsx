@@ -27,18 +27,25 @@ export function Hero() {
           <p className="stagger-in max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">{bio}</p>
 
           <div className="stagger-in flex flex-wrap items-center justify-center gap-3 lg:justify-start">
-            <Button asChild size="lg" className="hover-motion shadow-lg shadow-primary/25">
+            <Button asChild size="lg" className="hero-drop hover-motion shadow-lg shadow-primary/25" style={{ animationDelay: "420ms" }}>
               <Link href="#projects">
                 Explore Projects <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
-            <Button variant="outline" size="lg" asChild className="hover-motion">
+            <Button variant="outline" size="lg" asChild className="hero-drop hover-motion" style={{ animationDelay: "520ms" }}>
               <Link href="https://drive.google.com/uc?export=view&id=1fCMZPHw5aH69eGm5m7RTAL1FbLuiLmBF" target="_blank" rel="noopener noreferrer">
                 <Download className="h-4 w-4" /> Download CV
               </Link>
             </Button>
-            {social.map((s) => (
-              <Button key={s.name} variant="ghost" size="icon" asChild className="hover-motion">
+            {social.map((s, index) => (
+              <Button
+                key={s.name}
+                variant="ghost"
+                size="icon"
+                asChild
+                className="hero-drop hover-motion"
+                style={{ animationDelay: `${620 + index * 90}ms` }}
+              >
                 <Link href={s.url} target="_blank" rel="noopener noreferrer">
                   <s.icon className="h-5 w-5" />
                   <span className="sr-only">{s.name}</span>
@@ -48,8 +55,12 @@ export function Hero() {
           </div>
 
           <div className="stagger-in grid gap-3 sm:grid-cols-3">
-            {stats.map((item) => (
-              <div key={item.label} className="rounded-2xl border border-border/60 bg-card/75 px-4 py-4 text-left backdrop-blur-sm">
+            {stats.map((item, index) => (
+              <div
+                key={item.label}
+                className="hero-drop rounded-2xl border border-border/60 bg-card/75 px-4 py-4 text-left backdrop-blur-sm"
+                style={{ animationDelay: `${780 + index * 120}ms` }}
+              >
                 <div className="text-xl font-semibold text-primary">{item.value}</div>
                 <div className="mt-1 text-xs uppercase tracking-wide text-muted-foreground">{item.label}</div>
               </div>
@@ -58,7 +69,10 @@ export function Hero() {
         </div>
 
         <div className="fade-up mx-auto w-full max-w-sm">
-          <div className="hero-logo-wrap relative overflow-hidden rounded-[2.5rem] border border-border/60 bg-card/50 p-4 shadow-2xl shadow-primary/10 backdrop-blur-xl">
+          <div
+            className="hero-drop hero-logo-wrap relative overflow-hidden rounded-[2.5rem] border border-border/60 bg-card/50 p-4 shadow-2xl shadow-primary/10 backdrop-blur-xl"
+            style={{ animationDelay: "640ms" }}
+          >
             <div className="hero-logo-pulse absolute inset-0" />
             <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-transparent to-transparent" />
             <div className="relative mx-auto aspect-[4/5] w-full overflow-hidden rounded-[2rem]">
