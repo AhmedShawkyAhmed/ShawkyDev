@@ -46,7 +46,7 @@ export function ProjectCard({ item }: ProjectCardProps) {
               {framework}
             </Badge>
           ))}
-          {item.languages.slice(0, 2).map((language) => (
+          {item.languages.slice(0, 4).map((language) => (
             <Badge key={language} variant="outline" className="border-primary/30 text-foreground/80">
               {language}
             </Badge>

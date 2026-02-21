@@ -49,11 +49,11 @@ export default async function ProjectDetailsPage({
     <main className="min-h-dvh bg-background">
       <section className="relative overflow-hidden py-10 md:py-16">
         <div className="container">
-          {/* <Button asChild variant="ghost" className="mb-8">
-            <Link href="/" prefetch={false}>
+          <Button asChild variant="ghost" className="mb-8">
+            <Link href="/#projects" prefetch={false}>
               <ArrowLeft className="h-4 w-4" /> Back to portfolio
             </Link>
-          </Button> */}
+          </Button>
 
           <div className="overflow-hidden rounded-3xl border border-border/60 bg-card/60 shadow-xl">
             <div className="relative h-56 w-full md:h-80">
