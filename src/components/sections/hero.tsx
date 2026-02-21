@@ -63,7 +63,7 @@ export function Hero() {
             <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-transparent to-transparent" />
             <div className="relative mx-auto aspect-[4/5] w-full overflow-hidden rounded-[2rem]">
               <Image
-                src={avatar.appIcon}
+                src={avatar.imageUrl}
                 alt={avatar.description}
                 fill
                 priority

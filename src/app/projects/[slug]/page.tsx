@@ -49,21 +49,21 @@ export default async function ProjectDetailsPage({
     <main className="min-h-dvh bg-background">
       <section className="relative overflow-hidden py-10 md:py-16">
         <div className="container">
-          <Button asChild variant="ghost" className="mb-8">
-            <Link href="/#projects" prefetch={false}>
+          {/* <Button asChild variant="ghost" className="mb-8">
+            <Link href="/" prefetch={false}>
               <ArrowLeft className="h-4 w-4" /> Back to portfolio
             </Link>
-          </Button>
+          </Button> */}
 
           <div className="overflow-hidden rounded-3xl border border-border/60 bg-card/60 shadow-xl">
             <div className="relative h-56 w-full md:h-80">
               <Image
-                src={item.banner.bannerImageUrl}
+                src={item.bannerImage.imageUrl}
                 alt={`${item.title} banner`}
                 fill
                 priority
                 className="object-cover"
-                data-ai-hint={item.banner.imageHint}
+                data-ai-hint={item.bannerImage.imageHint}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
             </div>
@@ -73,11 +73,11 @@ export default async function ProjectDetailsPage({
                 <div className="flex items-end gap-4">
                   <div className="relative h-24 w-24 overflow-hidden rounded-2xl border border-border/70 bg-card">
                     <Image
-                      src={item.icon.appIcon}
+                      src={item.appIcon.imageUrl}
                       alt={`${item.title} icon`}
                       fill
                       className="object-cover"
-                      data-ai-hint={item.icon.imageHint}
+                      data-ai-hint={item.appIcon.imageHint}
                     />
                   </div>
                   <div>
@@ -225,7 +225,7 @@ export default async function ProjectDetailsPage({
                   <CarouselItem key={`${item.slug}-${index}`} className="basis-[82%] sm:basis-[48%] lg:basis-[32%]">
                     <div className="relative aspect-[10/16] overflow-hidden rounded-2xl border border-border/70">
                       <Image
-                        src={screenshot.bannerImageUrl}
+                        src={screenshot.imageUrl}
                         alt={`${item.title} screenshot ${index + 1}`}
                         fill
                         className="object-cover"
@@ -240,16 +240,16 @@ export default async function ProjectDetailsPage({
             </Carousel>
           </div>
 
-          {item.diagram && (
+          {item.diagramImage && (
             <div className="mt-8 rounded-2xl border border-border/60 bg-card/50 p-6">
               <h2 className="font-headline text-xl font-semibold">Diagram</h2>
               <div className="relative mt-4 aspect-[16/8] overflow-hidden rounded-2xl border border-border/70">
                 <Image
-                  src={item.diagram.bannerImageUrl}
+                  src={item.diagramImage.imageUrl}
                   alt={`${item.title} architecture diagram`}
                   fill
                   className="object-cover"
-                  data-ai-hint={item.diagram.imageHint}
+                  data-ai-hint={item.diagramImage.imageHint}
                 />
               </div>
               <p className="mt-3 text-sm text-muted-foreground">
@@ -258,13 +258,13 @@ export default async function ProjectDetailsPage({
             </div>
           )}
 
-          <div className="mt-8 flex justify-end">
+          {/* <div className="mt-8 flex justify-end">
             <Button asChild>
               <Link href="/#projects" prefetch={false}>
                 Return to homepage <ExternalLink className="h-4 w-4" />
               </Link>
             </Button>
-          </div>
+          </div> */}
         </div>
       </section>
     </main>

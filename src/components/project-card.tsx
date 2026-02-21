@@ -16,13 +16,13 @@ export function ProjectCard({ item }: ProjectCardProps) {
     <Card className="hover-motion group relative flex h-full flex-col overflow-hidden border-border/60 bg-card/90 transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/10">
       <Link href={`/projects/${item.slug}`} className="absolute inset-0 z-10" aria-label={`Open ${item.title} details`} />
 
-      <div className="relative aspect-[16/10] w-full overflow-hidden">
+      <div className="relative aspect-[18/10] w-full overflow-hidden">
         <Image
-          src={item.image.bannerImageUrl}
-          alt={item.image.description}
+          src={item.cardImage.imageUrl}
+          alt={item.cardImage.description}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-105"
-          data-ai-hint={item.image.imageHint}
+          data-ai-hint={item.cardImage.imageHint}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
         <div className="absolute bottom-3 left-3 flex items-center gap-2 rounded-full bg-background/80 px-3 py-1 text-xs font-medium backdrop-blur">

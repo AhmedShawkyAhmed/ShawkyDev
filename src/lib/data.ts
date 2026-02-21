@@ -11,34 +11,6 @@ const byId = (id: string) => {
 };
 
 const avatar = byId("avatar");
-const project1 = byId("project-1");
-const project2 = byId("project-2");
-const project3 = byId("project-3");
-const project4 = byId("project-4");
-const project5 = byId("project-5");
-const project6 = byId("project-6");
-const project7 = byId("project-7");
-const project8 = byId("project-8");
-const project9 = byId("project-9");
-const project10 = byId("project-10");
-const project11 = byId("project-11");
-const project12 = byId("project-12");
-const project13 = byId("project-13");
-const project14 = byId("project-14");
-const project15 = byId("project-15");
-const project16 = byId("project-16");
-const project17 = byId("project-17");
-const project18 = byId("project-18");
-const project19 = byId("project-19");
-const project20 = byId("project-20");
-const project21 = byId("project-21");
-const project22 = byId("project-22");
-const project23 = byId("project-23");
-const project24 = byId("project-24");
-const project25 = byId("project-25");
-const project26 = byId("project-26");
-const project27 = byId("project-27");
-const project28 = byId("project-28");
 
 const toSlug = (value: string) =>
   value
@@ -46,14 +18,45 @@ const toSlug = (value: string) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+const withBasePath = (url: string) => {
+  if (!url.startsWith("/")) return url;
+  if (!basePath) return url;
+  return `${basePath}${url}`;
+};
+
+const appAssetImage = (
+  appName: string,
+  type: "appIcon" | "cardImage" | "banner" | "screenshot1" | "screenshot2" | "diagram",
+  description: string,
+  imageHint = "mobile app"
+): ImagePlaceholder => ({
+  id: `${toSlug(appName)}-${toSlug(type)}`,
+  description,
+  imageUrl: withBasePath(`/images/${appName}/${type}.png`),
+  imageHint,
+});
+
+const projectMedia = (appName: string) => ({
+  appIcon: appAssetImage(appName, "appIcon", `${appName} app icon`, "app icon"),
+  cardImage: appAssetImage(appName, "cardImage", `${appName} card image`),
+  bannerImage: appAssetImage(appName, "banner", `${appName} banner`, "app banner"),
+  screenshots: [
+    appAssetImage(appName, "screenshot1", `${appName} screenshot 1`, "app screen"),
+    appAssetImage(appName, "screenshot2", `${appName} screenshot 2`, "app screen"),
+  ],
+  diagramImage: appAssetImage(appName, "diagram", `${appName} diagram`, "architecture diagram"),
+});
+
 export type PortfolioItem = {
   slug: string;
   title: string;
   category: "project" | "package";
   description: string;
-  image: ImagePlaceholder;
-  banner: ImagePlaceholder;
-  icon: ImagePlaceholder;
+  cardImage: ImagePlaceholder;
+  bannerImage: ImagePlaceholder;
+  appIcon: ImagePlaceholder;
   frameworks: string[];
   languages: string[];
   downloads: string;
@@ -65,14 +68,16 @@ export type PortfolioItem = {
   features: string[];
   projectIdea: string;
   showcase: string;
-  diagram?: ImagePlaceholder;
+  diagramImage?: ImagePlaceholder;
 };
 
 type PartialPortfolioItem = {
   title: string;
   category: "project" | "package";
   description: string;
-  image: ImagePlaceholder;
+  cardImage: ImagePlaceholder;
+  bannerImage?: ImagePlaceholder;
+  appIcon?: ImagePlaceholder;
   frameworks?: string[];
   languages?: string[];
   downloads?: string;
@@ -84,7 +89,7 @@ type PartialPortfolioItem = {
   features?: string[];
   projectIdea?: string;
   showcase?: string;
-  diagram?: ImagePlaceholder;
+  diagramImage?: ImagePlaceholder;
 };
 
 const buildPortfolioItem = (item: PartialPortfolioItem): PortfolioItem => ({
@@ -92,9 +97,9 @@ const buildPortfolioItem = (item: PartialPortfolioItem): PortfolioItem => ({
   title: item.title,
   category: item.category,
   description: item.description,
-  image: item.image,
-  banner: item.image,
-  icon: item.image,
+  cardImage: item.cardImage,
+  bannerImage: item.bannerImage ?? item.cardImage,
+  appIcon: item.appIcon ?? item.cardImage,
   frameworks: item.frameworks ?? ["Flutter"],
   languages: item.languages ?? ["Dart"],
   downloads: item.downloads ?? "10K+",
@@ -102,7 +107,7 @@ const buildPortfolioItem = (item: PartialPortfolioItem): PortfolioItem => ({
   githubUrl: item.githubUrl,
   appStoreUrl: item.appStoreUrl,
   playStoreUrl: item.playStoreUrl,
-  screenshots: item.screenshots ?? [item.image, item.image, item.image],
+  screenshots: item.screenshots ?? [item.cardImage, item.cardImage, item.cardImage],
   features:
     item.features ?? [
       "Modular architecture for maintainability",
@@ -115,7 +120,7 @@ const buildPortfolioItem = (item: PartialPortfolioItem): PortfolioItem => ({
   showcase:
     item.showcase ??
     "Implemented core workflows, optimized app performance, and delivered a polished user experience with clear engineering tradeoffs.",
-  diagram: item.diagram,
+  diagramImage: item.diagramImage,
 });
 
 const PROJECT_ITEMS: PortfolioItem[] = [
@@ -123,7 +128,7 @@ const PROJECT_ITEMS: PortfolioItem[] = [
     title: "Sonic Mobility",
     category: "project",
     description: "E-scooter sharing platform for urban mobility.",
-    image: project16,
+    ...projectMedia("Sonic"),
     frameworks: ["Flutter", "Firebase", "Google Maps"],
     languages: ["Dart", "Kotlin", "Swift"],
     downloads: "50K+",
@@ -133,26 +138,24 @@ const PROJECT_ITEMS: PortfolioItem[] = [
     features: ["Live vehicle availability", "Trip tracking and route visualization", "Payment and ride history"],
     projectIdea: "Build a city-friendly micro-mobility experience that minimizes friction between unlock, ride, and payment.",
     showcase: "Delivered geolocation-heavy booking and ride flows with strong reliability in real traffic conditions.",
-    diagram: project22,
   }),
   buildPortfolioItem({
     title: "Aero Scope",
     category: "project",
     description: "Real-time flight tracker with detailed flight information.",
-    image: project28,
+    ...projectMedia("AeroScope"),
     frameworks: ["Flutter", "Map APIs", "REST APIs"],
     languages: ["Dart"],
     downloads: "12K+",
     rating: 4.6,
     githubUrl: "https://github.com/AhmedShawkyAhmed/AeroScope.git",
     features: ["Real-time flight map", "Flight detail timeline", "Search by route and flight number"],
-    diagram: project23,
   }),
   buildPortfolioItem({
     title: "Imtyazat",
     category: "project",
     description: "A loyalty and rewards program application.",
-    image: project6,
+    ...projectMedia("Imtyazat"),
     frameworks: ["Flutter", "Firebase", "Push Notifications"],
     languages: ["Dart", "Swift", "Kotlin"],
     downloads: "100K+",
@@ -164,7 +167,7 @@ const PROJECT_ITEMS: PortfolioItem[] = [
     title: "CeFoure",
     category: "project",
     description: "A marketplace for discovering and booking local services.",
-    image: project4,
+    ...projectMedia("CeFour"),
     frameworks: ["Flutter", "BLoC", "REST APIs"],
     languages: ["Dart", "Kotlin"],
     downloads: "40K+",
@@ -176,7 +179,7 @@ const PROJECT_ITEMS: PortfolioItem[] = [
     title: "HiShare",
     category: "project",
     description: "Social networking app for sharing content and connecting with others.",
-    image: project5,
+    ...projectMedia("HiShare"),
     frameworks: ["Flutter", "Socket.IO", "Firebase"],
     languages: ["Dart"],
     downloads: "30K+",
@@ -188,7 +191,7 @@ const PROJECT_ITEMS: PortfolioItem[] = [
     title: "BeTrend",
     category: "project",
     description: "A fashion e-commerce platform with trend discovery.",
-    image: project1,
+    ...projectMedia("BeTrend"),
     frameworks: ["Flutter", "Firebase", "Payment APIs"],
     languages: ["Dart", "Swift"],
     downloads: "75K+",
@@ -200,7 +203,7 @@ const PROJECT_ITEMS: PortfolioItem[] = [
     title: "Sehtak Tehmna",
     category: "project",
     description: "A healthcare application for managing appointments and health records.",
-    image: project14,
+    ...projectMedia("Sehtak"),
     frameworks: ["Flutter", "Firebase", "REST APIs"],
     languages: ["Dart", "Swift", "Kotlin"],
     downloads: "60K+",
@@ -212,7 +215,7 @@ const PROJECT_ITEMS: PortfolioItem[] = [
     title: "JetCare",
     category: "project",
     description: "On-demand car wash and detailing service booking app.",
-    image: project7,
+    ...projectMedia("JetCare"),
     frameworks: ["Flutter", "Maps", "REST APIs"],
     languages: ["Dart"],
     downloads: "20K+",
@@ -224,20 +227,19 @@ const PROJECT_ITEMS: PortfolioItem[] = [
     title: "Tripta",
     category: "project",
     description: "A ride-sharing application for everyday transit.",
-    image: project18,
+    ...projectMedia("Tripta"),
     frameworks: ["Flutter", "Google Maps", "WebSocket"],
     languages: ["Dart", "Kotlin", "Swift"],
     downloads: "90K+",
     rating: 4.8,
     appStoreUrl: "https://apps.apple.com/bh/app/tripta-eg/id1640910594",
     playStoreUrl: "https://play.google.com/store/apps/details?id=com.tripta.user&pcampaignid=web_share",
-    diagram: project27,
   }),
   buildPortfolioItem({
     title: "Tripta Hero",
     category: "project",
     description: "The companion app for drivers on the Tripta platform.",
-    image: project19,
+    ...projectMedia("TriptaHero"),
     frameworks: ["Flutter", "Google Maps", "Socket.IO"],
     languages: ["Dart", "Kotlin"],
     downloads: "65K+",
@@ -249,7 +251,7 @@ const PROJECT_ITEMS: PortfolioItem[] = [
     title: "Blue Wave",
     category: "project",
     description: "An application for booking water sports and activities.",
-    image: project3,
+    ...projectMedia("BlueWave"),
     frameworks: ["Flutter", "REST APIs"],
     languages: ["Dart"],
     downloads: "8K+",
@@ -259,7 +261,7 @@ const PROJECT_ITEMS: PortfolioItem[] = [
     title: "Steps Tracker",
     category: "project",
     description: "A simple mobile application to track daily steps.",
-    image: project17,
+    ...projectMedia("StepsTracker"),
     frameworks: ["Flutter", "Health APIs"],
     languages: ["Dart"],
     downloads: "5K+",
@@ -270,7 +272,7 @@ const PROJECT_ITEMS: PortfolioItem[] = [
     title: "Bird Store",
     category: "project",
     description: "An e-commerce mobile application for a pet bird store.",
-    image: project2,
+    ...projectMedia("BirdStore"),
     frameworks: ["Flutter", "REST APIs"],
     languages: ["Dart"],
     downloads: "9K+",
@@ -281,7 +283,7 @@ const PROJECT_ITEMS: PortfolioItem[] = [
     title: "My Expenses",
     category: "project",
     description: "A personal finance application for tracking expenses.",
-    image: project8,
+    ...projectMedia("MyExpenses"),
     frameworks: ["Flutter", "Hive"],
     languages: ["Dart"],
     downloads: "6K+",
@@ -292,7 +294,7 @@ const PROJECT_ITEMS: PortfolioItem[] = [
     title: "Osta",
     category: "project",
     description: "A platform to connect users with skilled tradespeople.",
-    image: project9,
+    ...projectMedia("Osta"),
     frameworks: ["Flutter", "Google Maps", "REST APIs"],
     languages: ["Dart", "Kotlin"],
     downloads: "25K+",
@@ -303,7 +305,7 @@ const PROJECT_ITEMS: PortfolioItem[] = [
     title: "Osta Provider",
     category: "project",
     description: "The companion app for service providers on the Osta platform.",
-    image: project10,
+    ...projectMedia("OstaProvider"),
     frameworks: ["Flutter", "Google Maps", "REST APIs"],
     languages: ["Dart"],
     downloads: "18K+",
@@ -314,7 +316,7 @@ const PROJECT_ITEMS: PortfolioItem[] = [
     title: "Otlop",
     category: "project",
     description: "A food and grocery delivery service application.",
-    image: project11,
+    ...projectMedia("Otlop"),
     frameworks: ["Flutter", "Maps", "Realtime updates"],
     languages: ["Dart"],
     downloads: "45K+",
@@ -325,7 +327,7 @@ const PROJECT_ITEMS: PortfolioItem[] = [
     title: "Seda",
     category: "project",
     description: "An on-demand package delivery service app.",
-    image: project12,
+    ...projectMedia("Seda"),
     frameworks: ["Flutter", "Maps", "REST APIs"],
     languages: ["Dart"],
     downloads: "35K+",
@@ -335,7 +337,7 @@ const PROJECT_ITEMS: PortfolioItem[] = [
     title: "Seda Driver",
     category: "project",
     description: "The companion app for drivers on the Seda platform.",
-    image: project13,
+    ...projectMedia("SedaDriver"),
     frameworks: ["Flutter", "Maps", "Realtime updates"],
     languages: ["Dart", "Kotlin"],
     downloads: "28K+",
@@ -348,7 +350,7 @@ const PACKAGE_ITEMS: PortfolioItem[] = [
     title: "ShawkyCLI",
     category: "package",
     description: "A command-line tool to streamline Flutter project setup and management.",
-    image: project15,
+    ...projectMedia("ShawkyCLI"),
     frameworks: ["CLI", "Flutter Tooling"],
     languages: ["Dart", "Shell"],
     downloads: "18K+",
@@ -361,19 +363,18 @@ const PACKAGE_ITEMS: PortfolioItem[] = [
     title: "Maps Plugin",
     category: "package",
     description: "A Flutter plugin for advanced Google Maps features like heatmaps.",
-    image: project22,
+    ...projectMedia("MapPlugin"),
     frameworks: ["Flutter Plugin", "Google Maps"],
     languages: ["Dart", "Kotlin", "Swift"],
     downloads: "22K+",
     rating: 4.8,
     githubUrl: "https://github.com/AhmedShawkyAhmed/heat_map_plugin.git",
-    diagram: project22,
   }),
   buildPortfolioItem({
     title: "Network Service",
     category: "package",
     description: "A reusable service layer for handling network requests in Flutter.",
-    image: project23,
+    ...projectMedia("NetworkService"),
     frameworks: ["Flutter Package", "Dio"],
     languages: ["Dart"],
     downloads: "31K+",
@@ -384,7 +385,7 @@ const PACKAGE_ITEMS: PortfolioItem[] = [
     title: "Location Service",
     category: "package",
     description: "A wrapper for handling location services and permissions in Flutter.",
-    image: project21,
+    ...projectMedia("LocationService"),
     frameworks: ["Flutter Package", "Location APIs"],
     languages: ["Dart", "Kotlin", "Swift"],
     downloads: "16K+",
@@ -395,7 +396,7 @@ const PACKAGE_ITEMS: PortfolioItem[] = [
     title: "Security Service",
     category: "package",
     description: "A service for handling data encryption and secure local storage.",
-    image: project26,
+    ...projectMedia("SecurityService"),
     frameworks: ["Flutter Package", "Secure Storage"],
     languages: ["Dart"],
     downloads: "14K+",
@@ -406,7 +407,7 @@ const PACKAGE_ITEMS: PortfolioItem[] = [
     title: "Socket Service",
     category: "package",
     description: "Manages WebSocket connections for real-time features in Flutter apps.",
-    image: project27,
+    ...projectMedia("SocketService"),
     frameworks: ["Flutter Package", "Socket.IO"],
     languages: ["Dart"],
     downloads: "19K+",
@@ -417,7 +418,7 @@ const PACKAGE_ITEMS: PortfolioItem[] = [
     title: "Notification Service",
     category: "package",
     description: "A unified service for handling local and push notifications.",
-    image: project24,
+    ...projectMedia("NotificationService"),
     frameworks: ["Flutter Package", "FCM"],
     languages: ["Dart"],
     downloads: "20K+",
@@ -428,7 +429,7 @@ const PACKAGE_ITEMS: PortfolioItem[] = [
     title: "Permission Service",
     category: "package",
     description: "A simplified way to request and check device permissions in Flutter.",
-    image: project25,
+    ...projectMedia("PermissionService"),
     frameworks: ["Flutter Package"],
     languages: ["Dart"],
     downloads: "17K+",
@@ -439,7 +440,7 @@ const PACKAGE_ITEMS: PortfolioItem[] = [
     title: "Hive Service",
     category: "package",
     description: "A service layer for interacting with the Hive local database in Flutter.",
-    image: project20,
+    ...projectMedia("HiveService"),
     frameworks: ["Flutter Package", "Hive"],
     languages: ["Dart"],
     downloads: "13K+",
