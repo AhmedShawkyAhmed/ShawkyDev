@@ -146,7 +146,7 @@ const PROJECT_ITEMS: PortfolioItem[] = [
   buildPortfolioItem({
     title: "Sonic Mobility",
     category: "project",
-    description: "E-scooter sharing platform for urban mobility.",
+    description: "A mobility scooter application within the cities of New Cairo you scan and start your ride.",
     ...projectMedia("Sonic"),
     frameworks: ["Flutter", "Live Tracking", "Google Maps"],
     languages: ["Dart", "Kotlin", "Swift"],
@@ -190,16 +190,19 @@ const PROJECT_ITEMS: PortfolioItem[] = [
       projectScreenshot("AeroScope", "screenshot4"),
     ],
     features: ["Real-time flight map", "Flight detail timeline", "Search by route and flight number"],
+    projectIdea:
+      "A platform with a world map to view airports by country, track each airport's arriving and departing flights, and open detailed information for every flight.",
     supportedPlatforms: ["iOS", "iPad"],
   }),
   buildPortfolioItem({
     title: "Imtyazat",
     category: "project",
-    description: "A loyalty and rewards program application.",
+    description:
+      "Exclusive discounts for Ministry staff, Imtyazat holders, and their families.",
     ...projectMedia("Imtyazat"),
     frameworks: ["Flutter", "Google & Apple Wallet"],
     languages: ["Dart", "Kotlin", "Swift"],
-    downloads: "5K+",
+    downloads: "35K+",
     rating: 4.9,
     appStoreUrl: "https://apps.apple.com/bh/app/imtyazat-%D8%A7%D9%85%D8%AA%D9%8A%D8%A7%D8%B2%D8%A7%D8%AA/id6744577970",
     playStoreUrl: "https://play.google.com/store/apps/details?id=qa.gov.mofa.imtyazatpublic&pcampaignid=web_share",
@@ -211,6 +214,17 @@ const PROJECT_ITEMS: PortfolioItem[] = [
       projectScreenshot("Imtyazat", "screenshot5"),
       projectScreenshot("Imtyazat", "screenshot6"),
     ],
+    features: [
+      "Global discounts with special rates at local and international hotels.",
+      "Travel benefits with exclusive deals from domestic and international airlines.",
+      "Shopping privileges across renowned global retail stores.",
+      "Dining offers at select fine dining and casual restaurants.",
+      "A personalized Imtyazat experience for cardholders, Ministry staff, and their families.",
+    ],
+    projectIdea:
+      "Build a premium benefits platform that centralizes exclusive discounts and privileges for Imtyazat members across travel, hospitality, shopping, and dining.",
+    showcase:
+      "Delivered a scalable mobile experience that helps members discover and redeem premium offers with a clear, category-driven journey.",
   }),
   buildPortfolioItem({
     title: "CeFoure",
