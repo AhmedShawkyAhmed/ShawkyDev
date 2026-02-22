@@ -28,7 +28,7 @@ const withBasePath = (url: string) => {
 
 const appAssetImage = (
   appName: string,
-  type: "appIcon" | "cardImage" | "banner" | "screenshot1" | "screenshot2" | "diagram",
+  type: string,
   description: string,
   imageHint = "mobile app"
 ): ImagePlaceholder => ({
@@ -42,6 +42,27 @@ const projectMedia = (appName: string) => ({
   appIcon: appAssetImage(appName, "appIcon", `${appName} app icon`, "app icon"),
   cardImage: appAssetImage(appName, "cardImage", `${appName} card image`),
   bannerImage: appAssetImage(appName, "banner", `${appName} banner`, "app banner"),
+});
+
+export type SupportedPlatform = "Android" | "iOS" | "iPad" | "web" | "desktop";
+export type ScreenshotOrientation = "portrait" | "landscape";
+export type PortfolioScreenshot = {
+  image: ImagePlaceholder;
+  platform?: SupportedPlatform;
+  orientation?: ScreenshotOrientation;
+};
+
+export const projectScreenshot = (
+  appName: string,
+  fileName: string,
+  options?: {
+    platform?: SupportedPlatform;
+    orientation?: ScreenshotOrientation;
+  }
+): PortfolioScreenshot => ({
+  image: appAssetImage(appName, fileName, `${appName} ${fileName}`, "app screenshot"),
+  platform: options?.platform ?? "iOS",
+  orientation: options?.orientation ?? "portrait",
 });
 
 export type PortfolioItem = {
@@ -59,7 +80,8 @@ export type PortfolioItem = {
   githubUrl?: string;
   appStoreUrl?: string;
   playStoreUrl?: string;
-  screenshots?: ImagePlaceholder[];
+  supportedPlatforms: SupportedPlatform[];
+  screenshots?: PortfolioScreenshot[];
   features: string[];
   projectIdea: string;
   showcase: string;
@@ -80,7 +102,8 @@ type PartialPortfolioItem = {
   githubUrl?: string;
   appStoreUrl?: string;
   playStoreUrl?: string;
-  screenshots?: ImagePlaceholder[];
+  supportedPlatforms?: SupportedPlatform[];
+  screenshots?: PortfolioScreenshot[];
   features?: string[];
   projectIdea?: string;
   showcase?: string;
@@ -102,6 +125,7 @@ const buildPortfolioItem = (item: PartialPortfolioItem): PortfolioItem => ({
   githubUrl: item.githubUrl,
   appStoreUrl: item.appStoreUrl,
   playStoreUrl: item.playStoreUrl,
+  supportedPlatforms: item.supportedPlatforms ?? (item.category === "project" ? ["Android", "iOS", "iPad"] : ["Android", "iOS", "iPad", "web", "desktop"]),
   screenshots: item.screenshots,
   features:
     item.features ?? [
@@ -130,6 +154,13 @@ const PROJECT_ITEMS: PortfolioItem[] = [
     rating: 4.9,
     appStoreUrl: "https://apps.apple.com/eg/app/sonic-mobility-sharing-scooter/id6447569706",
     playStoreUrl: "https://play.google.com/store/apps/details?id=com.SonicMobility.sonic&pcampaignid=web_share",
+    screenshots: [
+      projectScreenshot("Sonic", "screenshot1"), 
+      projectScreenshot("Sonic", "screenshot2"), 
+      projectScreenshot("Sonic", "screenshot3"), 
+      projectScreenshot("Sonic", "screenshot4"),
+      projectScreenshot("Sonic", "screenshot5"),
+    ],
     features: ["Live vehicle availability", "Trip tracking and route visualization", "Payment and ride history"],
     projectIdea: "Build a city-friendly micro-mobility experience that minimizes friction between unlock, ride, and payment.",
     showcase: "Delivered geolocation-heavy booking and ride flows with strong reliability in real traffic conditions.",
@@ -144,7 +175,22 @@ const PROJECT_ITEMS: PortfolioItem[] = [
     downloads: "1K+",
     rating: 4.7,
     githubUrl: "https://github.com/AhmedShawkyAhmed/AeroScope.git",
+    screenshots: [
+      projectScreenshot("AeroScope", "screenshot9", { platform: "iPad", orientation: "landscape" }), 
+      projectScreenshot("AeroScope", "screenshot10", { platform: "iPad", orientation: "landscape" }), 
+      projectScreenshot("AeroScope", "screenshot11", { platform: "iPad", orientation: "landscape" }), 
+      projectScreenshot("AeroScope", "screenshot12", { platform: "iPad", orientation: "landscape" }),
+      projectScreenshot("AeroScope", "screenshot5", { platform: "iPad" }), 
+      projectScreenshot("AeroScope", "screenshot6", { platform: "iPad" }), 
+      projectScreenshot("AeroScope", "screenshot7", { platform: "iPad" }), 
+      projectScreenshot("AeroScope", "screenshot8", { platform: "iPad" }),
+      projectScreenshot("AeroScope", "screenshot1"), 
+      projectScreenshot("AeroScope", "screenshot2"), 
+      projectScreenshot("AeroScope", "screenshot3"), 
+      projectScreenshot("AeroScope", "screenshot4"),
+    ],
     features: ["Real-time flight map", "Flight detail timeline", "Search by route and flight number"],
+    supportedPlatforms: ["iOS", "iPad"],
   }),
   buildPortfolioItem({
     title: "Imtyazat",
@@ -157,6 +203,14 @@ const PROJECT_ITEMS: PortfolioItem[] = [
     rating: 4.9,
     appStoreUrl: "https://apps.apple.com/bh/app/imtyazat-%D8%A7%D9%85%D8%AA%D9%8A%D8%A7%D8%B2%D8%A7%D8%AA/id6744577970",
     playStoreUrl: "https://play.google.com/store/apps/details?id=qa.gov.mofa.imtyazatpublic&pcampaignid=web_share",
+    screenshots: [
+      projectScreenshot("Imtyazat", "screenshot1"),
+      projectScreenshot("Imtyazat", "screenshot2"),
+      projectScreenshot("Imtyazat", "screenshot3"),
+      projectScreenshot("Imtyazat", "screenshot4"),
+      projectScreenshot("Imtyazat", "screenshot5"),
+      projectScreenshot("Imtyazat", "screenshot6"),
+    ],
   }),
   buildPortfolioItem({
     title: "CeFoure",
@@ -169,6 +223,16 @@ const PROJECT_ITEMS: PortfolioItem[] = [
     rating: 4.6,
     appStoreUrl: "https://apps.apple.com/bh/app/cefour/id6476445911",
     playStoreUrl: "https://play.google.com/store/apps/details?id=com.cefour.cefour&pcampaignid=web_share",
+    screenshots: [
+      projectScreenshot("CeFour", "screenshot1"),
+      projectScreenshot("CeFour", "screenshot2"),
+      projectScreenshot("CeFour", "screenshot3"),
+      projectScreenshot("CeFour", "screenshot4"),
+      projectScreenshot("CeFour", "screenshot5"),
+      projectScreenshot("CeFour", "screenshot6"),
+      projectScreenshot("CeFour", "screenshot7"),
+      projectScreenshot("CeFour", "screenshot8"),
+    ],
   }),
   buildPortfolioItem({
     title: "HiShare",
@@ -181,6 +245,12 @@ const PROJECT_ITEMS: PortfolioItem[] = [
     rating: 4.5,
     appStoreUrl: "https://apps.apple.com/bh/app/%D9%87%D8%A7%D9%8A-%D8%B4%D9%8A%D8%B1/id6739570429",
     playStoreUrl: "https://play.google.com/store/apps/details?id=com.hishare.platform&pcampaignid=web_share",
+    screenshots: [
+      projectScreenshot("HiShare", "screenshot1"),
+      projectScreenshot("HiShare", "screenshot2"),
+      projectScreenshot("HiShare", "screenshot3"),
+      projectScreenshot("HiShare", "screenshot4"),
+    ],
   }),
   buildPortfolioItem({
     title: "BeTrend",
@@ -193,6 +263,11 @@ const PROJECT_ITEMS: PortfolioItem[] = [
     rating: 4.7,
     appStoreUrl: "https://apps.apple.com/bh/app/be-trend-%D8%A8%D9%8A-%D8%AA%D8%B1%D9%86%D8%AF/id1658865427",
     playStoreUrl: "https://play.google.com/store/apps/details?id=com.diwan.beTrend&pcampaignid=web_share",
+    screenshots: [
+      projectScreenshot("BeTrend", "screenshot1"),
+      projectScreenshot("BeTrend", "screenshot2"),
+      projectScreenshot("BeTrend", "screenshot3"),
+    ],
   }),
   buildPortfolioItem({
     title: "Sehtak Tehmna",
@@ -205,6 +280,16 @@ const PROJECT_ITEMS: PortfolioItem[] = [
     rating: 4.8,
     appStoreUrl: "https://apps.apple.com/bh/app/%D8%B5%D8%AD%D8%AA%D9%83-%D8%AA%D9%87%D9%85%D9%86%D8%A7/id6477756584",
     playStoreUrl: "https://play.google.com/store/apps/details?id=com.sihatukTuhumuna.sihatukTuhumuna&pcampaignid=web_share",
+    screenshots: [
+      projectScreenshot("Sehtak", "screenshot1"),
+      projectScreenshot("Sehtak", "screenshot2"),
+      projectScreenshot("Sehtak", "screenshot3"),
+      projectScreenshot("Sehtak", "screenshot4"),
+      projectScreenshot("Sehtak", "screenshot5"),
+      projectScreenshot("Sehtak", "screenshot6"),
+      projectScreenshot("Sehtak", "screenshot7"),
+      projectScreenshot("Sehtak", "screenshot8"),
+    ],
   }),
   buildPortfolioItem({
     title: "Blue Wave",
@@ -215,6 +300,13 @@ const PROJECT_ITEMS: PortfolioItem[] = [
     languages: ["Dart"],
     downloads: "500+",
     rating: 4.3,
+    screenshots: [
+      projectScreenshot("BlueWave", "screenshot1"),
+      projectScreenshot("BlueWave", "screenshot2"),
+      projectScreenshot("BlueWave", "screenshot3"),
+      projectScreenshot("BlueWave", "screenshot4"),
+      projectScreenshot("BlueWave", "screenshot5"),
+    ],
   }),
   buildPortfolioItem({
     title: "JetCare",
@@ -227,6 +319,13 @@ const PROJECT_ITEMS: PortfolioItem[] = [
     rating: 4.7,
     appStoreUrl: "https://apps.apple.com/bh/app/jet-care/id6446169634",
     playStoreUrl: "https://play.google.com/store/apps/details?id=com.jetcareeg.jetcare&pcampaignid=web_share",
+    screenshots: [
+      projectScreenshot("JetCare", "screenshot1"),
+      projectScreenshot("JetCare", "screenshot2"),
+      projectScreenshot("JetCare", "screenshot3"),
+      projectScreenshot("JetCare", "screenshot4"),
+      projectScreenshot("JetCare", "screenshot5"),
+    ],
   }),
   buildPortfolioItem({
     title: "Tripta",
@@ -239,6 +338,16 @@ const PROJECT_ITEMS: PortfolioItem[] = [
     rating: 4.8,
     appStoreUrl: "https://apps.apple.com/bh/app/tripta-eg/id1640910594",
     playStoreUrl: "https://play.google.com/store/apps/details?id=com.tripta.user&pcampaignid=web_share",
+    screenshots: [
+      projectScreenshot("Tripta", "screenshot1"),
+      projectScreenshot("Tripta", "screenshot2"),
+      projectScreenshot("Tripta", "screenshot3"),
+      projectScreenshot("Tripta", "screenshot4"),
+      projectScreenshot("Tripta", "screenshot5"),
+      projectScreenshot("Tripta", "screenshot6"),
+      projectScreenshot("Tripta", "screenshot7"),
+      projectScreenshot("Tripta", "screenshot8"),
+    ],
   }),
   buildPortfolioItem({
     title: "Tripta Hero",
@@ -251,6 +360,13 @@ const PROJECT_ITEMS: PortfolioItem[] = [
     rating: 4.7,
     appStoreUrl: "https://apps.apple.com/bh/app/tripta-hero/id1640911684",
     playStoreUrl: "https://play.google.com/store/apps/details?id=com.tripta.driver&pcampaignid=web_share",
+    screenshots: [
+      projectScreenshot("TriptaHero", "screenshot1"),
+      projectScreenshot("TriptaHero", "screenshot2"),
+      projectScreenshot("TriptaHero", "screenshot3"),
+      projectScreenshot("TriptaHero", "screenshot4"),
+      projectScreenshot("TriptaHero", "screenshot5"),
+    ],
   }),
   buildPortfolioItem({
     title: "Osta",
@@ -262,6 +378,11 @@ const PROJECT_ITEMS: PortfolioItem[] = [
     downloads: "25K+",
     rating: 4.6,
     githubUrl: "https://github.com/AhmedShawkyAhmed/RouteMe_Mobile.git",
+    screenshots: [
+      projectScreenshot("Osta", "screenshot1"),
+      projectScreenshot("Osta", "screenshot2"),
+      projectScreenshot("Osta", "screenshot3"),
+    ],
   }),
   buildPortfolioItem({
     title: "Osta Provider",
@@ -273,6 +394,11 @@ const PROJECT_ITEMS: PortfolioItem[] = [
     downloads: "18K+",
     rating: 4.5,
     githubUrl: "https://github.com/AhmedShawkyAhmed/RouteMe_Mobile.git",
+    screenshots: [
+      projectScreenshot("OstaProvider", "screenshot1"),
+      projectScreenshot("OstaProvider", "screenshot2"),
+      projectScreenshot("OstaProvider", "screenshot3"),
+    ],
   }),
   buildPortfolioItem({
     title: "Bird Store",
@@ -284,6 +410,12 @@ const PROJECT_ITEMS: PortfolioItem[] = [
     downloads: "2K+",
     rating: 4.5,
     githubUrl: "https://github.com/AhmedShawkyAhmed/bird_store_ios.git",
+    screenshots: [
+      projectScreenshot("BirdStore", "screenshot1"),
+      projectScreenshot("BirdStore", "screenshot2"),
+      projectScreenshot("BirdStore", "screenshot3"),
+    ],
+    supportedPlatforms: ["iOS", "iPad"],
   }),
   buildPortfolioItem({
     title: "Otlop",
@@ -295,6 +427,15 @@ const PROJECT_ITEMS: PortfolioItem[] = [
     downloads: "1K+",
     rating: 4.7,
     githubUrl: "https://github.com/AhmedShawkyAhmed/otlop.git",
+    screenshots: [
+      projectScreenshot("Otlop", "screenshot1"),
+      projectScreenshot("Otlop", "screenshot2"),
+      projectScreenshot("Otlop", "screenshot3"),
+      projectScreenshot("Otlop", "screenshot4"),
+      projectScreenshot("Otlop", "screenshot5"),
+      projectScreenshot("Otlop", "screenshot6"),
+    ],
+    supportedPlatforms: ["Android", "iOS"],
   }),
   buildPortfolioItem({
     title: "Seda",
@@ -305,6 +446,14 @@ const PROJECT_ITEMS: PortfolioItem[] = [
     languages: ["Dart", "Kotlin", "Swift"],
     downloads: "35K+",
     rating: 4.6,
+    screenshots: [
+      projectScreenshot("Seda", "screenshot1"),
+      projectScreenshot("Seda", "screenshot2"),
+      projectScreenshot("Seda", "screenshot3"),
+      projectScreenshot("Seda", "screenshot4"),
+      projectScreenshot("Seda", "screenshot5"),
+    ],
+    supportedPlatforms: ["Android", "iOS"],
   }),
   buildPortfolioItem({
     title: "Seda Driver",
@@ -315,6 +464,12 @@ const PROJECT_ITEMS: PortfolioItem[] = [
     languages: ["Dart", "Kotlin", "Swift"],
     downloads: "23K+",
     rating: 4.6,
+    screenshots: [
+      projectScreenshot("SedaDriver", "screenshot1"),
+      projectScreenshot("SedaDriver", "screenshot2"),
+      projectScreenshot("SedaDriver", "screenshot3"),
+    ],
+    supportedPlatforms: ["Android", "iOS"],
   }),
   buildPortfolioItem({
     title: "My Expenses",
@@ -326,6 +481,14 @@ const PROJECT_ITEMS: PortfolioItem[] = [
     downloads: "100+",
     rating: 4.4,
     githubUrl: "https://github.com/AhmedShawkyAhmed/shawky.git",
+    screenshots: [
+      projectScreenshot("MyExpenses", "screenshot1"),
+      projectScreenshot("MyExpenses", "screenshot2"),
+      projectScreenshot("MyExpenses", "screenshot3"),
+      projectScreenshot("MyExpenses", "screenshot4"),
+      projectScreenshot("MyExpenses", "screenshot5"),
+    ],
+    supportedPlatforms: ["Android", "iOS"],
   }),
   buildPortfolioItem({
     title: "Steps Tracker",
@@ -337,6 +500,12 @@ const PROJECT_ITEMS: PortfolioItem[] = [
     downloads: "100+",
     rating: 4.4,
     githubUrl: "https://github.com/AhmedShawkyAhmed/step_tracker.git",
+    screenshots: [
+      projectScreenshot("StepsTracker", "screenshot1"),
+      projectScreenshot("StepsTracker", "screenshot2"),
+      projectScreenshot("StepsTracker", "screenshot3"),
+    ],
+    supportedPlatforms: ["Android", "iOS"],
   }),
 ];
 
@@ -362,6 +531,10 @@ const PACKAGE_ITEMS: PortfolioItem[] = [
       "Eliminate repetitive Flutter engineering tasks and standardize delivery workflows for individuals and teams through a single high-productivity CLI.",
     showcase:
       "Designed ShawkyCLI as an end-to-end mobile delivery command system covering setup, build/release, test/analysis, git operations, CocoaPods management, and long-term project maintenance.",
+      screenshots: [
+        projectScreenshot("ShawkyCLI", "screenshot1", { platform: "desktop", orientation: "landscape" }),
+      ],
+      supportedPlatforms: ["desktop",],
   }),
   buildPortfolioItem({
     title: "Maps Plugin",
@@ -385,6 +558,13 @@ const PACKAGE_ITEMS: PortfolioItem[] = [
       "Provide Flutter teams with a production-ready heatmap capability that keeps Flutter API simplicity while using native Google Maps performance.",
     showcase:
       "Designed a cross-platform plugin API (`heat_map`) with native Swift/Kotlin map rendering, enabling real-time map heatmap use cases without custom platform code in each app.",
+      screenshots: [
+        projectScreenshot("MapPlugin", "screenshot1"),
+        projectScreenshot("MapPlugin", "screenshot2"),
+        projectScreenshot("MapPlugin", "screenshot3"),
+        projectScreenshot("MapPlugin", "screenshot4"),
+      ],
+      supportedPlatforms: ["Android", "iOS", "iPad"],
   }),
   buildPortfolioItem({
     title: "Network Service",

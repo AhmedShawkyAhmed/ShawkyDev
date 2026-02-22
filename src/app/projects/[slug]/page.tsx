@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, BriefcaseBusiness, Cpu, Download, ExternalLink, Github, ShieldCheck, Star, TrendingUp } from "lucide-react";
+import { ArrowLeft, BriefcaseBusiness, Cpu, Download, Github, Laptop, ShieldCheck, Smartphone, Star, Tablet, TrendingUp } from "lucide-react";
 import { Apple, PlayStore } from "@/components/icons";
 import { ALL_PORTFOLIO_ITEMS, getPortfolioItemBySlug } from "@/lib/data";
 import { Badge } from "@/components/ui/badge";
@@ -44,6 +44,14 @@ export default async function ProjectDetailsPage({
     "Used code review standards and architecture-driven decisions to reduce technical risk.",
     "Kept implementation maintainable for long-term product evolution and team onboarding.",
   ];
+
+  const platformMeta = {
+    Android: { label: "Android", icon: Smartphone },
+    iOS: { label: "iOS", icon: Smartphone },
+    iPad: { label: "iPad", icon: Tablet },
+    web: { label: "Web", icon: Laptop },
+    desktop: { label: "Desktop", icon: Laptop },
+  } as const;
 
   return (
     <main className="min-h-dvh bg-background">
@@ -109,6 +117,19 @@ export default async function ProjectDetailsPage({
                     {language}
                   </Badge>
                 ))}
+              </div>
+
+              <div className="mt-4 flex flex-wrap items-center gap-2">
+                {item.supportedPlatforms.map((platform) => {
+                  const meta = platformMeta[platform];
+                  const Icon = meta.icon;
+                  return (
+                    <Badge key={platform} variant="outline" className="gap-1.5">
+                      <Icon className="h-3.5 w-3.5" />
+                      {meta.label}
+                    </Badge>
+                  );
+                })}
               </div>
 
               <div className="mt-6 flex flex-wrap items-center gap-3">
@@ -222,19 +243,45 @@ export default async function ProjectDetailsPage({
                 }}
               >
                 <CarouselContent>
-                  {item.screenshots.map((screenshot, index) => (
-                    <CarouselItem key={`${item.slug}-${index}`} className="basis-[82%] sm:basis-[48%] lg:basis-[32%]">
-                      <div className="relative aspect-[10/16] overflow-hidden rounded-2xl border border-border/70">
+                  {item.screenshots.map((screenshot, index) => {
+                    const isIpad = screenshot.platform === "iPad";
+                    const isDesktop = screenshot.platform === "desktop";
+                    const isLandscape = screenshot.orientation === "landscape";
+                    const aspectClass = isIpad
+                      ? isLandscape
+                        ? "aspect-[2752/2064]"
+                        : "aspect-[2064/2752]"
+                      : isDesktop
+                        ? isLandscape
+                          ? "aspect-[2752/2064]"
+                          : "aspect-[2064/2752]"
+                        : "aspect-[1320/2868]";
+                    const basisClass = isIpad
+                      ? isLandscape
+                        ? "basis-[59%] sm:basis-[50%] lg:basis-[43%]"
+                        : "basis-[54%] sm:basis-[32%] lg:basis-[23%]"
+                      : isDesktop
+                        ? isLandscape
+                          ? "basis-[59%] sm:basis-[50%] lg:basis-[43%]"
+                          : "basis-[54%] sm:basis-[32%] lg:basis-[23%]"
+                        : "basis-[51%] sm:basis-[31%] lg:basis-[20%]";
+                    return (
+                    <CarouselItem
+                      key={`${item.slug}-${index}`}
+                      className={basisClass}
+                    >
+                      <div className={`relative overflow-hidden rounded-2xl border border-border/70 ${aspectClass}`}>
                         <Image
-                          src={screenshot.imageUrl}
+                          src={screenshot.image.imageUrl}
                           alt={`${item.title} screenshot ${index + 1}`}
                           fill
                           className="object-cover"
-                          data-ai-hint={screenshot.imageHint}
+                          data-ai-hint={screenshot.image.imageHint}
                         />
                       </div>
                     </CarouselItem>
-                  ))}
+                    );
+                  })}
                 </CarouselContent>
                 <CarouselPrevious className="left-2 top-1/2 -translate-y-1/2" />
                 <CarouselNext className="right-2 top-1/2 -translate-y-1/2" />
