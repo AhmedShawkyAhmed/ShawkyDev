@@ -71,7 +71,7 @@ export default async function ProjectDetailsPage({
             <div className="relative px-6 pb-8 md:px-10">
               <div className="-mt-14 flex flex-wrap items-end justify-between gap-5">
                 <div className="flex items-end gap-4">
-                  <div className="relative h-24 w-24 overflow-hidden rounded-2xl border border-border/70 bg-card">
+                  <div className="relative h-32 w-32 overflow-hidden rounded-2xl border border-border/70 bg-card">
                     <Image
                       src={item.appIcon.imageUrl}
                       alt={`${item.title} icon`}

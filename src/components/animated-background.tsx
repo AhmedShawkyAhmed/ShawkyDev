@@ -1,6 +1,6 @@
 import type { CSSProperties } from "react";
 
-const stars = Array.from({ length: 20 }, (_, i) => {
+const stars = Array.from({ length: 6 }, (_, i) => {
   const fromTop = i % 2 === 0;
   const startX = fromTop ? `${(i * 7) % 112 - 6}vw` : "-20vw";
   const startY = fromTop ? "-16vh" : `${(i * 9) % 108 - 6}vh`;
@@ -8,9 +8,9 @@ const stars = Array.from({ length: 20 }, (_, i) => {
 
   return {
   key: i + 1,
-  duration: 10.5 + (i % 9) * 0.9,
-  delay: i * 0.62,
-  length: 300 + (i % 8) * 24,
+  duration: 40 + (i % 9) * 0.9,
+  delay: i * 0.82,
+  length: 300 + (i % 8) * 8,
   thickness: i % 3 === 0 ? 2 : 1,
   endX: `calc(${startX} + ${distance}vw)`,
   endY: `calc(${startY} + ${Math.round(distance * 0.72)}vh)`,
