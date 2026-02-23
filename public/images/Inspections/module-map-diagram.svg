@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Inspections Module and Scheme Topology</title>
+  <desc id="desc">Shows Core, Features, Shared modules and scheme governance across entities.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1f2937"/>
+    </linearGradient>
+    <style>
+      .title { font: 700 40px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #f8fafc; }
+      .sub { font: 500 19px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #93c5fd; }
+      .h { font: 700 21px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #e5e7eb; }
+      .t { font: 500 15px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #cbd5e1; }
+      .box { stroke-width: 2.5; rx: 15; }
+      .core { fill: #172554; stroke: #60a5fa; }
+      .feat { fill: #14532d; stroke: #4ade80; }
+      .shared { fill: #713f12; stroke: #facc15; }
+      .scheme { fill: #4c1d95; stroke: #c4b5fd; }
+      .flow { fill: none; stroke-width: 3; marker-end: url(#arrow); }
+      .c1 { stroke: #60a5fa; }
+      .c2 { stroke: #4ade80; }
+      .c3 { stroke: #facc15; }
+      .c4 { stroke: #c4b5fd; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#cbd5e1"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <text x="70" y="80" class="title">Module and Scheme Topology</text>
+  <text x="70" y="112" class="sub">Single Target Architecture with Multi-Entity Runtime Variants</text>
+
+  <rect class="box core" x="70" y="170" width="420" height="320" rx="15"/>
+  <text x="95" y="210" class="h">Core Layer</text>
+  <text x="95" y="238" class="t">DI, Routing, Network, DB, Caching, Utilities</text>
+  <text x="95" y="264" class="t">- API client, interceptor, monitor</text>
+  <text x="95" y="288" class="t">- keychain and encryption</text>
+  <text x="95" y="312" class="t">- app variant manager and config</text>
+  <text x="95" y="336" class="t">- loading and global alerts</text>
+
+  <rect class="box feat" x="560" y="170" width="470" height="420" rx="15"/>
+  <text x="585" y="210" class="h">Feature Layer</text>
+  <text x="585" y="238" class="t">Login, Layout, Inbox, Requests, TasksToSync</text>
+  <text x="585" y="262" class="t">FinishedReports, Appointments, HandSign</text>
+  <text x="585" y="290" class="t">- ViewModel + Repository boundaries</text>
+  <text x="585" y="314" class="t">- dynamic forms and validation gates</text>
+  <text x="585" y="338" class="t">- report URL and integration flows</text>
+  <text x="585" y="362" class="t">- sync-ready local request lifecycle</text>
+
+  <rect class="box shared" x="1100" y="170" width="430" height="320" rx="15"/>
+  <text x="1125" y="210" class="h">Shared Layer</text>
+  <text x="1125" y="238" class="t">Reusable components and design resources</text>
+  <text x="1125" y="264" class="t">- fields, buttons, widgets</text>
+  <text x="1125" y="288" class="t">- map, web, PDF wrappers</text>
+  <text x="1125" y="312" class="t">- assets, colors, localization</text>
+
+  <rect class="box scheme" x="70" y="560" width="1460" height="260" rx="15"/>
+  <text x="95" y="602" class="h">Scheme Governance and Entity Scaling</text>
+  <text x="95" y="632" class="t">Shared schemes and build configs: general | technical | agricultural | fishermen | health | islands | moi | civil | municipalities</text>
+  <text x="95" y="658" class="t">Each scheme maps to variant-specific runtime keys (display, endpoint, behavior flags) without splitting codebase.</text>
+  <text x="95" y="684" class="t">Outcome: maintainable enterprise platform with controlled customization, faster releases, and lower long-term complexity.</text>
+  <text x="95" y="710" class="t">Modernization path executed under single ownership: Objective-C legacy migration to Swift and SwiftUI modules.</text>
+
+  <path class="flow c1" d="M 490 285 L 560 285"/>
+  <path class="flow c2" d="M 1030 285 L 1100 285"/>
+  <path class="flow c3" d="M 795 590 L 795 500"/>
+  <path class="flow c4" d="M 300 560 C 300 530 270 520 270 490"/>
+  <path class="flow c4" d="M 1300 560 C 1300 530 1330 520 1330 490"/>
+</svg>

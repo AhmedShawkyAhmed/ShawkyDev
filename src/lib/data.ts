@@ -30,11 +30,12 @@ const appAssetImage = (
   appName: string,
   type: string,
   description: string,
-  imageHint = "mobile app"
+  imageHint = "mobile app",
+  extension: "png" | "svg" = "png"
 ): ImagePlaceholder => ({
   id: `${toSlug(appName)}-${toSlug(type)}`,
   description,
-  imageUrl: withBasePath(`/images/${appName}/${type}.png`),
+  imageUrl: withBasePath(`/images/${appName}/${type}.${extension}`),
   imageHint,
 });
 
@@ -58,9 +59,16 @@ export const projectScreenshot = (
   options?: {
     platform?: SupportedPlatform;
     orientation?: ScreenshotOrientation;
+    extension?: "png" | "svg";
   }
 ): PortfolioScreenshot => ({
-  image: appAssetImage(appName, fileName, `${appName} ${fileName}`, "app screenshot"),
+  image: appAssetImage(
+    appName,
+    fileName,
+    `${appName} ${fileName}`,
+    "app screenshot",
+    options?.extension ?? "png"
+  ),
   platform: options?.platform ?? "iOS",
   orientation: options?.orientation ?? "portrait",
 });
@@ -85,6 +93,7 @@ export type PortfolioItem = {
   features: string[];
   projectIdea: string;
   showcase: string;
+  diagramImages?: ImagePlaceholder[];
   diagramImage?: ImagePlaceholder;
 };
 
@@ -107,6 +116,7 @@ type PartialPortfolioItem = {
   features?: string[];
   projectIdea?: string;
   showcase?: string;
+  diagramImages?: ImagePlaceholder[];
   diagramImage?: ImagePlaceholder;
 };
 
@@ -139,6 +149,7 @@ const buildPortfolioItem = (item: PartialPortfolioItem): PortfolioItem => ({
   showcase:
     item.showcase ??
     "Implemented core workflows, optimized app performance, and delivered a polished user experience with clear engineering tradeoffs.",
+  diagramImages: item.diagramImages ?? (item.diagramImage ? [item.diagramImage] : undefined),
   diagramImage: item.diagramImage,
 });
 
@@ -171,6 +182,36 @@ const PROJECT_ITEMS: PortfolioItem[] = [
       "Design and evolve a mission-critical inspection platform for governmental field teams, balancing reliability, offline resilience, and variant-specific customization across multiple entities.",
     showcase:
       "As the sole iOS engineer, I owned architecture, modernization, development, and maintenance of the full application, including migration from Objective-C to Swift and SwiftUI adoption, multi-scheme management, and long-term scalability improvements.",
+    diagramImages: [
+      appAssetImage(
+        "Inspections",
+        "architecture-diagram",
+        "Inspections high-level architecture diagram",
+        "architecture diagram",
+        "svg"
+      ),
+      appAssetImage(
+        "Inspections",
+        "sync-flow-diagram",
+        "Inspections synchronization flow diagram",
+        "sync flow diagram",
+        "svg"
+      ),
+      appAssetImage(
+        "Inspections",
+        "module-map-diagram",
+        "Inspections module map diagram",
+        "module map diagram",
+        "svg"
+      ),
+      appAssetImage(
+        "Inspections",
+        "create-request-validation-diagram",
+        "Inspections create request and form validation flow diagram",
+        "form validation flow diagram",
+        "svg"
+      ),
+    ],
   }),
   buildPortfolioItem({
     title: "Sonic Mobility",

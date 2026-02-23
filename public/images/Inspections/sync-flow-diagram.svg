@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Inspections Sync Flow</title>
+  <desc id="desc">Operational sync sequence from field capture to backend acknowledgment and UI reconciliation.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+    <style>
+      .title { font: 700 40px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #f8fafc; }
+      .sub { font: 500 19px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #a5b4fc; }
+      .h { font: 700 19px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #ecfeff; }
+      .t { font: 500 15px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #d1d5db; }
+      .step { stroke-width: 2.5; rx: 14; }
+      .s1 { fill: #1e3a8a; stroke: #93c5fd; }
+      .s2 { fill: #14532d; stroke: #4ade80; }
+      .s3 { fill: #7c2d12; stroke: #fdba74; }
+      .s4 { fill: #581c87; stroke: #d8b4fe; }
+      .s5 { fill: #334155; stroke: #cbd5e1; }
+      .flow { fill: none; stroke-width: 3; marker-end: url(#arrow); }
+      .main { stroke: #93c5fd; }
+      .ok { stroke: #4ade80; }
+      .retry { stroke: #f59e0b; stroke-dasharray: 8 8; }
+      .err { stroke: #fb7185; stroke-dasharray: 8 8; }
+      .tag { font: 700 13px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #0b1220; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#cbd5e1"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <text x="70" y="78" class="title">Synchronization Sequence</text>
+  <text x="70" y="110" class="sub">Requests Feature | Offline Queue | Network-Aware Delivery | State Reconciliation</text>
+
+  <rect class="step s1" x="70" y="180" width="260" height="130" rx="14"/>
+  <text x="95" y="222" class="h">1) Capture</text>
+  <text x="95" y="248" class="t">Inspector fills form,</text>
+  <text x="95" y="270" class="t">adds media and violations</text>
+
+  <rect class="step s2" x="390" y="180" width="280" height="130" rx="14"/>
+  <text x="415" y="222" class="h">2) Local Save</text>
+  <text x="415" y="248" class="t">Persist request and attrs</text>
+  <text x="415" y="270" class="t">in SQLite tables</text>
+
+  <rect class="step s3" x="740" y="180" width="320" height="130" rx="14"/>
+  <text x="765" y="222" class="h">3) Queue for Sync</text>
+  <text x="765" y="248" class="t">Mark pending sync tasks</text>
+  <text x="765" y="270" class="t">with retry-safe status</text>
+
+  <rect class="step s4" x="1120" y="180" width="320" height="130" rx="14"/>
+  <text x="1145" y="222" class="h">4) Push to Backend</text>
+  <text x="1145" y="248" class="t">Sync service submits payload</text>
+  <text x="1145" y="270" class="t">when network is available</text>
+
+  <rect class="step s5" x="230" y="500" width="360" height="150" rx="14"/>
+  <text x="255" y="544" class="h">5) Success Path</text>
+  <text x="255" y="570" class="t">Update IDs and statuses,</text>
+  <text x="255" y="592" class="t">refresh lists and counters</text>
+  <text x="255" y="614" class="t">across Inbox and Reports</text>
+
+  <rect class="step s5" x="760" y="500" width="430" height="150" rx="14"/>
+  <text x="785" y="544" class="h">6) Failure and Retry Path</text>
+  <text x="785" y="570" class="t">Map API errors to alerts,</text>
+  <text x="785" y="592" class="t">keep queue items pending,</text>
+  <text x="785" y="614" class="t">retry on next connectivity window</text>
+
+  <path class="flow main" d="M 330 245 L 390 245"/>
+  <path class="flow main" d="M 670 245 L 740 245"/>
+  <path class="flow main" d="M 1060 245 L 1120 245"/>
+
+  <path class="flow ok" d="M 1180 310 C 1180 420 410 430 410 500"/>
+  <path class="flow err" d="M 1280 310 C 1280 420 975 430 975 500"/>
+  <path class="flow retry" d="M 975 650 C 975 740 900 740 900 310"/>
+
+  <rect x="1110" y="685" width="340" height="100" rx="12" fill="#0b1220" stroke="#334155" stroke-width="2"/>
+  <text x="1135" y="722" class="t">Decision logic from Requests flow:</text>
+  <text x="1135" y="747" class="t">- status true: commit + refresh</text>
+  <text x="1135" y="772" class="t">- error: alert + pending retry</text>
+</svg>

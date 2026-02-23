@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 980" role="img" aria-labelledby="title desc">
+  <title id="title">Create Request and Form Validation Flow</title>
+  <desc id="desc">Detailed sequence for create request, dynamic attributes loading, validation registry checks, and completion gating.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1220"/>
+      <stop offset="100%" stop-color="#1f2937"/>
+    </linearGradient>
+    <style>
+      .title { font: 700 42px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #f8fafc; }
+      .sub { font: 500 20px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #93c5fd; }
+      .h { font: 700 20px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #e5e7eb; }
+      .t { font: 500 15px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #d1d5db; }
+      .node { stroke-width: 2.5; rx: 14; }
+      .n1 { fill: #1e3a8a; stroke: #93c5fd; }
+      .n2 { fill: #14532d; stroke: #4ade80; }
+      .n3 { fill: #7c2d12; stroke: #fdba74; }
+      .n4 { fill: #581c87; stroke: #d8b4fe; }
+      .n5 { fill: #3f3f46; stroke: #d4d4d8; }
+      .decision { fill: #0f172a; stroke: #facc15; stroke-width: 2.5; }
+      .flow { fill: none; stroke-width: 3; marker-end: url(#arrow); }
+      .main { stroke: #93c5fd; }
+      .ok { stroke: #4ade80; }
+      .warn { stroke: #f59e0b; stroke-dasharray: 8 8; }
+      .err { stroke: #fb7185; stroke-dasharray: 8 8; }
+      .label { font: 700 14px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #0b1220; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#cbd5e1"/>
+    </marker>
+  </defs>
+
+  <rect width="1800" height="980" fill="url(#bg)"/>
+  <text x="70" y="82" class="title">Create Request + Validation Sequence</text>
+  <text x="70" y="116" class="sub">Based on Requests Feature: DynamicAttributes, FormFieldValidationRegistry, validateAttributes, checkSignatures</text>
+
+  <rect class="node n1" x="70" y="180" width="280" height="125" rx="14"/>
+  <text x="95" y="220" class="h">1) Open Create Request</text>
+  <text x="95" y="246" class="t">Select CR action</text>
+  <text x="95" y="268" class="t">initialize request context</text>
+
+  <rect class="node n2" x="410" y="180" width="320" height="125" rx="14"/>
+  <text x="435" y="220" class="h">2) Load Attributes</text>
+  <text x="435" y="246" class="t">getCRActions and render</text>
+  <text x="435" y="268" class="t">dynamic attribute forms</text>
+
+  <rect class="node n3" x="790" y="180" width="340" height="125" rx="14"/>
+  <text x="815" y="220" class="h">3) Integration Triggers</text>
+  <text x="815" y="246" class="t">sendIntegration for dependent</text>
+  <text x="815" y="268" class="t">field values and updates</text>
+
+  <rect class="node n4" x="1190" y="180" width="340" height="125" rx="14"/>
+  <text x="1215" y="220" class="h">4) User Input</text>
+  <text x="1215" y="246" class="t">text, dropdowns, grids,</text>
+  <text x="1215" y="268" class="t">violations, images, signatures</text>
+
+  <polygon class="decision" points="300,430 470,350 640,430 470,510"/>
+  <text x="396" y="425" class="h">Registry Errors?</text>
+  <text x="372" y="447" class="t">FormFieldValidationRegistry</text>
+
+  <polygon class="decision" points="790,430 960,350 1130,430 960,510"/>
+  <text x="868" y="425" class="h">Mandatory OK?</text>
+  <text x="842" y="447" class="t">validateAttributes(allAttrs)</text>
+
+  <polygon class="decision" points="1280,430 1450,350 1620,430 1450,510"/>
+  <text x="1378" y="425" class="h">Signature OK?</text>
+  <text x="1338" y="447" class="t">checkSignatures (non-general)</text>
+
+  <rect class="node n5" x="120" y="640" width="360" height="150" rx="14"/>
+  <text x="145" y="682" class="h">Block Task</text>
+  <text x="145" y="708" class="t">taskBlocked = true or</text>
+  <text x="145" y="730" class="t">canNotProceed = true</text>
+  <text x="145" y="752" class="t">show missing required fields</text>
+
+  <rect class="node n5" x="610" y="640" width="360" height="150" rx="14"/>
+  <text x="635" y="682" class="h">Missing Signature Alert</text>
+  <text x="635" y="708" class="t">showMissingSignatureAlert</text>
+  <text x="635" y="730" class="t">when required and absent</text>
+
+  <rect class="node n2" x="1090" y="640" width="460" height="200" rx="14"/>
+  <text x="1115" y="682" class="h">Proceed to Completion</text>
+  <text x="1115" y="708" class="t">showCompleteTaskAlert -> completeTask</text>
+  <text x="1115" y="730" class="t">build payload: AuditActions + Attributes</text>
+  <text x="1115" y="752" class="t">getReportUrl -> success path</text>
+  <text x="1115" y="774" class="t">insert final audit action and persist</text>
+  <text x="1115" y="796" class="t">or show mapped API alert on failure</text>
+
+  <path class="flow main" d="M 350 242 L 410 242"/>
+  <path class="flow main" d="M 730 242 L 790 242"/>
+  <path class="flow main" d="M 1130 242 L 1190 242"/>
+
+  <path class="flow main" d="M 1360 305 C 1360 330 1360 340 1450 350"/>
+  <path class="flow main" d="M 1190 305 C 1050 330 1000 340 960 350"/>
+  <path class="flow main" d="M 790 305 C 670 330 560 340 470 350"/>
+
+  <path class="flow err" d="M 390 490 C 340 560 280 590 250 640"/>
+  <path class="flow warn" d="M 930 490 C 860 560 780 590 760 640"/>
+  <path class="flow warn" d="M 1420 490 C 1310 560 1260 590 1230 640"/>
+
+  <path class="flow ok" d="M 1480 510 C 1540 560 1560 600 1560 640"/>
+
+  <circle cx="376" cy="528" r="12" fill="#fb7185"/><text x="371" y="533" class="label">N</text>
+  <circle cx="940" cy="528" r="12" fill="#f59e0b"/><text x="935" y="533" class="label">N</text>
+  <circle cx="1430" cy="528" r="12" fill="#f59e0b"/><text x="1425" y="533" class="label">N</text>
+  <circle cx="1520" cy="548" r="12" fill="#4ade80"/><text x="1515" y="553" class="label">Y</text>
+</svg>

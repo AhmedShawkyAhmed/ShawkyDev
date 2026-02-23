@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Inspections Architecture - Enterprise iPad</title>
+  <desc id="desc">Layered architecture showing presentation, feature orchestration, core services, persistence, and external systems.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1220"/>
+      <stop offset="100%" stop-color="#111c34"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <style>
+      .title { font: 700 42px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #f8fafc; }
+      .sub { font: 500 20px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #93c5fd; }
+      .h { font: 700 23px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #e2e8f0; }
+      .t { font: 500 16px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #cbd5e1; }
+      .box { fill: url(#panel); stroke-width: 2.5; rx: 18; }
+      .p { stroke: #60a5fa; }
+      .f { stroke: #34d399; }
+      .c { stroke: #22d3ee; }
+      .d { stroke: #fb7185; }
+      .e { stroke: #facc15; }
+      .a1 { stroke: #60a5fa; }
+      .a2 { stroke: #34d399; }
+      .a3 { stroke: #f59e0b; }
+      .flow { fill: none; stroke-width: 3; marker-end: url(#arrow); }
+      .chip { fill: #0b1220; stroke: #334155; stroke-width: 1.5; }
+      .chipText { font: 600 14px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #bfdbfe; }
+      .num { font: 700 15px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #0b1220; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#cbd5e1"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+
+  <text x="70" y="80" class="title">Inspections Enterprise Architecture</text>
+  <text x="70" y="113" class="sub">Mission-Critical iPad Platform | Multi-Entity Variants | Offline-First Field Operations</text>
+
+  <rect class="box p" x="70" y="170" width="300" height="250" rx="18"/>
+  <text x="95" y="208" class="h">Presentation</text>
+  <text x="95" y="238" class="t">- SwiftUI screens and flows</text>
+  <text x="95" y="264" class="t">- Dynamic request forms</text>
+  <text x="95" y="290" class="t">- Map, PDF, media wrappers</text>
+  <text x="95" y="316" class="t">- Alerts and localized UI</text>
+  <text x="95" y="342" class="t">- Signature and violations UI</text>
+
+  <rect class="box f" x="420" y="170" width="340" height="250" rx="18"/>
+  <text x="445" y="208" class="h">Feature Orchestration</text>
+  <text x="445" y="238" class="t">- Inbox, Requests, Reports</text>
+  <text x="445" y="264" class="t">- Appointments, Sync tasks</text>
+  <text x="445" y="290" class="t">- Validation and completion gate</text>
+  <text x="445" y="316" class="t">- Coordinator navigation</text>
+  <text x="445" y="342" class="t">- ViewModel-driven state</text>
+
+  <rect class="box c" x="810" y="170" width="340" height="250" rx="18"/>
+  <text x="835" y="208" class="h">Core Services</text>
+  <text x="835" y="238" class="t">- DI container</text>
+  <text x="835" y="264" class="t">- API client + interceptor</text>
+  <text x="835" y="290" class="t">- Network monitor</text>
+  <text x="835" y="316" class="t">- Variant manager + config</text>
+  <text x="835" y="342" class="t">- Global loading and logging</text>
+
+  <rect class="box d" x="1200" y="170" width="330" height="250" rx="18"/>
+  <text x="1225" y="208" class="h">Persistence and Security</text>
+  <text x="1225" y="238" class="t">- SQLite task and attribute data</text>
+  <text x="1225" y="264" class="t">- Offline sync queue</text>
+  <text x="1225" y="290" class="t">- Keychain token/session data</text>
+  <text x="1225" y="316" class="t">- Encryption utilities</text>
+  <text x="1225" y="342" class="t">- Retry-safe status transitions</text>
+
+  <rect class="box e" x="210" y="500" width="1180" height="280" rx="18"/>
+  <text x="240" y="545" class="h">External Systems and Variant Governance</text>
+  <text x="240" y="578" class="t">- Shared Xcode target with variant-specific schemes and xcconfig runtime values</text>
+  <text x="240" y="604" class="t">- Entity-specific behavior flags without codebase fragmentation</text>
+  <text x="240" y="630" class="t">- Real-time backend integration for inspections, violations, and reporting</text>
+  <text x="240" y="656" class="t">- Internal enterprise release management and operational continuity</text>
+
+  <path class="flow a1" d="M 370 295 L 420 295"/>
+  <path class="flow a2" d="M 760 295 L 810 295"/>
+  <path class="flow a3" d="M 1150 295 L 1200 295"/>
+  <path class="flow" d="M 980 420 L 980 500"/>
+
+  <circle cx="395" cy="278" r="13" fill="#60a5fa"/><text x="389" y="283" class="num">1</text>
+  <circle cx="785" cy="278" r="13" fill="#34d399"/><text x="779" y="283" class="num">2</text>
+  <circle cx="1175" cy="278" r="13" fill="#f59e0b"/><text x="1169" y="283" class="num">3</text>
+  <circle cx="980" cy="470" r="13" fill="#e2e8f0"/><text x="974" y="475" class="num">4</text>
+
+  <rect class="chip" x="70" y="820" width="360" height="42" rx="10"/>
+  <text x="88" y="847" class="chipText">Migration Ownership: Objective-C -> Swift -> SwiftUI</text>
+  <rect class="chip" x="450" y="820" width="290" height="42" rx="10"/>
+  <text x="468" y="847" class="chipText">Platform: iPad Enterprise Internal</text>
+  <rect class="chip" x="760" y="820" width="330" height="42" rx="10"/>
+  <text x="778" y="847" class="chipText">Scale: Multi-Entity Single Codebase</text>
+</svg>

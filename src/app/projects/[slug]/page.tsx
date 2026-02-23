@@ -247,6 +247,7 @@ export default async function ProjectDetailsPage({
                     const isIpad = screenshot.platform === "iPad";
                     const isDesktop = screenshot.platform === "desktop";
                     const isLandscape = screenshot.orientation === "landscape";
+                    const isSvg = screenshot.image.imageUrl.toLowerCase().endsWith(".svg");
                     const aspectClass = isIpad
                       ? isLandscape
                         ? "aspect-[2752/2064]"
@@ -271,13 +272,29 @@ export default async function ProjectDetailsPage({
                       className={basisClass}
                     >
                       <div className={`relative overflow-hidden rounded-2xl border border-border/70 ${aspectClass}`}>
-                        <Image
-                          src={screenshot.image.imageUrl}
-                          alt={`${item.title} screenshot ${index + 1}`}
-                          fill
-                          className="object-cover"
-                          data-ai-hint={screenshot.image.imageHint}
-                        />
+                        <a
+                          href={screenshot.image.imageUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="absolute inset-0 cursor-zoom-in"
+                          aria-label={`Open full screenshot ${index + 1}`}
+                        >
+                          {isSvg ? (
+                            <img
+                              src={screenshot.image.imageUrl}
+                              alt={`${item.title} screenshot ${index + 1}`}
+                              className="absolute inset-0 h-full w-full object-cover"
+                            />
+                          ) : (
+                            <Image
+                              src={screenshot.image.imageUrl}
+                              alt={`${item.title} screenshot ${index + 1}`}
+                              fill
+                              className="object-cover"
+                              data-ai-hint={screenshot.image.imageHint}
+                            />
+                          )}
+                        </a>
                       </div>
                     </CarouselItem>
                     );
@@ -289,20 +306,59 @@ export default async function ProjectDetailsPage({
             </div>
           )}
 
-          {item.diagramImage && (
+          {item.diagramImages && item.diagramImages.length > 0 && (
             <div className="mt-8 rounded-2xl border border-border/60 bg-card/50 p-6">
-              <h2 className="font-headline text-xl font-semibold">Diagram</h2>
-              <div className="relative mt-4 aspect-[16/8] overflow-hidden rounded-2xl border border-border/70">
-                <Image
-                  src={item.diagramImage.imageUrl}
-                  alt={`${item.title} architecture diagram`}
-                  fill
-                  className="object-cover"
-                  data-ai-hint={item.diagramImage.imageHint}
-                />
-              </div>
+              <h2 className="font-headline text-xl font-semibold">Diagrams</h2>
+              <Carousel
+                className="mt-4"
+                opts={{
+                  align: "start",
+                  loop: item.diagramImages.length > 1,
+                }}
+              >
+                <CarouselContent>
+                  {item.diagramImages.map((diagram, index) => {
+                    const isSvg = diagram.imageUrl.toLowerCase().endsWith(".svg");
+                    return (
+                      <CarouselItem key={`${item.slug}-diagram-${index}`} className="basis-[92%] lg:basis-[74%]">
+                        <div className="relative aspect-[16/8] overflow-hidden rounded-2xl border border-border/70">
+                          <a
+                            href={diagram.imageUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="absolute inset-0 cursor-zoom-in"
+                            aria-label={`Open full diagram ${index + 1}`}
+                          >
+                            {isSvg ? (
+                              <img
+                                src={diagram.imageUrl}
+                                alt={`${item.title} diagram ${index + 1}`}
+                                className="absolute inset-0 h-full w-full object-cover"
+                              />
+                            ) : (
+                              <Image
+                                src={diagram.imageUrl}
+                                alt={`${item.title} diagram ${index + 1}`}
+                                fill
+                                className="object-cover"
+                                data-ai-hint={diagram.imageHint}
+                              />
+                            )}
+                          </a>
+                        </div>
+                      </CarouselItem>
+                    );
+                  })}
+                </CarouselContent>
+                {item.diagramImages.length > 1 && (
+                  <>
+                    <CarouselPrevious className="left-2 top-1/2 -translate-y-1/2" />
+                    <CarouselNext className="right-2 top-1/2 -translate-y-1/2" />
+                  </>
+                )}
+              </Carousel>
               <p className="mt-3 text-sm text-muted-foreground">
-                Reference diagram or architecture visual. Replace this image with a dedicated technical diagram when available.
+                Technical visuals including architecture, module topology, and synchronization flow.
               </p>
             </div>
           )}
