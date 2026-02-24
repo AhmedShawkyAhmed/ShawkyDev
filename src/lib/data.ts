@@ -160,7 +160,7 @@ const PROJECT_ITEMS: PortfolioItem[] = [
     description:
       "An enterprise iPad application used by inspectors across multiple governmental entities in Qatar to manage inspection workflows, violation reporting, and synchronized field operations.",
     ...projectMedia("Inspections"),
-    frameworks: ["SwiftUI", "UIKit", "SQLite", "NWPathMonitor", "Keychain", "DI + Coordinator"],
+    frameworks: ["SwiftUI", "UIKit", "MapKit", "CoreLocation", "SQLite", "NWPathMonitor", "Keychain", "DI + Coordinator"],
     languages: ["Swift", "Objective-C (legacy migration)"],
     downloads: "Enterprise Internal",
     rating: 5.0,
@@ -170,6 +170,8 @@ const PROJECT_ITEMS: PortfolioItem[] = [
     supportedPlatforms: ["iPad"],
     features: [
       "End-to-end inspection lifecycle: inbox intake, request creation, dynamic forms, violation capture, reporting, signatures, and completion workflows.",
+      "Live inspector tracking in foreground and background, with secure location updates sent to office operations for real-time field visibility.",
+      "Shift planning map that displays assigned inspections routes so inspectors can review and prepare their route before shift start.",
       "Real-time and offline-capable sync model with local persistence for field continuity and controlled synchronization.",
       "Enterprise multi-variant architecture with shared core and per-entity behavior controlled by app schemes and xcconfig-based runtime configuration.",
       "Structured architecture split into Core, Features, and Shared layers with explicit Data + Presentation boundaries.",
@@ -179,9 +181,9 @@ const PROJECT_ITEMS: PortfolioItem[] = [
       "Sole iOS ownership: led modernization from Objective-C to Swift, then introduced SwiftUI modules to accelerate delivery and maintainability.",
     ],
     projectIdea:
-      "Design and evolve a mission-critical inspection platform for governmental field teams, balancing reliability, offline resilience, and variant-specific customization across multiple entities.",
+      "Design and evolve a mission-critical inspection platform for governmental field teams, balancing reliability, offline resilience, live location visibility, and variant-specific customization across multiple entities.",
     showcase:
-      "As the sole iOS engineer, I owned architecture, modernization, development, and maintenance of the full application, including migration from Objective-C to Swift and SwiftUI adoption, multi-scheme management, and long-term scalability improvements.",
+      "As the sole iOS engineer, I owned architecture, modernization, development, and maintenance of the full application, including migration from Objective-C to Swift and SwiftUI adoption, multi-scheme management, foreground/background live tracking to office, and pre-shift inspection route visualization.",
     diagramImages: [
       appAssetImage(
         "Inspections",
