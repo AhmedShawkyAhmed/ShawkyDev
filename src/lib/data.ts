@@ -40,9 +40,9 @@ const appAssetImage = (
 });
 
 const projectMedia = (appName: string) => ({
-  appIcon: appAssetImage(appName, "appIcon", `${appName} app icon`, "app icon"),
+  appIcon: appAssetImage(appName, "appIcon", `${appName} app icon`, "app icon", "svg"),
   cardImage: appAssetImage(appName, "cardImage", `${appName} card image`),
-  bannerImage: appAssetImage(appName, "banner", `${appName} banner`, "app banner"),
+  bannerImage: appAssetImage(appName, "banner", `${appName} banner`, "app banner", "svg"),
 });
 
 export type SupportedPlatform = "Android" | "iOS" | "iPad" | "web" | "desktop";
