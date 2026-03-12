@@ -27,7 +27,7 @@ export function Experience() {
                     <h3 className="font-headline text-xl font-semibold">{exp.role}</h3>
                     <p className="text-sm font-medium text-primary">{exp.company}</p>
                   </div>
-                  <p className="rounded-full border border-border/70 bg-muted/30 px-3 py-1 text-xs text-muted-foreground">
+                  <p className="mr-8 rounded-full border border-border/70 bg-muted/30 px-3 py-1 text-xs text-muted-foreground">
                     {exp.period}
                   </p>
                 </div>

@@ -13,8 +13,8 @@ export function Packages() {
         </div>
 
         <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {packages.map((pkg) => (
-            <ProjectCard key={pkg.slug} item={pkg} />
+          {packages.map((pkg, index) => (
+            <ProjectCard key={pkg.slug} item={pkg} index={index} />
           ))}
         </div>
       </div>
