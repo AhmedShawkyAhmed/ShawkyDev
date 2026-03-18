@@ -54,7 +54,7 @@ export function ProjectCard({ item, index = 0 }: ProjectCardProps) {
               src={item.appIcon.imageUrl}
               alt={`${item.title} icon`}
               fill
-              className="object-contain p-2"
+              className="object-contain"
               data-ai-hint={item.appIcon.imageHint}
             />
             </div>
