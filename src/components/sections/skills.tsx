@@ -2,6 +2,7 @@
 
 import { SKILLS_DATA } from "@/lib/data";
 import { motion } from "framer-motion";
+import { SectionIntro } from "@/components/section-intro";
 import { Badge } from "@/components/ui/badge";
 import {
   Card,
@@ -16,20 +17,14 @@ export function Skills() {
   return (
     <section id="skills" className="bg-muted/30">
       <div className="container">
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="font-headline text-3xl font-bold tracking-tight sm:text-4xl">
-            {title}
-          </h2>
-          <p className="mt-2 text-lg text-muted-foreground">{description}</p>
-        </div>
+        <SectionIntro eyebrow="Expertise" title={title} description={description} />
 
         <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {skillCategories.map((category, index) => (
             <motion.div
               key={category.title}
               initial={{ opacity: 0, x: 60, scale: 0.95 }}
-              whileInView={{ opacity: 1, x: 0, scale: 1 }}
-              viewport={{ once: true, margin: "-50px" }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
               transition={{ duration: 0.8, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] }}
               className="flex h-full"
             >

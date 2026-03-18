@@ -1,5 +1,6 @@
 import { EXPERIENCE_DATA } from "@/lib/data";
 import { BriefcaseBusiness, Dot } from "lucide-react";
+import { SectionIntro } from "@/components/section-intro";
 
 export function Experience() {
   const { title, description, experiences } = EXPERIENCE_DATA;
@@ -7,10 +8,7 @@ export function Experience() {
   return (
     <section id="experience" className="relative overflow-hidden bg-muted/20">
       <div className="container">
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="font-headline text-3xl font-bold tracking-tight sm:text-4xl">{title}</h2>
-          <p className="mt-2 text-lg text-muted-foreground">{description}</p>
-        </div>
+        <SectionIntro eyebrow="Experience" title={title} description={description} />
 
         <div className="relative mx-auto mt-14 max-w-5xl">
           <div className="absolute left-6 top-2 hidden h-[calc(100%-1rem)] w-px bg-gradient-to-b from-primary/40 via-border to-transparent md:block" />

@@ -4,13 +4,14 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Menu } from 'lucide-react';
-import { NAV_LINKS, PROFILE_DATA } from '@/lib/data';
+import { NAV_LINKS } from '@/lib/data';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
 export function Header() {
   const [activeSection, setActiveSection] = useState('about');
   const [isScrolled, setIsScrolled] = useState(false);
+  const logoSrc = `${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/images/logo.png`;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,7 +47,7 @@ export function Header() {
     <header className={`sticky top-0 z-50 w-full border-b transition-all duration-300 ${isScrolled ? 'border-border bg-background/80 backdrop-blur-md' : 'border-transparent bg-background'}`}>
       <div className="container flex h-16 items-center">
         <Link href="/" prefetch={false} className="mr-auto flex items-center gap-2">
-          <Image src="/images/logo.png" alt="ShawkyDev" width={32} height={32} className="h-8 w-8 object-contain" />
+          <Image src={logoSrc} alt="ShawkyDev" width={32} height={32} className="h-8 w-8 object-contain" />
           <span className="font-headline text-lg font-bold">ShawkyDev</span>
         </Link>
         <nav className="hidden items-center gap-6 md:flex">
@@ -63,7 +64,7 @@ export function Header() {
             <SheetContent side="right">
               <nav className="grid gap-6 text-lg font-medium mt-8">
                 <Link href="/" prefetch={false} className="flex items-center gap-2 text-lg font-semibold">
-                  <Image src="/images/logo.png" alt="ShawkyDev" width={32} height={32} className="h-8 w-8 object-contain" />
+                  <Image src={logoSrc} alt="ShawkyDev" width={32} height={32} className="h-8 w-8 object-contain" />
                   <span className="sr-only">ShawkyDev</span>
                 </Link>
                 {navItems}

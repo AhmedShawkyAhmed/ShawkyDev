@@ -2,10 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { PROFILE_DATA } from "@/lib/data";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Download } from "lucide-react";
+import { ArrowRight, Download, Mail } from "lucide-react";
 
 export function Hero() {
-  const { name, headline, bio, avatar, social, stats } = PROFILE_DATA;
+  const { name, headline, bio, avatar, social, stats, focusAreas, cvUrl, email } = PROFILE_DATA;
 
   return (
     <section id="about" className="relative overflow-hidden py-20 md:py-28 lg:py-32">
@@ -15,9 +15,9 @@ export function Hero() {
 
       <div className="container relative z-10 grid items-center gap-14 lg:grid-cols-[1.15fr_0.85fr]">
         <div className="space-y-7 text-center lg:text-left">
-          {/* <div className="stagger-in inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs uppercase tracking-[0.25em] text-primary">
-            Senior Mobile Engineer
-          </div> */}
+          <div className="stagger-in inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs uppercase tracking-[0.25em] text-primary">
+            Senior Mobile Engineer • Flutter • SwiftUI • Kotlin
+          </div>
 
           <h1 className="stagger-in font-headline text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
             {name}
@@ -26,15 +26,31 @@ export function Hero() {
           <p className="stagger-in text-xl text-foreground/80 md:text-2xl">{headline}</p>
           <p className="stagger-in max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">{bio}</p>
 
+          <div className="stagger-in flex flex-wrap items-center justify-center gap-2.5 lg:justify-start">
+            {focusAreas.map((area) => (
+              <span
+                key={area}
+                className="rounded-full border border-border/70 bg-background/65 px-3 py-1.5 text-xs font-medium text-foreground/75 backdrop-blur-sm"
+              >
+                {area}
+              </span>
+            ))}
+          </div>
+
           <div className="stagger-in flex flex-wrap items-center justify-center gap-3 lg:justify-start">
             <Button asChild size="lg" className="hero-drop hover-motion shadow-lg shadow-primary/25" style={{ animationDelay: "420ms" }}>
               <Link href="#projects">
-                Explore Projects <ArrowRight className="h-4 w-4" />
+                View Case Studies <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
             <Button variant="outline" size="lg" asChild className="hero-drop hover-motion" style={{ animationDelay: "520ms" }}>
-              <Link href="https://drive.google.com/uc?export=view&id=1fCMZPHw5aH69eGm5m7RTAL1FbLuiLmBF" target="_blank" rel="noopener noreferrer">
+              <Link href={cvUrl} target="_blank" rel="noopener noreferrer">
                 <Download className="h-4 w-4" /> Download CV
+              </Link>
+            </Button>
+            <Button variant="secondary" size="lg" asChild className="hero-drop hover-motion" style={{ animationDelay: "560ms" }}>
+              <Link href={`mailto:${email}`}>
+                <Mail className="h-4 w-4" /> Contact Me
               </Link>
             </Button>
             {social.map((s, index) => (
@@ -44,7 +60,7 @@ export function Hero() {
                 size="icon"
                 asChild
                 className="hero-drop hover-motion"
-                style={{ animationDelay: `${620 + index * 90}ms` }}
+                style={{ animationDelay: `${660 + index * 90}ms` }}
               >
                 <Link href={s.url} target="_blank" rel="noopener noreferrer">
                   <s.icon className="h-5 w-5" />
@@ -54,7 +70,7 @@ export function Hero() {
             ))}
           </div>
 
-          <div className="stagger-in grid gap-3 sm:grid-cols-3">
+          <div className="stagger-in grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
             {stats.map((item, index) => (
               <div
                 key={item.label}

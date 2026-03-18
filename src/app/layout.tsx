@@ -4,8 +4,20 @@ import { Toaster } from "@/components/ui/toaster"
 import { AnimatedBackground } from "@/components/animated-background";
 
 export const metadata: Metadata = {
-  title: 'ShawkyDev',
-  description: 'A portfolio by Ahmed Shawky, a Senior Mobile Engineer.',
+  title: {
+    default: "Ahmed Shawky | Senior Mobile Engineer",
+    template: "%s | Ahmed Shawky",
+  },
+  description:
+    "Portfolio of Ahmed Shawky, a Senior Mobile Engineer specializing in Flutter, iOS with SwiftUI, and Android with Kotlin.",
+  keywords: [
+    "Ahmed Shawky",
+    "Senior Mobile Engineer",
+    "Flutter Developer",
+    "SwiftUI Engineer",
+    "Kotlin Android Developer",
+    "Mobile Architect",
+  ],
 };
 
 export default function RootLayout({

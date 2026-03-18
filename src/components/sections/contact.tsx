@@ -1,124 +1,126 @@
 "use client";
 
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { CONTACT_DATA } from "@/lib/data";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import Link from "next/link";
+import { CONTACT_DATA, PROFILE_DATA } from "@/lib/data";
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/hooks/use-toast";
-import { handleContactForm } from "@/app/actions";
-import { Loader2 } from "lucide-react";
-
-const formSchema = z.object({
-  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
-  email: z.string().email({ message: "Please enter a valid email." }),
-  message: z.string().min(10, { message: "Message must be at least 10 characters." }),
-});
+import { Mail, MapPin, Phone, Download, ArrowUpRight, Linkedin } from "lucide-react";
+import { SectionIntro } from "@/components/section-intro";
+import { Github } from "@/components/icons";
 
 export function Contact() {
   const { title, description } = CONTACT_DATA;
-  const { toast } = useToast();
-  
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      message: "",
-    },
-  });
-
-  async function onSubmit(values: z.infer<typeof formSchema>) {
-    try {
-      const result = await handleContactForm(values);
-      if (result.success) {
-        toast({
-          title: "Message Sent!",
-          description: "Thank you for reaching out. I'll get back to you soon.",
-        });
-        form.reset();
-      } else {
-        throw new Error(result.message);
-      }
-    } catch (error) {
-      toast({
-        variant: "destructive",
-        title: "Uh oh! Something went wrong.",
-        description: error instanceof Error ? error.message : "There was a problem with your request.",
-      });
-    }
-  }
+  const { email, phone, location, cvUrl, social } = PROFILE_DATA;
+  const githubProfile = social.find((item) => item.name === "GitHub");
+  const linkedinProfile = social.find((item) => item.name === "LinkedIn");
 
   return (
-    <section id="contact">
+    <section id="contact" className="relative overflow-hidden">
       <div className="container">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="font-headline text-3xl font-bold tracking-tight sm:text-4xl">{title}</h2>
-          <p className="mt-2 text-lg text-muted-foreground">{description}</p>
-        </div>
+        <SectionIntro eyebrow="Contact" title={title} description={description} />
 
-        <div className="mx-auto mt-12 max-w-xl">
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Name</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Your Name" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
+        <div className="mt-14 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+          <div className="space-y-5">
+            <div className="rounded-[1.8rem] border border-border/60 bg-card/75 p-6 shadow-xl shadow-primary/5 backdrop-blur-sm">
+              <p className="text-sm uppercase tracking-[0.22em] text-primary">Direct contact</p>
+              <div className="mt-5 space-y-3">
+                <Link
+                  href={`mailto:${email}`}
+                  className="flex items-center justify-between rounded-2xl border border-border/60 bg-background/50 px-4 py-4 transition-colors hover:border-primary/35"
+                >
+                  <span className="flex items-center gap-3">
+                    <Mail className="h-5 w-5 text-primary" />
+                    <span>
+                      <span className="block text-xs uppercase tracking-[0.2em] text-muted-foreground">Email</span>
+                      <span className="text-sm font-medium">{email}</span>
+                    </span>
+                  </span>
+                  <ArrowUpRight className="h-4 w-4 text-muted-foreground" />
+                </Link>
+
+                <Link
+                  href={`tel:${phone.replace(/\s+/g, "")}`}
+                  className="flex items-center justify-between rounded-2xl border border-border/60 bg-background/50 px-4 py-4 transition-colors hover:border-primary/35"
+                >
+                  <span className="flex items-center gap-3">
+                    <Phone className="h-5 w-5 text-primary" />
+                    <span>
+                      <span className="block text-xs uppercase tracking-[0.2em] text-muted-foreground">Phone</span>
+                      <span className="text-sm font-medium">{phone}</span>
+                    </span>
+                  </span>
+                  <ArrowUpRight className="h-4 w-4 text-muted-foreground" />
+                </Link>
+
+                <div className="flex items-center justify-between rounded-2xl border border-border/60 bg-background/50 px-4 py-4">
+                  <span className="flex items-center gap-3">
+                    <MapPin className="h-5 w-5 text-primary" />
+                    <span>
+                      <span className="block text-xs uppercase tracking-[0.2em] text-muted-foreground">Location</span>
+                      <span className="text-sm font-medium">{location}</span>
+                    </span>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div className="rounded-[1.8rem] border border-border/60 bg-card/75 p-6 shadow-xl shadow-primary/5 backdrop-blur-sm">
+              <p className="text-sm uppercase tracking-[0.22em] text-primary">Profiles & assets</p>
+              <div className="mt-5 flex flex-wrap gap-3">
+                <Button asChild variant="outline">
+                  <Link href={cvUrl} target="_blank" rel="noopener noreferrer">
+                    <Download className="h-4 w-4" /> CV
+                  </Link>
+                </Button>
+                {githubProfile && (
+                  <Button asChild variant="outline">
+                    <Link href={githubProfile.url} target="_blank" rel="noopener noreferrer">
+                      <Github className="h-4 w-4" /> GitHub
+                    </Link>
+                  </Button>
                 )}
-              />
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
-                      <Input placeholder="your.email@example.com" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
+                {linkedinProfile && (
+                  <Button asChild variant="outline">
+                    <Link href={linkedinProfile.url} target="_blank" rel="noopener noreferrer">
+                      <Linkedin className="h-4 w-4" /> LinkedIn
+                    </Link>
+                  </Button>
                 )}
-              />
-              <FormField
-                control={form.control}
-                name="message"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Message</FormLabel>
-                    <FormControl>
-                      <Textarea placeholder="Your message..." rows={5} {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <Button type="submit" className="w-full" disabled={form.formState.isSubmitting}>
-                {form.formState.isSubmitting ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Sending...
-                  </>
-                ) : "Send Message"
-                }
-              </Button>
-            </form>
-          </Form>
+              </div>
+              <p className="mt-5 text-sm leading-6 text-muted-foreground">
+                Best fit: senior Flutter roles, native iOS modernization work, Kotlin-based integrations, and mobile architecture ownership.
+              </p>
+            </div>
+          </div>
+
+          <div className="rounded-[1.8rem] border border-border/60 bg-card/75 p-6 shadow-xl shadow-primary/5 backdrop-blur-sm md:p-8">
+            <div className="space-y-6">
+              <div>
+                <h3 className="font-headline text-2xl font-semibold tracking-tight">What I can help with</h3>
+                <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                  I work best on senior mobile engineering roles, Flutter platform architecture, native iOS modernization, Kotlin integrations, and high-reliability mobile product delivery.
+                </p>
+              </div>
+
+              <ul className="grid gap-3">
+                <li className="rounded-[1.4rem] border border-border/60 bg-background/50 px-5 py-4 text-sm leading-6 text-muted-foreground">
+                  Senior Flutter engineering for production apps, reusable modules, and scalable architecture decisions.
+                </li>
+                <li className="rounded-[1.4rem] border border-border/60 bg-background/50 px-5 py-4 text-sm leading-6 text-muted-foreground">
+                  iOS modernization work across Objective-C, Swift, and SwiftUI codebases with maintainability in mind.
+                </li>
+                <li className="rounded-[1.4rem] border border-border/60 bg-background/50 px-5 py-4 text-sm leading-6 text-muted-foreground">
+                  Kotlin-native integrations, platform channels, real-time systems, CI/CD, and release-quality mobile delivery.
+                </li>
+              </ul>
+
+              <div className="rounded-[1.4rem] border border-border/60 bg-background/50 px-5 py-5">
+                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">Availability</p>
+                <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                  Open to senior mobile engineering roles, Flutter-first product teams, native iOS modernization, Kotlin platform work, and mobile architecture consulting.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

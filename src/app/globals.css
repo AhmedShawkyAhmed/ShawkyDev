@@ -67,7 +67,8 @@
   body {
     @apply bg-background text-foreground;
     background-image: radial-gradient(circle at 20% -20%, hsl(var(--primary) / 0.18), transparent 35%),
-      radial-gradient(circle at 85% 5%, hsl(var(--accent) / 0.12), transparent 35%);
+      radial-gradient(circle at 85% 5%, hsl(var(--accent) / 0.12), transparent 35%),
+      linear-gradient(180deg, hsl(var(--background)) 0%, hsl(var(--background) / 0.98) 45%, hsl(var(--background)) 100%);
     background-attachment: fixed;
   }
 
@@ -83,6 +84,11 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+::selection {
+  background: hsl(var(--primary) / 0.28);
+  color: hsl(var(--foreground));
 }
 
 @keyframes fadeUp {
@@ -365,6 +371,21 @@ html {
 .hover-motion:hover {
   transform: translate3d(0, -5px, 0);
   box-shadow: 0 12px 30px hsl(var(--primary) / 0.2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 
