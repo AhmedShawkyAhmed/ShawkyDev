@@ -2,8 +2,8 @@ name: Deploy Next.js to GitHub Pages
 
 on:
   workflow_dispatch:
-  # push:
-  #   branches: ["main"]
+  push:
+    branches: ["main"]
 
 permissions:
   contents: write
@@ -30,6 +30,9 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      - name: Prepare GitHub Pages output
+        run: touch out/.nojekyll
 
       - name: Deploy to gh-pages
         uses: JamesIves/github-pages-deploy-action@v4.8.0
