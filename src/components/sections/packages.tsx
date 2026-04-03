@@ -13,12 +13,12 @@ export function Packages() {
   const [featuredPackage, ...otherPackages] = packages;
 
   return (
-    <section id="packages" className="relative overflow-hidden bg-muted/25">
+    <section id="packages" className="section-shell relative overflow-hidden">
       <div className="container">
-        <SectionIntro eyebrow="Tooling" title={title} description={description} />
+        <SectionIntro eyebrow="Tooling" title={title} description={description} align="left" />
 
         {featuredPackage && (
-          <div className="mt-14 grid gap-6 overflow-hidden rounded-[2rem] border border-border/60 bg-card/70 p-6 shadow-xl shadow-primary/5 md:p-8 lg:grid-cols-[0.95fr_1.05fr]">
+          <div className="surface-panel mt-14 grid gap-6 overflow-hidden rounded-[2rem] p-6 md:p-8 lg:grid-cols-[0.95fr_1.05fr]">
             <div className="relative min-h-[260px] overflow-hidden rounded-[1.5rem] border border-border/60 bg-background/50">
               <Image
                 src={featuredPackage.cardImage.imageUrl}
@@ -32,7 +32,7 @@ export function Packages() {
 
             <div className="flex flex-col justify-between gap-6">
               <div className="space-y-4">
-                <span className="inline-flex rounded-full border border-primary/25 bg-primary/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.28em] text-primary">
+                <span className="inline-flex rounded-full border border-primary/25 bg-primary/10 px-3 py-1 font-code text-[10px] font-semibold uppercase tracking-[0.22em] text-primary">
                   Featured package
                 </span>
                 <div>
@@ -52,7 +52,7 @@ export function Packages() {
                   {featuredPackage.features.slice(0, 4).map((feature) => (
                     <li
                       key={`${featuredPackage.slug}-${feature}`}
-                      className="rounded-2xl border border-border/60 bg-muted/20 px-4 py-3 text-sm leading-6 text-muted-foreground"
+                      className="rounded-[1.2rem] border border-border/60 bg-muted/20 px-4 py-3 text-sm leading-6 text-muted-foreground"
                     >
                       {feature}
                     </li>

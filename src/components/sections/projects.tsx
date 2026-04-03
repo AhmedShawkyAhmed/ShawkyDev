@@ -13,17 +13,17 @@ export function Projects() {
   const [featuredProject, ...otherProjects] = projects;
 
   return (
-    <section id="projects" className="relative overflow-hidden">
+    <section id="projects" className="section-shell relative overflow-hidden">
       <div className="container">
-        <SectionIntro eyebrow="Selected Work" title={title} description={description} />
+        <SectionIntro eyebrow="Selected Work" title={title} description={description} align="left" />
 
         {featuredProject && (
-          <div className="mt-14 overflow-hidden rounded-[2rem] border border-border/60 bg-card/70 shadow-2xl shadow-primary/5 backdrop-blur-sm">
+          <div className="surface-panel mt-14 overflow-hidden rounded-[2rem]">
             <div className="grid gap-0 lg:grid-cols-[1.05fr_0.95fr]">
               <div className="flex flex-col justify-between p-7 md:p-10">
                 <div className="space-y-6">
                   <div className="flex flex-wrap items-center gap-3">
-                    <span className="rounded-full border border-primary/25 bg-primary/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.28em] text-primary">
+                    <span className="rounded-full border border-primary/25 bg-primary/10 px-3 py-1 font-code text-[10px] font-semibold uppercase tracking-[0.22em] text-primary">
                       Featured case study
                     </span>
                     <span className="inline-flex items-center gap-1.5 rounded-full border border-border/70 bg-background/70 px-3 py-1 text-sm text-muted-foreground">
@@ -44,8 +44,8 @@ export function Projects() {
                         />
                       </div>
                       <div>
-                        <h3 className="font-headline text-3xl font-bold tracking-tight">{featuredProject.title}</h3>
-                        <p className="mt-1 text-sm uppercase tracking-[0.22em] text-muted-foreground">
+                        <h3 className="font-headline text-3xl font-bold tracking-tight md:text-4xl">{featuredProject.title}</h3>
+                        <p className="mt-1 font-code text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
                           {featuredProject.supportedPlatforms.join(" • ")}
                         </p>
                       </div>
@@ -57,17 +57,17 @@ export function Projects() {
                   </div>
 
                   <div className="grid gap-3 sm:grid-cols-3">
-                    <div className="rounded-2xl border border-border/60 bg-background/60 px-4 py-4">
-                      <div className="text-xs uppercase tracking-[0.22em] text-muted-foreground">Downloads</div>
-                      <div className="mt-2 text-lg font-semibold">{featuredProject.downloads}</div>
+                    <div className="metric-tile rounded-[1.4rem] px-4 py-4">
+                      <div className="font-code text-[10px] uppercase tracking-[0.18em] text-muted-foreground">Downloads</div>
+                      <div className="mt-2 text-lg font-semibold text-foreground">{featuredProject.downloads}</div>
                     </div>
-                    <div className="rounded-2xl border border-border/60 bg-background/60 px-4 py-4">
-                      <div className="text-xs uppercase tracking-[0.22em] text-muted-foreground">Stack</div>
-                      <div className="mt-2 text-lg font-semibold">{featuredProject.frameworks.slice(0, 2).join(" + ")}</div>
+                    <div className="metric-tile rounded-[1.4rem] px-4 py-4">
+                      <div className="font-code text-[10px] uppercase tracking-[0.18em] text-muted-foreground">Stack</div>
+                      <div className="mt-2 text-lg font-semibold text-foreground">{featuredProject.frameworks.slice(0, 2).join(" + ")}</div>
                     </div>
-                    <div className="rounded-2xl border border-border/60 bg-background/60 px-4 py-4">
-                      <div className="text-xs uppercase tracking-[0.22em] text-muted-foreground">Delivery</div>
-                      <div className="mt-2 text-lg font-semibold">{featuredProject.category === "package" ? "Reusable package" : "Production app"}</div>
+                    <div className="metric-tile rounded-[1.4rem] px-4 py-4">
+                      <div className="font-code text-[10px] uppercase tracking-[0.18em] text-muted-foreground">Delivery</div>
+                      <div className="mt-2 text-lg font-semibold text-foreground">{featuredProject.category === "package" ? "Reusable package" : "Production app"}</div>
                     </div>
                   </div>
 
@@ -89,7 +89,7 @@ export function Projects() {
                       {featuredProject.features.slice(0, 4).map((feature) => (
                         <li
                           key={`${featuredProject.slug}-${feature}`}
-                          className="flex items-start gap-2 rounded-2xl border border-border/60 bg-muted/20 px-4 py-3 text-sm leading-6 text-muted-foreground"
+                          className="flex items-start gap-2 rounded-[1.2rem] border border-border/60 bg-muted/20 px-4 py-3 text-sm leading-6 text-muted-foreground"
                         >
                           <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
                           <span>{feature}</span>
@@ -100,7 +100,7 @@ export function Projects() {
                 </div>
 
                 <div className="mt-8 flex flex-wrap items-center gap-3">
-                  <Button asChild size="lg" className="shadow-lg shadow-primary/20">
+                  <Button asChild size="lg">
                     <Link href={`/projects/${featuredProject.slug}`}>
                       View full case study <ArrowRight className="h-4 w-4" />
                     </Link>
@@ -137,7 +137,7 @@ export function Projects() {
                   className="object-cover"
                   data-ai-hint={featuredProject.cardImage.imageHint}
                 />
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-background/85" />
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-background/90" />
               </div>
             </div>
           </div>

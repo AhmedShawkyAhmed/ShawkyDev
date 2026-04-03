@@ -158,9 +158,9 @@ const PROJECT_ITEMS: PortfolioItem[] = [
     title: "Inspections",
     category: "project",
     description:
-      "An enterprise iPad application used by inspectors across multiple governmental entities in Qatar to manage inspection workflows, violation reporting, and synchronized field operations.",
+      "A multi-variant enterprise iPad application for governmental inspection teams, covering task intake, field execution, route tracking, reporting, synchronization, and entity-specific operational workflows from a shared codebase.",
     ...projectMedia("Inspections"),
-    frameworks: ["SwiftUI", "UIKit", "MapKit", "CoreLocation", "SQLite", "NWPathMonitor", "Keychain", "DI + Coordinator"],
+    frameworks: ["SwiftUI", "Combine", "MapKit", "CoreLocation", "PDFKit", "SQLite3", "NWPathMonitor", "Keychain", "DI + Coordinator"],
     languages: ["Swift", "Objective-C (legacy migration)"],
     downloads: "Enterprise Internal",
     rating: 5.0,
@@ -169,21 +169,21 @@ const PROJECT_ITEMS: PortfolioItem[] = [
     ],
     supportedPlatforms: ["iPad"],
     features: [
-      "End-to-end inspection lifecycle: inbox intake, request creation, dynamic forms, violation capture, reporting, signatures, and completion workflows.",
-      "Live inspector tracking in foreground and background, with secure location updates sent to office operations for real-time field visibility.",
-      "Shift planning map that displays assigned inspections routes so inspectors can review and prepare their route before shift start.",
-      "Real-time and offline-capable sync model with local persistence for field continuity and controlled synchronization.",
-      "Enterprise multi-variant architecture with shared core and per-entity behavior controlled by app schemes and xcconfig-based runtime configuration.",
-      "Structured architecture split into Core, Features, and Shared layers with explicit Data + Presentation boundaries.",
-      "Centralized dependency injection and coordinator-based navigation to keep module interactions predictable at scale.",
-      "Security and reliability primitives including keychain-backed storage, encrypted utilities, and robust error/alert handling.",
-      "Inspection-scale operational tooling including appointments, finished reports, map/document/PDF integrations, and diagnostic local DB visibility.",
-      "Sole iOS ownership: led modernization from Objective-C to Swift, then introduced SwiftUI modules to accelerate delivery and maintainability.",
+      "Single codebase serving multiple inspection entities and brands, with variant-aware icons, home layouts, endpoints, and behavior for General, Technical, Agricultural, Fishermen, Health, Islands, MOI, Civil, Municipalities, and Internal builds.",
+      "Secure login and session persistence backed by Keychain storage, runtime app configuration, and environment-specific base URL switching.",
+      "Inbox-driven field workflow with searchable task intake, task download, file attachments, and local persistence before inspectors start work.",
+      "Dynamic request execution flow with nested form attributes, validation registry, address/map fields, image gallery capture, digital signatures, and task completion/report generation.",
+      "Document-heavy inspection tooling including in-app PDF viewing, report review, user guide access, and finished-report lookup.",
+      "Route planning and live field tracking with CoreLocation + MapKit, ordered inspection routes, stored route history, and current-location submission to backend services.",
+      "Offline-capable local data layer using SQLite for inbox items, requests, route tracking, queued sync tasks, and legacy storage migration.",
+      "Synchronization workflow with connectivity monitoring, manual sync controls, sync alerts, and recovery paths for unreliable field conditions.",
+      "Bilingual Arabic/English UX with runtime language switching and layout-direction handling across the app shell and feature screens.",
+      "Operational and engineering tooling including appointments calendar, local database inspection in debug/internal builds, coordinator-based navigation, DI-driven modules, and broad unit/integration/UI test coverage.",
     ],
     projectIdea:
-      "Design and evolve a mission-critical inspection platform for governmental field teams, balancing reliability, offline resilience, live location visibility, and variant-specific customization across multiple entities.",
+      "Design and evolve a mission-critical inspection platform that lets multiple governmental entities share one maintainable iPad codebase while still supporting variant-specific branding, workflows, route operations, secure field data capture, and unreliable-network conditions.",
     showcase:
-      "As the sole iOS engineer, I owned architecture, modernization, development, and maintenance of the full application, including migration from Objective-C to Swift and SwiftUI adoption, multi-scheme management, foreground/background live tracking to office, and pre-shift inspection route visualization.",
+      "As the sole iOS engineer, I owned the app end to end: architecture, variant management, SwiftUI delivery, legacy migration, dynamic inspection forms, offline/local storage, route tracking, PDF and signature flows, sync behavior, and the testable structure needed to keep a large enterprise app stable as features expanded.",
     diagramImages: [
       appAssetImage(
         "Inspections",
@@ -214,6 +214,42 @@ const PROJECT_ITEMS: PortfolioItem[] = [
         "svg"
       ),
     ],
+  }),
+  buildPortfolioItem({
+    title: "Rased",
+    category: "project",
+    description:
+      "A cross-platform Flutter violations reporting app connected to the Rased inspection backend, built for Android phones and tablets plus iPhone and iPad so inspectors can submit field reports, attach evidence, and review reporting history from one adaptive experience.",
+    ...projectMedia("Rased"),
+    frameworks: ["Flutter", "flutter_bloc", "go_router", "GetIt", "ScreenUtil", "Speech-to-Text", "Image Picker", "MethodChannel"],
+    languages: ["Dart", "Swift (iOS bridge)"],
+    downloads: "Enterprise Internal",
+    rating: 5.0,
+    supportedPlatforms: ["Android", "iOS", "iPad"],
+    screenshots: [
+      projectScreenshot("Rased", "screenshot1"), 
+      projectScreenshot("Rased", "screenshot2"), 
+      projectScreenshot("Rased", "screenshot3"), 
+      projectScreenshot("Rased", "screenshot4"),
+      projectScreenshot("Rased", "screenshot5"),
+      projectScreenshot("Rased", "screenshot6"),
+    ],
+    features: [
+      "Single Flutter codebase delivered for Android and iOS with adaptive layouts that explicitly handle phones, tablets, and iPads through responsive sizing and constrained content widths.",
+      "Secure login flow backed by bearer-token networking, persisted user session storage, and splash-based bootstrapping before routing into the main app.",
+      "Violation reporting workflow with inspection type selection, narrative notes, media attachments, and request submission to the governmental Rased API.",
+      "Built-in speech-to-text dictation for report notes with Arabic and English input modes, including live note updates while recording.",
+      "Camera and gallery evidence capture with runtime permission handling, attachment previews, and deletion support before submission.",
+      "Location-aware submission flow that requests device location permission and blocks report submission until the app can capture the inspector location.",
+      "Request history experience with monthly and overall reporting counts on the home dashboard plus full read-only detail review for previously submitted violations.",
+      "Bilingual Arabic/English experience with runtime language switching, generated localization files, and localized inspection/status labels across the app.",
+      "Native iOS handoff bridge using a MethodChannel and deep-link payload parsing so external flows can pass variant and user context into the Flutter app.",
+      "Clean modular structure using Bloc, repository/data-source separation, GetIt dependency injection, GoRouter navigation, and mock API assets for demo and development flows.",
+    ],
+    projectIdea:
+      "Build a production-ready cross-platform reporting tool that makes field violation submission fast and structured on any mobile device, while keeping the codebase maintainable enough to support localization, native handoff needs, and future inspection workflow expansion.",
+    showcase:
+      "Built the app in Flutter for Android phones and tablets, iPhone, and iPad, covering the full flow from authentication and adaptive UI through violation reporting, speech input, image evidence, location-gated submission, history review, bilingual support, and native iOS handoff integration.",
   }),
   buildPortfolioItem({
     title: "Sonic Mobility",
@@ -825,23 +861,27 @@ const PACKAGE_ITEMS: PortfolioItem[] = [
     title: "ShawkyCLI",
     category: "package",
     description:
-      "A powerful developer-friendly CLI that automates Flutter project setup, build, deployment, testing, and maintenance in one workflow.",
+      "A Dart- and shell-powered developer CLI that standardizes Flutter and native iOS project setup, scaffolding, build/test flows, release automation, and day-to-day maintenance from a single command surface.",
     ...projectMedia("ShawkyCLI"),
-    frameworks: ["CLI", "Flutter Tooling", "Firebase CLI", "CocoaPods", "Git"],
+    frameworks: ["Dart CLI", "Shell/Bash", "Flutter Tooling", "XcodeGen", "Firebase App Distribution", "CocoaPods", "GitHub Actions", "Git"],
     languages: ["Dart", "Shell", "Bash"],
     downloads: "27K+",
     rating: 4.9,
     githubUrl: "https://github.com/AhmedShawkyAhmed/shawky_cli.git",
     features: [
-      "Project setup automation: install/create/add/make commands for Flutter apps, packages, plugins, flavors, and structure generation.",
-      "Build and release workflow: build APK/IPA, deploy to Firebase App Distribution, and generate localization/build_runner outputs.",
-      "Quality and maintenance tooling: analyze, test, clean, fix, pod, git, version, and remove commands in one CLI.",
-      "Developer-first command model: `shawky <command> [module] [arguments]` with short aliases for fast execution.",
+      "Unified command model with explicit `flutter`, `ios`, and `android` namespaces plus short aliases, while shared commands auto-detect whether the current project is Flutter, native iOS, or native Android.",
+      "Project creation workflow for Flutter apps, packages, plugins, FVM setup, and native iOS SwiftUI projects generated from XcodeGen-based templates.",
+      "Scaffolding system for Flutter features, cubits, repositories, models, data sources, and UI layers, plus native iOS feature, view model, repository, model, source, and SwiftUI view generation.",
+      "Template-driven app bootstrap that can create a reusable Flutter core structure, localization setup, DI/service locator wiring, routes, assets, and curated dependency installation.",
+      "Build, run, test, analyze, clean, pod, generate, and deploy commands designed to reduce repetitive delivery work across mobile projects.",
+      "Release-oriented tooling covering Flutter and iOS build flows, Firebase distribution hooks, version/build bump commands, git push helpers, and release packaging.",
+      "Installer and self-update flow with OS-specific distribution artifacts, symlink management, shell integration, and version checks against GitHub releases.",
+      "Developer ergonomics such as `shawky cd <project>`, curated pub dependency pickers, flavor scaffolding, and maintenance commands for fixes, cache cleanup, and CLI removal.",
     ],
     projectIdea:
-      "Eliminate repetitive Flutter engineering tasks and standardize delivery workflows for individuals and teams through a single high-productivity CLI.",
+      "Eliminate repetitive mobile engineering setup and release work by turning common Flutter and iOS project operations into a consistent, reusable CLI that improves speed, structure, and team onboarding.",
     showcase:
-      "Designed ShawkyCLI as an end-to-end mobile delivery command system covering setup, build/release, test/analysis, git operations, CocoaPods management, and long-term project maintenance.",
+      "Designed ShawkyCLI as an end-to-end mobile workflow system: a hybrid Dart + shell toolchain that handles project bootstrapping, architecture scaffolding, context-aware run/build/test commands, native iOS support, installer/update distribution, and release automation for repeated day-to-day engineering tasks.",
       screenshots: [
         projectScreenshot("ShawkyCLI", "screenshot1", { platform: "desktop", orientation: "landscape" }),
       ],
@@ -1063,8 +1103,8 @@ export const NAV_LINKS = [
 
 export const PROFILE_DATA = {
   name: "Ahmed Shawky",
-  headline: "Senior Mobile Engineer | Flutter, iOS (SwiftUI), Android (Kotlin)",
-  bio: "Senior Mobile Engineer with 5+ years of experience building and scaling mobile applications across Flutter, Android (Kotlin), and iOS (Objective-C, Swift, SwiftUI). I have delivered 30+ production apps, designed modular architectures, integrated native SDKs through platform channels, and built real-time systems that handle 1,000+ daily transactions with 99.9% uptime.",
+  headline: "Senior Mobile Engineer focused on Flutter, SwiftUI, and Kotlin.",
+  bio: "Senior Mobile Engineer with 5+ years of experience building production mobile apps across Flutter, iOS, and Android. Delivered 30+ apps, improved release speed, modernized legacy iOS codebases, and built reusable systems that improved reliability and maintainability.",
   email: "shawkyahmed392@gmail.com",
   phone: "+201154338430",
   location: "Cairo, Egypt",
@@ -1078,7 +1118,7 @@ export const PROFILE_DATA = {
   avatar,
   stats: [
     { label: "Years Experience", value: "5+" },
-    { label: "Apps Delivered", value: "30+" },
+    { label: "Apps Shipped", value: "30+" },
     { label: "Release Speed Gain", value: "70%" },
     { label: "Production Uptime", value: "99.9%" },
   ],
@@ -1090,8 +1130,8 @@ export const PROFILE_DATA = {
 };
 
 export const SKILLS_DATA = {
-  title: "Skills & Expertise",
-  description: "Hands-on strengths across Flutter, SwiftUI, Kotlin, architecture, real-time systems, release automation, and senior-level mobile leadership.",
+  title: "Core Strengths",
+  description: "Hands-on strengths that matter in senior mobile roles: architecture, cross-platform delivery, native depth, release reliability, and scalable product engineering.",
   skillCategories: [
     {
       title: "Mobile Platforms & Native Development",
@@ -1187,20 +1227,20 @@ export const SKILLS_DATA = {
 
 export const EXPERIENCE_DATA = {
   title: "Professional Experience",
-  description: "Progression from native Android foundations to senior cross-platform leadership, with 30+ shipped apps, faster release pipelines, and stable production systems.",
+  description: "From native Android development to senior cross-platform engineering, with hands-on ownership of architecture, modernization, release workflows, and production mobile delivery.",
   experiences: [
     {
       role: "Senior Mobile Engineer",
       company: "Intalio",
       period: "Oct 2024 – Present",
       highlights: [
-        "Deliver and maintain production mobile applications using Flutter and iOS (Objective-C, Swift, SwiftUI) across multiple business domains.",
-        "Define mobile engineering standards, lead code reviews, and ensure architecture consistency across Flutter and native iOS codebases.",
-        "Mentor senior engineers, provide architectural guidance, debugging support, and best practices for scalable cross-platform development.",
-        "Design and maintain CI/CD pipelines for Flutter and iOS using GitHub Actions and Codemagic, automating build and release workflows.",
-        "Maintain and extend legacy Objective-C applications while delivering new features, critical bug fixes, and improved stability.",
-        "Lead modernization efforts by migrating Objective-C apps to Swift and SwiftUI for better maintainability and long-term velocity.",
-        "Develop internal mobile packages and tooling to standardize shared functionality, reduce duplication, and boost team productivity."
+        "Own delivery of production mobile applications across Flutter and iOS (Objective-C, Swift, SwiftUI) in multiple business domains.",
+        "Set mobile engineering standards, lead code reviews, and enforce architecture consistency across Flutter and native iOS codebases.",
+        "Guide engineers on architecture, debugging, and implementation tradeoffs for scalable cross-platform delivery.",
+        "Build and maintain CI/CD pipelines with GitHub Actions and Codemagic to speed up release workflows and reduce manual effort.",
+        "Stabilize and extend legacy Objective-C applications while continuing feature delivery and maintainability improvements.",
+        "Lead modernization efforts from Objective-C to Swift and SwiftUI to improve long-term velocity and code health.",
+        "Create reusable internal packages and tooling that reduce duplication and improve team productivity."
       ],
     },
     {
@@ -1208,13 +1248,13 @@ export const EXPERIENCE_DATA = {
       company: "Alhawsaba",
       period: "Oct 2022 – Sep 2024",
       highlights: [
-        "Delivered multiple production Flutter apps, serving as the primary mobile contributor across core products.",
-        "Implemented native Android (Kotlin) and iOS (Swift) features via Platform Channels for advanced hardware and SDK integration.",
-        "Built reusable Flutter packages and a Google Maps Heatmap plugin to standardize functionality and reduce development time across projects.",
-        "Designed and implemented a modular real-time chat system using custom WebSocket-based backend communication.",
-        "Led architectural refactoring from GetX to BLoC, improving state management consistency, stability, and testability.",
-        "Optimized performance, resolved memory leaks, and improved long-term app stability.",
-        "Collaborated with backend engineers and mentored mobile developers, providing technical guidance and best practices."
+        "Served as a primary mobile engineer across multiple production Flutter products.",
+        "Implemented advanced native Android and iOS capabilities through platform channels for SDK and hardware integrations.",
+        "Built reusable Flutter packages and a Google Maps Heatmap plugin to standardize shared functionality and reduce delivery time.",
+        "Designed a modular real-time chat architecture using custom WebSocket-based backend communication.",
+        "Led refactoring from GetX to BLoC to improve consistency, testability, and long-term codebase stability.",
+        "Resolved performance issues and memory leaks to improve product reliability in production.",
+        "Collaborated closely with backend engineers and mentored mobile developers on architecture and best practices."
       ],
     },
     {
@@ -1222,31 +1262,31 @@ export const EXPERIENCE_DATA = {
       company: "Magdsoft",
       period: "May 2020 – Oct 2022",
       highlights: [
-        "Developed and maintained native Android apps using Kotlin, transitioning to Flutter as a core cross-platform contributor.",
-        "Delivered 20+ production apps across live tracking, Google Maps solutions, e-commerce, and service marketplaces.",
-        "Built reusable Flutter components adopted by the mobile team to speed development and improve consistency.",
+        "Built and maintained native Android apps in Kotlin before transitioning into Flutter as a core cross-platform contributor.",
+        "Delivered 20+ production apps across live tracking, mapping, e-commerce, and service marketplace domains.",
+        "Created reusable Flutter components adopted by the mobile team to speed up development and improve consistency.",
         "Integrated real-time features including live location tracking, maps, and backend synchronization.",
-        "Optimized app performance and UI/UX, contributing to a 1.5-star increase in app store ratings across key applications.",
-        "Collaborated with cross-functional teams to deliver high-quality mobile solutions across multiple client projects."
+        "Improved app performance and UX, contributing to a 1.5-star increase in app-store ratings on key products.",
+        "Worked with cross-functional teams to deliver client-facing mobile apps across multiple business domains."
       ],
     },
   ],
 };
 
 export const PROJECTS_DATA = {
-  title: "Featured Projects",
-  description: "Production applications across Flutter, SwiftUI, and Kotlin showcasing scalable architecture, platform-channel integrations, real-time systems, maps, mobility, and enterprise delivery.",
+  title: "Selected Case Studies",
+  description: "Production mobile apps that show how I work: architecture ownership, native depth, product delivery, platform integration, and maintainable engineering decisions.",
   projects: PROJECT_ITEMS,
 };
 
 export const PACKAGES_DATA = {
-  title: "Internal Tools & Packages",
-  description: "Reusable packages and internal tooling built to standardize mobile delivery, reduce duplication, and speed up Flutter and native iOS/Android engineering workflows.",
+  title: "Reusable Systems & Tooling",
+  description: "Packages and internal tools built to improve developer productivity, standardize mobile delivery, and reduce repeated engineering work across products.",
   packages: PACKAGE_ITEMS,
 };
 
 export const CONTACT_DATA = {
-  title: "Get in Touch",
+  title: "Hiring / Contact",
   description:
-    "Open to senior mobile engineering opportunities across Flutter, iOS (SwiftUI), and Android (Kotlin), as well as architecture, consulting, and technical leadership work.",
+    "Open to senior mobile engineering roles across Flutter, iOS, and Android, especially where architecture ownership, native depth, and production delivery matter.",
 };

@@ -14,18 +14,18 @@ export function Contact() {
   const linkedinProfile = social.find((item) => item.name === "LinkedIn");
 
   return (
-    <section id="contact" className="relative overflow-hidden">
+    <section id="contact" className="section-shell relative overflow-hidden">
       <div className="container">
-        <SectionIntro eyebrow="Contact" title={title} description={description} />
+        <SectionIntro eyebrow="Contact" title={title} description={description} align="left" />
 
         <div className="mt-14 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
           <div className="space-y-5">
-            <div className="rounded-[1.8rem] border border-border/60 bg-card/75 p-6 shadow-xl shadow-primary/5 backdrop-blur-sm">
-              <p className="text-sm uppercase tracking-[0.22em] text-primary">Direct contact</p>
+            <div className="surface-panel rounded-[1.8rem] p-6">
+              <p className="font-code text-[11px] uppercase tracking-[0.18em] text-primary">Direct contact</p>
               <div className="mt-5 space-y-3">
                 <Link
                   href={`mailto:${email}`}
-                  className="flex items-center justify-between rounded-2xl border border-border/60 bg-background/50 px-4 py-4 transition-colors hover:border-primary/35"
+                  className="flex items-center justify-between rounded-[1.2rem] border border-border/60 bg-background/50 px-4 py-4 transition-colors hover:border-primary/35"
                 >
                   <span className="flex items-center gap-3">
                     <Mail className="h-5 w-5 text-primary" />
@@ -39,7 +39,7 @@ export function Contact() {
 
                 <Link
                   href={`tel:${phone.replace(/\s+/g, "")}`}
-                  className="flex items-center justify-between rounded-2xl border border-border/60 bg-background/50 px-4 py-4 transition-colors hover:border-primary/35"
+                  className="flex items-center justify-between rounded-[1.2rem] border border-border/60 bg-background/50 px-4 py-4 transition-colors hover:border-primary/35"
                 >
                   <span className="flex items-center gap-3">
                     <Phone className="h-5 w-5 text-primary" />
@@ -51,7 +51,7 @@ export function Contact() {
                   <ArrowUpRight className="h-4 w-4 text-muted-foreground" />
                 </Link>
 
-                <div className="flex items-center justify-between rounded-2xl border border-border/60 bg-background/50 px-4 py-4">
+                <div className="flex items-center justify-between rounded-[1.2rem] border border-border/60 bg-background/50 px-4 py-4">
                   <span className="flex items-center gap-3">
                     <MapPin className="h-5 w-5 text-primary" />
                     <span>
@@ -63,8 +63,8 @@ export function Contact() {
               </div>
             </div>
 
-            <div className="rounded-[1.8rem] border border-border/60 bg-card/75 p-6 shadow-xl shadow-primary/5 backdrop-blur-sm">
-              <p className="text-sm uppercase tracking-[0.22em] text-primary">Profiles & assets</p>
+            <div className="surface-panel rounded-[1.8rem] p-6">
+              <p className="font-code text-[11px] uppercase tracking-[0.18em] text-primary">Profiles & assets</p>
               <div className="mt-5 flex flex-wrap gap-3">
                 <Button asChild variant="outline">
                   <Link href={cvUrl} target="_blank" rel="noopener noreferrer">
@@ -87,23 +87,24 @@ export function Contact() {
                 )}
               </div>
               <p className="mt-5 text-sm leading-6 text-muted-foreground">
-                Best fit: senior Flutter roles, native iOS modernization work, Kotlin-based integrations, and mobile architecture ownership.
+                Best fit: senior mobile roles across Flutter, native iOS modernization, Kotlin integrations, and platform-heavy product teams.
               </p>
             </div>
           </div>
 
-          <div className="rounded-[1.8rem] border border-border/60 bg-card/75 p-6 shadow-xl shadow-primary/5 backdrop-blur-sm md:p-8">
+          <div className="surface-panel rounded-[1.8rem] p-6 md:p-8">
             <div className="space-y-6">
               <div>
-                <h3 className="font-headline text-2xl font-semibold tracking-tight">What I can help with</h3>
+                <p className="font-code text-[11px] uppercase tracking-[0.18em] text-primary">Engagement scope</p>
+                <h3 className="mt-3 font-headline text-3xl font-semibold tracking-tight">What I can help with</h3>
                 <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                  I work best on senior mobile engineering roles, Flutter platform architecture, native iOS modernization, Kotlin integrations, and high-reliability mobile product delivery.
+                  I work best on senior mobile engineering roles that need strong delivery, clean architecture decisions, native platform depth, and reliable production execution.
                 </p>
               </div>
 
               <ul className="grid gap-3">
                 <li className="rounded-[1.4rem] border border-border/60 bg-background/50 px-5 py-4 text-sm leading-6 text-muted-foreground">
-                  Senior Flutter engineering for production apps, reusable modules, and scalable architecture decisions.
+                  Senior Flutter engineering for production apps, reusable modules, and maintainable app architecture.
                 </li>
                 <li className="rounded-[1.4rem] border border-border/60 bg-background/50 px-5 py-4 text-sm leading-6 text-muted-foreground">
                   iOS modernization work across Objective-C, Swift, and SwiftUI codebases with maintainability in mind.
@@ -114,9 +115,9 @@ export function Contact() {
               </ul>
 
               <div className="rounded-[1.4rem] border border-border/60 bg-background/50 px-5 py-5">
-                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">Availability</p>
+                <p className="font-code text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Availability</p>
                 <p className="mt-3 text-sm leading-6 text-muted-foreground">
-                  Open to senior mobile engineering roles, Flutter-first product teams, native iOS modernization, Kotlin platform work, and mobile architecture consulting.
+                  Open to senior mobile engineering roles, Flutter-first product teams, native iOS modernization, Kotlin platform work, and architecture-heavy mobile products.
                 </p>
               </div>
             </div>

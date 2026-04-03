@@ -1,12 +1,30 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, BriefcaseBusiness, Cpu, Download, Github, Laptop, ShieldCheck, Smartphone, Star, Tablet, TrendingUp } from "lucide-react";
+import {
+  ArrowLeft,
+  BriefcaseBusiness,
+  Cpu,
+  Download,
+  Github,
+  Laptop,
+  ShieldCheck,
+  Smartphone,
+  Star,
+  Tablet,
+  TrendingUp,
+} from "lucide-react";
 import { Apple, PlayStore } from "@/components/icons";
 import { ALL_PORTFOLIO_ITEMS, getPortfolioItemBySlug } from "@/lib/data";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 export function generateStaticParams() {
   return ALL_PORTFOLIO_ITEMS.map((item) => ({ slug: item.slug }));
@@ -26,23 +44,23 @@ export default async function ProjectDetailsPage({
 
   const hasStoreLinks = Boolean(item.appStoreUrl || item.playStoreUrl);
   const ownershipPoints = [
-    "Led end-to-end mobile delivery from technical scoping to release readiness.",
-    `Designed app structure and module boundaries using ${item.frameworks.join(", ")}.`,
+    "Owned end-to-end mobile delivery from technical scoping to production readiness.",
+    `Defined architecture boundaries using ${item.frameworks.join(", ")}.`,
     hasStoreLinks
-      ? "Owned production publishing flow and release quality for app store delivery."
-      : "Owned engineering quality, code structure, and maintainability for project handoff.",
+      ? "Maintained release quality, app-store delivery, and production reliability."
+      : "Maintained engineering quality, maintainability, and long-term handoff readiness.",
   ];
 
   const architecturePoints = [
     `Core stack: ${item.frameworks.join(", ")} with ${item.languages.join(", ")}.`,
-    "Applied clean module boundaries and reusable services to keep features scalable.",
-    "Structured integration points for APIs, state management, and platform-specific capabilities.",
+    "Applied reusable module boundaries to keep features scalable and easier to evolve.",
+    "Structured integration points for APIs, state, platform capabilities, and delivery workflows.",
   ];
 
   const qualityPoints = [
-    "Focused on performance, stability, and predictable release behavior.",
-    "Used code review standards and architecture-driven decisions to reduce technical risk.",
-    "Kept implementation maintainable for long-term product evolution and team onboarding.",
+    "Focused on predictable release behavior, maintainability, and production stability.",
+    "Used architecture-driven decisions to reduce implementation risk as the system scaled.",
+    "Balanced UX quality, engineering speed, and long-term codebase sustainability.",
   ];
 
   const platformMeta = {
@@ -53,9 +71,16 @@ export default async function ProjectDetailsPage({
     desktop: { label: "Desktop", icon: Laptop },
   } as const;
 
+  const summaryStats = [
+    { label: "Delivery", value: item.category === "package" ? "Reusable system" : "Production app" },
+    { label: "Platforms", value: String(item.supportedPlatforms.length) },
+    { label: "Downloads", value: item.downloads },
+    { label: "Rating", value: item.rating.toFixed(1) },
+  ];
+
   return (
     <main className="min-h-dvh bg-background">
-      <section className="relative overflow-hidden py-10 md:py-16">
+      <section className="section-shell relative overflow-hidden py-10 md:py-16">
         <div className="container">
           <Button asChild variant="ghost" className="mb-8">
             <Link href="/#projects" prefetch={false}>
@@ -63,8 +88,8 @@ export default async function ProjectDetailsPage({
             </Link>
           </Button>
 
-          <div className="overflow-hidden rounded-3xl border border-border/60 bg-card/60 shadow-xl">
-            <div className="relative h-56 w-full md:h-80">
+          <div className="surface-panel overflow-hidden rounded-[2rem]">
+            <div className="relative h-64 w-full border-b border-border/50 md:h-80 lg:h-[26rem]">
               <Image
                 src={item.bannerImage.imageUrl}
                 alt={`${item.title} banner`}
@@ -73,42 +98,54 @@ export default async function ProjectDetailsPage({
                 className="object-cover"
                 data-ai-hint={item.bannerImage.imageHint}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/12 via-transparent to-background/92" />
+              <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background via-background/35 to-transparent" />
             </div>
 
-            <div className="relative px-6 pb-8 md:px-10">
-              <div className="-mt-14 flex flex-wrap items-end justify-between gap-5">
-                <div className="flex items-end gap-4">
-                  <div className="relative h-32 w-32 overflow-hidden rounded-2xl border border-border/70 bg-card">
-                    <Image
-                      src={item.appIcon.imageUrl}
-                      alt={`${item.title} icon`}
-                      fill
-                      className="object-cover"
-                      data-ai-hint={item.appIcon.imageHint}
-                    />
-                  </div>
-                  <div>
-                    <p className="text-xs uppercase tracking-widest text-primary">{item.category}</p>
-                    <h1 className="font-headline text-3xl font-bold md:text-4xl">{item.title}</h1>
-                  </div>
-                </div>
+            <div className="relative z-10 p-6 md:p-8 lg:p-10">
+              <div className="flex flex-wrap items-center gap-3">
+                <span className="rounded-full border border-primary/25 bg-primary/10 px-3 py-1 font-code text-[10px] uppercase tracking-[0.22em] text-primary">
+                  {item.category === "package" ? "Engineering package" : "Architecture case study"}
+                </span>
+                <span className="rounded-full border border-border/70 bg-background/50 px-3 py-1 font-code text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+                  {item.supportedPlatforms.join(" • ")}
+                </span>
+              </div>
 
-                <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                  <span className="inline-flex items-center gap-1">
-                    <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" /> {item.rating.toFixed(1)}
-                  </span>
-                  <span className="inline-flex items-center gap-1">
-                    <Download className="h-4 w-4" /> {item.downloads}
-                  </span>
+              <div className="mt-6 flex items-start gap-4">
+                <div className="relative h-20 w-20 overflow-hidden rounded-[1.4rem] border border-border/70 bg-background/60">
+                  <Image
+                    src={item.appIcon.imageUrl}
+                    alt={`${item.title} icon`}
+                    fill
+                    className="object-contain p-3"
+                    data-ai-hint={item.appIcon.imageHint}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <h1 className="font-headline text-3xl font-bold tracking-tight text-foreground md:text-5xl">
+                    {item.title}
+                  </h1>
+                  <p className="max-w-3xl text-base leading-8 text-muted-foreground">
+                    {item.description}
+                  </p>
                 </div>
               </div>
 
-              <p className="mt-6 max-w-4xl text-muted-foreground">{item.description}</p>
+              <div className="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+                {summaryStats.map((stat) => (
+                  <div key={stat.label} className="metric-tile rounded-[1.25rem] px-4 py-4">
+                    <p className="font-code text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+                      {stat.label}
+                    </p>
+                    <p className="mt-2 font-headline text-lg text-foreground">{stat.value}</p>
+                  </div>
+                ))}
+              </div>
 
               <div className="mt-6 flex flex-wrap gap-2">
                 {item.frameworks.map((framework) => (
-                  <Badge key={framework} variant="secondary" className="bg-primary/10 text-primary">
+                  <Badge key={framework} variant="secondary">
                     {framework}
                   </Badge>
                 ))}
@@ -132,7 +169,7 @@ export default async function ProjectDetailsPage({
                 })}
               </div>
 
-              <div className="mt-6 flex flex-wrap items-center gap-3">
+              <div className="mt-8 flex flex-wrap items-center gap-3">
                 {item.githubUrl && (
                   <Button asChild variant="outline">
                     <Link href={item.githubUrl} target="_blank" rel="noopener noreferrer">
@@ -158,74 +195,91 @@ export default async function ProjectDetailsPage({
             </div>
           </div>
 
-          <div className="mt-10 rounded-2xl border border-border/60 bg-card/50 p-6 md:p-8">
-            <div className="flex items-center gap-2">
-              <BriefcaseBusiness className="h-5 w-5 text-primary" />
-              <h2 className="font-headline text-xl font-semibold">My Role & Ownership</h2>
-            </div>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground md:text-base">{item.projectIdea}</p>
-            <ul className="mt-5 grid gap-3 md:grid-cols-2">
-              {ownershipPoints.map((point) => (
-                <li key={point} className="rounded-xl border border-border/50 bg-muted/20 px-4 py-3 text-sm text-muted-foreground">
-                  {point}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="mt-8 grid gap-8 lg:grid-cols-2">
-            <div className="rounded-2xl border border-border/60 bg-card/50 p-6">
+          <div className="mt-8 grid gap-8 xl:grid-cols-[1.05fr_0.95fr]">
+            <div className="surface-panel rounded-[1.8rem] p-6 md:p-8">
               <div className="flex items-center gap-2">
-                <Cpu className="h-5 w-5 text-primary" />
-                <h2 className="font-headline text-xl font-semibold">Technical Architecture</h2>
+                <BriefcaseBusiness className="h-5 w-5 text-primary" />
+                <h2 className="font-headline text-2xl font-semibold">Role & Ownership</h2>
               </div>
-              <ul className="mt-4 space-y-3">
-                {architecturePoints.map((point) => (
-                  <li key={point} className="rounded-xl border border-border/50 bg-muted/20 px-4 py-3 text-sm text-muted-foreground">
+              <p className="mt-4 text-sm leading-8 text-muted-foreground md:text-base">
+                {item.projectIdea}
+              </p>
+              <ul className="mt-6 grid gap-3">
+                {ownershipPoints.map((point) => (
+                  <li
+                    key={point}
+                    className="rounded-[1.2rem] border border-border/60 bg-background/30 px-4 py-4 text-sm leading-7 text-muted-foreground"
+                  >
                     {point}
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div className="rounded-2xl border border-border/60 bg-card/50 p-6">
+            <div className="surface-panel rounded-[1.8rem] p-6 md:p-8">
               <div className="flex items-center gap-2">
                 <TrendingUp className="h-5 w-5 text-primary" />
-                <h2 className="font-headline text-xl font-semibold">Business & Product Impact</h2>
+                <h2 className="font-headline text-2xl font-semibold">Product & Delivery Outcome</h2>
               </div>
-              <ul className="mt-4 space-y-3">
-                <li className="rounded-xl border border-border/50 bg-muted/20 px-4 py-3 text-sm text-muted-foreground">
-                  Distribution strength reflected by {item.downloads} downloads and {item.rating.toFixed(1)} rating.
+              <ul className="mt-6 grid gap-3">
+                <li className="rounded-[1.2rem] border border-border/60 bg-background/30 px-4 py-4 text-sm leading-7 text-muted-foreground">
+                  Delivery footprint reflected by {item.downloads} and a {item.rating.toFixed(1)} rating profile.
                 </li>
-                <li className="rounded-xl border border-border/50 bg-muted/20 px-4 py-3 text-sm text-muted-foreground">
-                  Delivered user flows and technical decisions aligned with production goals, reliability, and UX quality.
+                <li className="rounded-[1.2rem] border border-border/60 bg-background/30 px-4 py-4 text-sm leading-7 text-muted-foreground">
+                  Implemented product flows aligned with production reliability, UX clarity, and maintainable engineering constraints.
                 </li>
-                <li className="rounded-xl border border-border/50 bg-muted/20 px-4 py-3 text-sm text-muted-foreground">
+                <li className="rounded-[1.2rem] border border-border/60 bg-background/30 px-4 py-4 text-sm leading-7 text-muted-foreground">
                   {item.showcase}
                 </li>
               </ul>
             </div>
           </div>
 
-          <div className="mt-8 rounded-2xl border border-border/60 bg-card/50 p-6">
-            <div className="flex items-center gap-2">
-              <ShieldCheck className="h-5 w-5 text-primary" />
-              <h2 className="font-headline text-xl font-semibold">Engineering Quality & Delivery</h2>
+          <div className="mt-8 grid gap-8 lg:grid-cols-2">
+            <div className="surface-panel rounded-[1.8rem] p-6">
+              <div className="flex items-center gap-2">
+                <Cpu className="h-5 w-5 text-primary" />
+                <h2 className="font-headline text-xl font-semibold">Technical Architecture</h2>
+              </div>
+              <ul className="mt-4 space-y-3">
+                {architecturePoints.map((point) => (
+                  <li
+                    key={point}
+                    className="rounded-[1.2rem] border border-border/60 bg-background/30 px-4 py-4 text-sm leading-7 text-muted-foreground"
+                  >
+                    {point}
+                  </li>
+                ))}
+              </ul>
             </div>
-            <ul className="mt-4 grid gap-3 md:grid-cols-3">
-              {qualityPoints.map((point) => (
-                <li key={point} className="rounded-xl border border-border/50 bg-muted/20 px-4 py-3 text-sm text-muted-foreground">
-                  {point}
-                </li>
-              ))}
-            </ul>
+
+            <div className="surface-panel rounded-[1.8rem] p-6">
+              <div className="flex items-center gap-2">
+                <ShieldCheck className="h-5 w-5 text-primary" />
+                <h2 className="font-headline text-xl font-semibold">Engineering Quality</h2>
+              </div>
+              <ul className="mt-4 space-y-3">
+                {qualityPoints.map((point) => (
+                  <li
+                    key={point}
+                    className="rounded-[1.2rem] border border-border/60 bg-background/30 px-4 py-4 text-sm leading-7 text-muted-foreground"
+                  >
+                    {point}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
-          <div className="mt-8 rounded-2xl border border-border/60 bg-card/50 p-6">
-            <h2 className="font-headline text-xl font-semibold">Key Features</h2>
-            <ul className="mt-4 grid gap-3 md:grid-cols-2">
+          <div className="surface-panel mt-8 rounded-[1.8rem] p-6">
+            <p className="font-code text-[11px] uppercase tracking-[0.18em] text-primary">Capability Breakdown</p>
+            <h2 className="mt-3 font-headline text-2xl font-semibold">Key Features</h2>
+            <ul className="mt-6 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
               {item.features.map((feature) => (
-                <li key={feature} className="rounded-xl border border-border/50 bg-muted/20 px-4 py-3 text-sm text-muted-foreground">
+                <li
+                  key={feature}
+                  className="rounded-[1.2rem] border border-border/60 bg-background/30 px-4 py-4 text-sm leading-7 text-muted-foreground"
+                >
                   {feature}
                 </li>
               ))}
@@ -233,10 +287,11 @@ export default async function ProjectDetailsPage({
           </div>
 
           {item.screenshots && item.screenshots.length > 0 && (
-            <div className="mt-8 rounded-2xl border border-border/60 bg-card/50 p-6">
-              <h2 className="font-headline text-xl font-semibold">Screenshots</h2>
+            <div className="surface-panel mt-8 rounded-[1.8rem] p-6">
+              <p className="font-code text-[11px] uppercase tracking-[0.18em] text-primary">Visual Evidence</p>
+              <h2 className="mt-3 font-headline text-2xl font-semibold">Screenshots</h2>
               <Carousel
-                className="mt-4"
+                className="mt-6"
                 opts={{
                   align: "start",
                   loop: item.screenshots.length > 3,
@@ -267,36 +322,36 @@ export default async function ProjectDetailsPage({
                           : "basis-[54%] sm:basis-[32%] lg:basis-[23%]"
                         : "basis-[51%] sm:basis-[31%] lg:basis-[20%]";
                     return (
-                    <CarouselItem
-                      key={`${item.slug}-${index}`}
-                      className={basisClass}
-                    >
-                      <div className={`relative overflow-hidden rounded-2xl border border-border/70 ${aspectClass}`}>
-                        <a
-                          href={screenshot.image.imageUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="absolute inset-0 cursor-zoom-in"
-                          aria-label={`Open full screenshot ${index + 1}`}
-                        >
-                          {isSvg ? (
-                            <img
-                              src={screenshot.image.imageUrl}
-                              alt={`${item.title} screenshot ${index + 1}`}
-                              className="absolute inset-0 h-full w-full object-cover"
-                            />
-                          ) : (
-                            <Image
-                              src={screenshot.image.imageUrl}
-                              alt={`${item.title} screenshot ${index + 1}`}
-                              fill
-                              className="object-cover"
-                              data-ai-hint={screenshot.image.imageHint}
-                            />
-                          )}
-                        </a>
-                      </div>
-                    </CarouselItem>
+                      <CarouselItem
+                        key={`${item.slug}-${index}`}
+                        className={basisClass}
+                      >
+                        <div className={`relative overflow-hidden rounded-[1.5rem] border border-border/70 ${aspectClass}`}>
+                          <a
+                            href={screenshot.image.imageUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="absolute inset-0 cursor-zoom-in"
+                            aria-label={`Open full screenshot ${index + 1}`}
+                          >
+                            {isSvg ? (
+                              <img
+                                src={screenshot.image.imageUrl}
+                                alt={`${item.title} screenshot ${index + 1}`}
+                                className="absolute inset-0 h-full w-full object-cover"
+                              />
+                            ) : (
+                              <Image
+                                src={screenshot.image.imageUrl}
+                                alt={`${item.title} screenshot ${index + 1}`}
+                                fill
+                                className="object-cover"
+                                data-ai-hint={screenshot.image.imageHint}
+                              />
+                            )}
+                          </a>
+                        </div>
+                      </CarouselItem>
                     );
                   })}
                 </CarouselContent>
@@ -307,10 +362,11 @@ export default async function ProjectDetailsPage({
           )}
 
           {item.diagramImages && item.diagramImages.length > 0 && (
-            <div className="mt-8 rounded-2xl border border-border/60 bg-card/50 p-6">
-              <h2 className="font-headline text-xl font-semibold">Diagrams</h2>
+            <div className="surface-panel mt-8 rounded-[1.8rem] p-6">
+              <p className="font-code text-[11px] uppercase tracking-[0.18em] text-primary">Architecture Visuals</p>
+              <h2 className="mt-3 font-headline text-2xl font-semibold">Diagrams</h2>
               <Carousel
-                className="mt-4"
+                className="mt-6"
                 opts={{
                   align: "start",
                   loop: item.diagramImages.length > 1,
@@ -320,8 +376,11 @@ export default async function ProjectDetailsPage({
                   {item.diagramImages.map((diagram, index) => {
                     const isSvg = diagram.imageUrl.toLowerCase().endsWith(".svg");
                     return (
-                      <CarouselItem key={`${item.slug}-diagram-${index}`} className="basis-[92%] lg:basis-[74%]">
-                        <div className="relative aspect-[16/8] overflow-hidden rounded-2xl border border-border/70">
+                      <CarouselItem
+                        key={`${item.slug}-diagram-${index}`}
+                        className="basis-[92%] lg:basis-[74%]"
+                      >
+                        <div className="relative aspect-[16/8] overflow-hidden rounded-[1.5rem] border border-border/70">
                           <a
                             href={diagram.imageUrl}
                             target="_blank"
@@ -357,19 +416,11 @@ export default async function ProjectDetailsPage({
                   </>
                 )}
               </Carousel>
-              <p className="mt-3 text-sm text-muted-foreground">
-                Technical visuals including architecture, module topology, and synchronization flow.
+              <p className="mt-4 text-sm leading-7 text-muted-foreground">
+                Technical visuals covering architecture, module topology, synchronization, and implementation flow.
               </p>
             </div>
           )}
-
-          {/* <div className="mt-8 flex justify-end">
-            <Button asChild>
-              <Link href="/#projects" prefetch={false}>
-                Return to homepage <ExternalLink className="h-4 w-4" />
-              </Link>
-            </Button>
-          </div> */}
         </div>
       </section>
     </main>

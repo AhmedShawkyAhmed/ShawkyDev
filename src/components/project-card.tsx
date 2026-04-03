@@ -32,7 +32,7 @@ export function ProjectCard({ item, index = 0 }: ProjectCardProps) {
       className="h-full"
     >
       <Card
-        className="hover-motion group relative flex h-full flex-col overflow-hidden rounded-[1.6rem] border-border/60 bg-card/90 transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/10"
+        className="hover-motion surface-panel group relative flex h-full flex-col overflow-hidden rounded-[1.7rem] transition-all duration-300 hover:-translate-y-1 hover:border-primary/30"
       >
         <Link href={`/projects/${item.slug}`} className="absolute inset-0 z-10" aria-label={`Open ${item.title} details`} />
 
@@ -44,11 +44,11 @@ export function ProjectCard({ item, index = 0 }: ProjectCardProps) {
             className="object-cover transition-transform duration-500 group-hover:scale-105"
             data-ai-hint={item.cardImage.imageHint}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
-          <div className="absolute left-4 top-4 rounded-full border border-white/20 bg-background/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.25em] text-primary backdrop-blur-md">
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/25 to-transparent" />
+          <div className="absolute left-4 top-4 rounded-full border border-white/15 bg-background/75 px-3 py-1 font-code text-[10px] font-semibold uppercase tracking-[0.22em] text-primary backdrop-blur-md">
             {item.category}
           </div>
-          <div className="absolute right-4 top-4 h-14 w-14 overflow-hidden rounded-2xl border border-white/25 bg-background/75 p-2 shadow-lg backdrop-blur-md">
+          <div className="absolute right-4 top-4 h-14 w-14 overflow-hidden rounded-2xl border border-white/15 bg-background/75 p-2 shadow-lg backdrop-blur-md">
             <div className="relative h-full w-full">
             <Image
               src={item.appIcon.imageUrl}
@@ -59,7 +59,7 @@ export function ProjectCard({ item, index = 0 }: ProjectCardProps) {
             />
             </div>
           </div>
-          <div className="absolute bottom-3 left-3 flex items-center gap-2 rounded-full bg-background/85 px-3 py-1 text-xs font-medium backdrop-blur">
+          <div className="absolute bottom-3 left-3 flex items-center gap-2 rounded-full border border-border/60 bg-background/85 px-3 py-1 text-xs font-medium backdrop-blur">
             <Star className="h-3.5 w-3.5 fill-yellow-400 text-yellow-400" />
             {item.rating.toFixed(1)}
           </div>
@@ -68,7 +68,8 @@ export function ProjectCard({ item, index = 0 }: ProjectCardProps) {
         <CardHeader className="space-y-3 pb-2">
           <div className="flex items-start justify-between gap-3">
             <div className="space-y-2">
-              <CardTitle className="font-headline text-xl">{item.title}</CardTitle>
+              <p className="font-code text-[10px] uppercase tracking-[0.16em] text-muted-foreground">Case Study</p>
+              <CardTitle className="font-headline text-2xl">{item.title}</CardTitle>
               <div className="flex flex-wrap gap-2">
                 {item.supportedPlatforms.slice(0, 3).map((platform) => {
                   const meta = platformLabel[platform];
@@ -77,7 +78,7 @@ export function ProjectCard({ item, index = 0 }: ProjectCardProps) {
                   return (
                     <span
                       key={`${item.slug}-${platform}`}
-                      className="inline-flex items-center gap-1.5 rounded-full border border-border/70 bg-muted/30 px-2.5 py-1 text-[11px] text-muted-foreground"
+                      className="inline-flex items-center gap-1.5 rounded-full border border-border/70 bg-muted/30 px-2.5 py-1 font-code text-[10px] uppercase tracking-[0.12em] text-muted-foreground"
                     >
                       <Icon className="h-3.5 w-3.5" />
                       {meta.short}
@@ -88,7 +89,7 @@ export function ProjectCard({ item, index = 0 }: ProjectCardProps) {
             </div>
             <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-colors group-hover:text-primary" />
           </div>
-          <p className="text-sm leading-6 text-muted-foreground">{item.description}</p>
+          <p className="text-sm leading-7 text-muted-foreground">{item.description}</p>
         </CardHeader>
 
         <CardContent className="flex flex-1 flex-col gap-4">
@@ -109,7 +110,7 @@ export function ProjectCard({ item, index = 0 }: ProjectCardProps) {
             {item.features.slice(0, 2).map((feature) => (
               <li
                 key={`${item.slug}-${feature}`}
-                className="flex items-start gap-2 text-sm leading-6 text-muted-foreground"
+                className="flex items-start gap-2 rounded-[1.1rem] border border-border/70 bg-background/20 px-3 py-3 text-sm leading-6 text-muted-foreground"
               >
                 <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
                 <span>{feature}</span>
@@ -117,11 +118,11 @@ export function ProjectCard({ item, index = 0 }: ProjectCardProps) {
             ))}
           </ul>
 
-          <div className="flex items-center justify-between rounded-lg border border-border/70 bg-muted/30 px-3 py-2 text-xs text-muted-foreground">
+          <div className="flex items-center justify-between rounded-[1.1rem] border border-border/70 bg-muted/30 px-3 py-3 text-xs text-muted-foreground">
             <span className="inline-flex items-center gap-1.5">
               <Download className="h-3.5 w-3.5" /> {item.downloads}
             </span>
-            <span className="uppercase tracking-wide">{item.supportedPlatforms.length} platforms</span>
+            <span className="font-code uppercase tracking-[0.14em]">{item.supportedPlatforms.length} platforms</span>
           </div>
         </CardContent>
 

@@ -20,9 +20,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        body: ['Inter', 'sans-serif'],
+        body: ['Manrope', 'sans-serif'],
         headline: ['"Space Grotesk"', 'sans-serif'],
-        code: ['monospace'],
+        code: ['Manrope', 'sans-serif'],
       },
       colors: {
         background: 'hsl(var(--background))',

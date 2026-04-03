@@ -8,6 +8,7 @@ export function Footer() {
   return (
     <footer className="border-t border-border/60 bg-background/85 backdrop-blur">
       <div className="container py-10">
+        <div className="surface-panel rounded-[2rem] p-8">
         <div className="grid gap-10 md:grid-cols-[1.2fr_0.8fr_0.8fr]">
           <div className="space-y-4">
             <div>
@@ -21,7 +22,7 @@ export function Footer() {
           </div>
 
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-primary">Navigate</p>
+            <p className="font-code text-[11px] font-semibold uppercase tracking-[0.18em] text-primary">Navigate</p>
             <div className="mt-4 grid gap-2">
               {NAV_LINKS.map((link) => (
                 <Link key={link.href} href={link.href} className="text-sm text-muted-foreground transition-colors hover:text-primary">
@@ -32,7 +33,7 @@ export function Footer() {
           </div>
 
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-primary">Profiles</p>
+            <p className="font-code text-[11px] font-semibold uppercase tracking-[0.18em] text-primary">Profiles</p>
             <div className="mt-4 grid gap-2">
               {social.map((item) => (
                 <Link
@@ -52,6 +53,7 @@ export function Footer() {
         <div className="mt-10 flex flex-col gap-3 border-t border-border/60 pt-6 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between">
           <p>© {currentYear} {name}. Built for senior mobile engineering opportunities.</p>
           <p>Flutter • SwiftUI • Kotlin</p>
+        </div>
         </div>
       </div>
     </footer>

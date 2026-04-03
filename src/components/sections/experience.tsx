@@ -6,40 +6,39 @@ export function Experience() {
   const { title, description, experiences } = EXPERIENCE_DATA;
 
   return (
-    <section id="experience" className="relative overflow-hidden bg-muted/20">
+    <section id="experience" className="section-shell relative overflow-hidden">
       <div className="container">
-        <SectionIntro eyebrow="Experience" title={title} description={description} />
+        <SectionIntro eyebrow="Experience" title={title} description={description} align="left" />
 
-        <div className="relative mx-auto mt-14 max-w-5xl">
-          <div className="absolute left-6 top-2 hidden h-[calc(100%-1rem)] w-px bg-gradient-to-b from-primary/40 via-border to-transparent md:block" />
-
+        <div className="relative mx-auto mt-14 max-w-6xl">
           <div className="space-y-7">
             {experiences.map((exp, index) => (
               <article
                 key={`${exp.company}-${exp.period}`}
-                className="fade-up relative overflow-hidden rounded-2xl border border-border/60 bg-card/70 p-6 shadow-lg shadow-black/5 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-primary/10"
+                className="fade-up surface-panel relative overflow-hidden rounded-[1.8rem] p-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40"
                 style={{ animationDelay: `${index * 120}ms` }}
               >
-                <div className="mb-4 flex flex-wrap items-start justify-between gap-4">
+                <div className="mb-5 flex flex-wrap items-start justify-between gap-4 pr-12">
                   <div className="space-y-1">
-                    <h3 className="font-headline text-xl font-semibold">{exp.role}</h3>
-                    <p className="text-sm font-medium text-primary">{exp.company}</p>
+                    <p className="font-code text-[11px] uppercase tracking-[0.18em] text-primary">Role</p>
+                    <h3 className="font-headline text-2xl font-semibold text-foreground">{exp.role}</h3>
+                    <p className="text-sm font-medium text-accent">{exp.company}</p>
                   </div>
-                  <p className="mr-8 rounded-full border border-border/70 bg-muted/30 px-3 py-1 text-xs text-muted-foreground">
+                  <p className="rounded-full border border-border/70 bg-muted/30 px-4 py-2 font-code text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
                     {exp.period}
                   </p>
                 </div>
 
-                <ul className="space-y-2">
+                <ul className="grid gap-3 md:grid-cols-2">
                   {exp.highlights.map((highlight) => (
-                    <li key={highlight} className="flex items-start gap-2 text-sm leading-relaxed text-muted-foreground">
-                      <Dot className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+                    <li key={highlight} className="flex items-start gap-2 rounded-[1.2rem] border border-border/70 bg-background/25 px-4 py-3 text-sm leading-7 text-muted-foreground">
+                      <Dot className="mt-1 h-5 w-5 shrink-0 text-primary" />
                       <span>{highlight}</span>
                     </li>
                   ))}
                 </ul>
 
-                <div className="absolute right-4 top-4 rounded-full bg-primary/10 p-2 text-primary">
+                <div className="absolute top-5 right-5 rounded-full border border-primary/20 bg-primary/10 p-2 text-primary">
                   <BriefcaseBusiness className="h-4 w-4" />
                 </div>
               </article>

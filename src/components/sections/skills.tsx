@@ -15,9 +15,9 @@ export function Skills() {
   const { title, description, skillCategories } = SKILLS_DATA;
 
   return (
-    <section id="skills" className="bg-muted/30">
+    <section id="skills" className="section-shell">
       <div className="container">
-        <SectionIntro eyebrow="Expertise" title={title} description={description} />
+        <SectionIntro eyebrow="Expertise" title={title} description={description} align="left" />
 
         <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {skillCategories.map((category, index) => (
@@ -29,19 +29,19 @@ export function Skills() {
               className="flex h-full"
             >
               <Card
-                className="hover-motion w-full flex flex-col border border-border/60 bg-card/70 shadow-lg shadow-black/5 backdrop-blur-sm transition-all duration-300 hover:border-primary/40 hover:shadow-primary/10"
+                className="hover-motion surface-panel w-full flex flex-col rounded-[1.7rem] transition-all duration-300 hover:border-primary/40"
               >
-                <CardHeader>
-                  <CardTitle className="font-headline text-xl">
+                <CardHeader className="pb-4">
+                  <CardTitle className="font-headline text-[1.4rem] leading-snug text-foreground">
                     {category.title}
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="flex flex-wrap gap-2">
+                <CardContent className="flex flex-wrap gap-2.5">
                   {category.skills.map((skill) => (
                     <Badge
                       key={skill.name}
-                      variant="secondary"
-                      className="px-3 py-1 text-sm font-normal"
+                      variant="outline"
+                      className="border-border/70 bg-white/[0.04] px-3.5 py-1.5 text-sm font-medium normal-case tracking-normal text-foreground/78"
                     >
                       {skill.name}
                     </Badge>

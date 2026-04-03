@@ -5,40 +5,36 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Download, Mail } from "lucide-react";
 
 export function Hero() {
-  const { name, headline, bio, avatar, social, stats, focusAreas, cvUrl, email } = PROFILE_DATA;
+  const { name, headline, bio, avatar, social, stats, cvUrl, email } = PROFILE_DATA;
+  const heroStats = stats.slice(0, 4);
 
   return (
-    <section id="about" className="relative overflow-hidden py-20 md:py-28 lg:py-32">
+    <section id="about" className="section-shell relative overflow-hidden py-20 md:py-28 lg:py-32">
       <div className="hero-grid" />
       <div className="hero-blob hero-blob-left" />
       <div className="hero-blob hero-blob-right" />
 
-      <div className="container relative z-10 grid items-center gap-14 lg:grid-cols-[1.15fr_0.85fr]">
-        <div className="space-y-7 text-center lg:text-left">
-          <div className="stagger-in inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs uppercase tracking-[0.25em] text-primary">
-            Senior Mobile Engineer • Flutter • SwiftUI • Kotlin
+      <div className="container relative z-10 grid items-center gap-12 lg:grid-cols-[1.18fr_0.82fr]">
+        <div className="space-y-8 text-center lg:text-left">
+          <div className="stagger-in eyebrow-label justify-center lg:justify-start">
+            Senior Mobile Engineer • Flutter • iOS • Android
           </div>
 
-          <h1 className="stagger-in font-headline text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-            {name}
-          </h1>
+          <div className="space-y-4">
+            <h1 className="stagger-in font-headline text-4xl font-bold tracking-tight sm:text-5xl lg:text-7xl">
+              {name}
+            </h1>
 
-          <p className="stagger-in text-xl text-foreground/80 md:text-2xl">{headline}</p>
-          <p className="stagger-in max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">{bio}</p>
-
-          <div className="stagger-in flex flex-wrap items-center justify-center gap-2.5 lg:justify-start">
-            {focusAreas.map((area) => (
-              <span
-                key={area}
-                className="rounded-full border border-border/70 bg-background/65 px-3 py-1.5 text-xs font-medium text-foreground/75 backdrop-blur-sm"
-              >
-                {area}
-              </span>
-            ))}
+            <p className="stagger-in max-w-3xl text-xl leading-relaxed text-foreground/80 md:text-2xl">
+              {headline}
+            </p>
+            <p className="stagger-in max-w-3xl text-base leading-8 text-muted-foreground md:text-lg">
+              {bio}
+            </p>
           </div>
 
           <div className="stagger-in flex flex-wrap items-center justify-center gap-3 lg:justify-start">
-            <Button asChild size="lg" className="hero-drop hover-motion shadow-lg shadow-primary/25" style={{ animationDelay: "420ms" }}>
+            <Button asChild size="lg" className="hero-drop hover-motion" style={{ animationDelay: "420ms" }}>
               <Link href="#projects">
                 View Case Studies <ArrowRight className="h-4 w-4" />
               </Link>
@@ -71,14 +67,14 @@ export function Hero() {
           </div>
 
           <div className="stagger-in grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-            {stats.map((item, index) => (
+            {heroStats.map((item, index) => (
               <div
                 key={item.label}
-                className="hero-drop rounded-2xl border border-border/60 bg-card/75 px-4 py-4 text-left backdrop-blur-sm"
+                className={`hero-drop metric-tile rounded-[1.4rem] px-4 py-4 text-left backdrop-blur-sm ${index === 0 ? "metric-tile-active" : ""}`}
                 style={{ animationDelay: `${780 + index * 120}ms` }}
               >
-                <div className="text-xl font-semibold text-primary">{item.value}</div>
-                <div className="mt-1 text-xs uppercase tracking-wide text-muted-foreground">{item.label}</div>
+                <div className="font-headline text-2xl font-semibold text-foreground">{item.value}</div>
+                <div className="mt-2 font-code text-[11px] uppercase tracking-[0.18em] text-muted-foreground">{item.label}</div>
               </div>
             ))}
           </div>
