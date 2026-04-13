@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Download, Laptop, Smartphone, Star, Tablet } from "lucide-react";
-import { motion } from "framer-motion";
 import { Apple, Github, PlayStore } from "@/components/icons";
 import type { PortfolioItem } from "@/lib/data";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -24,15 +23,16 @@ const platformLabel: Record<string, { short: string; icon: typeof Smartphone }> 
 };
 
 export function ProjectCard({ item, index = 0 }: ProjectCardProps) {
+  const scanRows = [
+    { label: "Scope", value: item.scanHighlights.scope },
+    { label: "Architecture", value: item.scanHighlights.architecture },
+    { label: "Impact", value: item.scanHighlights.impact },
+  ];
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 32, scale: 0.98 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.8, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] }}
-      className="h-full"
-    >
+    <div className="h-full">
       <Card
-        className="hover-motion surface-panel group relative flex h-full flex-col overflow-hidden rounded-[1.7rem] transition-all duration-300 hover:-translate-y-1 hover:border-primary/30"
+        className="surface-panel group relative flex h-full flex-col overflow-hidden rounded-[1.7rem]"
       >
         <Link href={`/projects/${item.slug}`} className="absolute inset-0 z-10" aria-label={`Open ${item.title} details`} />
 
@@ -41,7 +41,7 @@ export function ProjectCard({ item, index = 0 }: ProjectCardProps) {
             src={item.cardImage.imageUrl}
             alt={item.cardImage.description}
             fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            className="object-cover"
             data-ai-hint={item.cardImage.imageHint}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/25 to-transparent" />
@@ -87,7 +87,7 @@ export function ProjectCard({ item, index = 0 }: ProjectCardProps) {
                 })}
               </div>
             </div>
-            <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-colors group-hover:text-primary" />
+            <ArrowUpRight className="h-4 w-4 text-muted-foreground" />
           </div>
           <p className="text-sm leading-7 text-muted-foreground">{item.description}</p>
         </CardHeader>
@@ -107,13 +107,22 @@ export function ProjectCard({ item, index = 0 }: ProjectCardProps) {
           </div>
 
           <ul className="space-y-2">
-            {item.features.slice(0, 2).map((feature) => (
+            {scanRows.map((row) => (
               <li
-                key={`${item.slug}-${feature}`}
+                key={`${item.slug}-${row.label}`}
                 className="flex items-start gap-2 rounded-[1.1rem] border border-border/70 bg-background/20 px-3 py-3 text-sm leading-6 text-muted-foreground"
               >
                 <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
-                <span>{feature}</span>
+                <span>
+                  <span className="mr-1 font-code text-[10px] uppercase tracking-[0.16em] text-foreground/70">
+                    {row.label}:
+                  </span>
+                  <span
+                    className="inline [display:-webkit-box] overflow-hidden align-bottom [-webkit-box-orient:vertical] [-webkit-line-clamp:2]"
+                  >
+                    {row.value}
+                  </span>
+                </span>
               </li>
             ))}
           </ul>
@@ -127,7 +136,7 @@ export function ProjectCard({ item, index = 0 }: ProjectCardProps) {
         </CardContent>
 
         <CardFooter className="relative z-20 mt-auto flex items-center justify-between gap-3 pt-2">
-          <span className="inline-flex items-center gap-2 text-sm font-medium text-foreground/80 transition-colors group-hover:text-primary">
+          <span className="inline-flex items-center gap-2 text-sm font-medium text-foreground/80">
             {item.category === "package" ? "Open package details" : "Open case study"}
             <ArrowRight className="h-4 w-4" />
           </span>
@@ -157,6 +166,6 @@ export function ProjectCard({ item, index = 0 }: ProjectCardProps) {
           </div>
         </CardFooter>
       </Card>
-    </motion.div>
+    </div>
   );
 }

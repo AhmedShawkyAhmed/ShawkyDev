@@ -53,6 +53,22 @@ export type PortfolioScreenshot = {
   orientation?: ScreenshotOrientation;
 };
 
+export type PortfolioCaseStudy = {
+  problem: string;
+  solution: string;
+  impact: string;
+  constraints: string[];
+  ownership: string[];
+  architecture: string[];
+  tooling: string[];
+};
+
+export type PortfolioScanHighlights = {
+  scope: string;
+  architecture: string;
+  impact: string;
+};
+
 export const projectScreenshot = (
   appName: string,
   fileName: string,
@@ -93,6 +109,8 @@ export type PortfolioItem = {
   features: string[];
   projectIdea: string;
   showcase: string;
+  caseStudy: PortfolioCaseStudy;
+  scanHighlights: PortfolioScanHighlights;
   diagramImages?: ImagePlaceholder[];
   diagramImage?: ImagePlaceholder;
 };
@@ -116,42 +134,96 @@ type PartialPortfolioItem = {
   features?: string[];
   projectIdea?: string;
   showcase?: string;
+  caseStudy?: Partial<PortfolioCaseStudy>;
+  scanHighlights?: Partial<PortfolioScanHighlights>;
   diagramImages?: ImagePlaceholder[];
   diagramImage?: ImagePlaceholder;
 };
 
-const buildPortfolioItem = (item: PartialPortfolioItem): PortfolioItem => ({
-  slug: toSlug(item.title),
-  title: item.title,
-  category: item.category,
-  description: item.description,
-  cardImage: item.cardImage,
-  bannerImage: item.bannerImage ?? item.cardImage,
-  appIcon: item.appIcon ?? item.cardImage,
-  frameworks: item.frameworks ?? ["Flutter"],
-  languages: item.languages ?? ["Dart"],
-  downloads: item.downloads ?? "10K+",
-  rating: item.rating ?? 4.7,
-  githubUrl: item.githubUrl,
-  appStoreUrl: item.appStoreUrl,
-  playStoreUrl: item.playStoreUrl,
-  supportedPlatforms: item.supportedPlatforms ?? (item.category === "project" ? ["Android", "iOS", "iPad"] : ["Android", "iOS", "iPad", "web", "desktop"]),
-  screenshots: item.screenshots,
-  features:
-    item.features ?? [
-      "Modular architecture for maintainability",
-      "Scalable state management and clean data flow",
-      "Production-ready release and CI/CD workflow",
-    ],
-  projectIdea:
+const buildPortfolioItem = (item: PartialPortfolioItem): PortfolioItem => {
+  const frameworks = item.frameworks ?? ["Flutter"];
+  const languages = item.languages ?? ["Dart"];
+  const downloads = item.downloads ?? "10K+";
+  const rating = item.rating ?? 4.7;
+  const supportedPlatforms =
+    item.supportedPlatforms ??
+    (item.category === "project" ? ["Android", "iOS", "iPad"] : ["Android", "iOS", "iPad", "web", "desktop"]);
+  const projectIdea =
     item.projectIdea ??
-    `Designed to solve a clear user problem in ${item.category === "project" ? "mobile product" : "developer workflow"} delivery with reliable performance and maintainable architecture.`,
-  showcase:
+    `Designed to solve a clear user problem in ${item.category === "project" ? "mobile product" : "developer workflow"} delivery with reliable performance and maintainable architecture.`;
+  const showcase =
     item.showcase ??
-    "Implemented core workflows, optimized app performance, and delivered a polished user experience with clear engineering tradeoffs.",
-  diagramImages: item.diagramImages ?? (item.diagramImage ? [item.diagramImage] : undefined),
-  diagramImage: item.diagramImage,
-});
+    "Implemented core workflows, optimized app performance, and delivered a polished user experience with clear engineering tradeoffs.";
+
+  const caseStudy: PortfolioCaseStudy = {
+    problem: item.caseStudy?.problem ?? item.description,
+    solution: item.caseStudy?.solution ?? projectIdea,
+    impact: item.caseStudy?.impact ?? showcase,
+    constraints: item.caseStudy?.constraints ?? [
+      `Target platforms: ${supportedPlatforms.join(", ")}.`,
+      "Delivery had to balance implementation speed with long-term maintainability.",
+      "Architecture needed clear boundaries for feature growth and production reliability.",
+    ],
+    ownership: item.caseStudy?.ownership ?? [
+      `Owned end-to-end ${item.category === "package" ? "package" : "product"} delivery across planning, implementation, and release readiness.`,
+      "Drove architecture and implementation choices to keep the system stable as scope evolved.",
+      "Partnered with stakeholders and engineers to maintain execution speed without sacrificing code quality.",
+    ],
+    architecture: item.caseStudy?.architecture ?? [
+      `Core stack: ${frameworks.join(", ")} with ${languages.join(", ")}.`,
+      "Applied modular boundaries and clear data flow to keep features testable and maintainable.",
+      "Defined integration patterns for APIs, state management, platform capabilities, and releases.",
+    ],
+    tooling: item.caseStudy?.tooling ?? [
+      "Maintained production quality through predictable release and validation workflows.",
+      "Focused on performance, reliability, and debugging visibility in production environments.",
+      "Documented engineering decisions for maintainability and faster team onboarding.",
+    ],
+  };
+
+  const scanHighlights: PortfolioScanHighlights = {
+    scope:
+      item.scanHighlights?.scope ??
+      `${supportedPlatforms.join(" / ")} • ${item.category === "package" ? "Reusable package" : "Production app"}`,
+    architecture:
+      item.scanHighlights?.architecture ??
+      `Stack: ${frameworks.slice(0, 3).join(", ")}${frameworks.length > 3 ? "..." : ""}`,
+    impact:
+      item.scanHighlights?.impact ??
+      `${downloads} footprint • ${rating.toFixed(1)} rating profile`,
+  };
+
+  return {
+    slug: toSlug(item.title),
+    title: item.title,
+    category: item.category,
+    description: item.description,
+    cardImage: item.cardImage,
+    bannerImage: item.bannerImage ?? item.cardImage,
+    appIcon: item.appIcon ?? item.cardImage,
+    frameworks,
+    languages,
+    downloads,
+    rating,
+    githubUrl: item.githubUrl,
+    appStoreUrl: item.appStoreUrl,
+    playStoreUrl: item.playStoreUrl,
+    supportedPlatforms,
+    screenshots: item.screenshots,
+    features:
+      item.features ?? [
+        "Modular architecture for maintainability",
+        "Scalable state management and clean data flow",
+        "Production-ready release and CI/CD workflow",
+      ],
+    projectIdea,
+    showcase,
+    caseStudy,
+    scanHighlights,
+    diagramImages: item.diagramImages ?? (item.diagramImage ? [item.diagramImage] : undefined),
+    diagramImage: item.diagramImage,
+  };
+};
 
 const PROJECT_ITEMS: PortfolioItem[] = [
   buildPortfolioItem({
@@ -184,6 +256,39 @@ const PROJECT_ITEMS: PortfolioItem[] = [
       "Design and evolve a mission-critical inspection platform that lets multiple governmental entities share one maintainable iPad codebase while still supporting variant-specific branding, workflows, route operations, secure field data capture, and unreliable-network conditions.",
     showcase:
       "As the sole iOS engineer, I owned the app end to end: architecture, variant management, SwiftUI delivery, legacy migration, dynamic inspection forms, offline/local storage, route tracking, PDF and signature flows, sync behavior, and the testable structure needed to keep a large enterprise app stable as features expanded.",
+    scanHighlights: {
+      scope: "Sole iOS owner for a multi-entity governmental iPad inspection platform.",
+      architecture: "Variant-aware SwiftUI architecture with SQLite offline storage and resilient synchronization.",
+      impact: "Standardized one codebase across authorities while keeping field workflows stable in low-connectivity conditions.",
+    },
+    caseStudy: {
+      problem:
+        "Inspection teams across different governmental entities were using fragmented workflows and needed one secure iPad app that supports field capture, route operations, and reporting under unreliable network conditions.",
+      solution:
+        "Built a multi-variant SwiftUI system with shared modules and per-entity configuration, combining offline-first SQLite persistence, dynamic form execution, route/location tooling, PDF/signature flows, and sync recovery paths.",
+      impact:
+        "Enabled multiple entities to operate from a unified mobile platform while keeping feature variation manageable, reducing duplicated implementation effort, and improving operational continuity for field inspectors.",
+      constraints: [
+        "One shared iPad codebase had to serve many inspection entities with different branding and endpoint behavior.",
+        "Inspectors needed full workflow continuity during poor or intermittent network conditions.",
+        "Reporting flows required secure evidence handling, signatures, and document-heavy operations in the field.",
+      ],
+      ownership: [
+        "Owned end-to-end iOS delivery as the sole engineer, from architecture planning through production rollout.",
+        "Defined module boundaries, variant configuration model, and migration paths from legacy Objective-C code.",
+        "Implemented and stabilized core workflows: task intake, request execution, route tracking, sync, and report generation.",
+      ],
+      architecture: [
+        "Built SwiftUI + Combine feature modules coordinated through DI and coordinator-based navigation.",
+        "Designed offline-first persistence with SQLite for inbox tasks, requests, route history, and queued sync operations.",
+        "Separated variant configuration and runtime app behavior to avoid duplicating code per entity.",
+      ],
+      tooling: [
+        "Integrated connectivity monitoring and explicit sync controls to surface recovery actions in weak-network environments.",
+        "Maintained testability through modular architecture and targeted unit/integration coverage for business-critical flows.",
+        "Added internal debugging utilities (for approved builds) to inspect local state and accelerate issue resolution.",
+      ],
+    },
     diagramImages: [
       appAssetImage(
         "Inspections",
@@ -250,6 +355,39 @@ const PROJECT_ITEMS: PortfolioItem[] = [
       "Build a production-ready cross-platform reporting tool that makes field violation submission fast and structured on any mobile device, while keeping the codebase maintainable enough to support localization, native handoff needs, and future inspection workflow expansion.",
     showcase:
       "Built the app in Flutter for Android phones and tablets, iPhone, and iPad, covering the full flow from authentication and adaptive UI through violation reporting, speech input, image evidence, location-gated submission, history review, bilingual support, and native iOS handoff integration.",
+    scanHighlights: {
+      scope: "Cross-platform field-reporting product across Android phones/tablets, iPhone, and iPad.",
+      architecture: "Flutter modular architecture with Bloc, repositories, DI, and native iOS handoff bridge.",
+      impact: "Made violation reporting faster and more consistent with speech input, evidence capture, and location-gated submission.",
+    },
+    caseStudy: {
+      problem:
+        "Inspectors needed a faster and more consistent reporting workflow across multiple device classes, while preserving data quality requirements such as evidence attachments and location-aware submission.",
+      solution:
+        "Implemented a responsive Flutter application with Bloc-based modules, repository/data-source boundaries, bilingual runtime support, speech-driven notes, media attachments, and a MethodChannel bridge for iOS handoff payloads.",
+      impact:
+        "Delivered one maintainable reporting system that improved submission consistency, reduced field friction for inspectors, and supported wider device coverage without separate platform codebases.",
+      constraints: [
+        "UI had to perform consistently on phones, tablets, and iPads with different layout densities.",
+        "Reporting flow required valid location capture and attachment handling before allowing submission.",
+        "Integration needed to support external iOS-native handoff contexts for enterprise workflows.",
+      ],
+      ownership: [
+        "Owned core delivery for authentication, reporting, history, and adaptive UI behavior.",
+        "Defined feature boundaries and dependency injection setup to keep the codebase scalable.",
+        "Implemented platform integration details including permissions, speech-to-text flow, and iOS bridge behavior.",
+      ],
+      architecture: [
+        "Feature-first Flutter architecture using Bloc for state management and repositories for data orchestration.",
+        "GetIt-powered dependency graph and GoRouter navigation structure for predictable feature composition.",
+        "Native iOS MethodChannel integration to bridge contextual launch data into Flutter runtime flows.",
+      ],
+      tooling: [
+        "Built localized resources and runtime language switching to support Arabic/English field usage.",
+        "Used mock API assets and layered data sources to keep development and demos fast and stable.",
+        "Applied permission-aware flow control around location, media, and microphone usage to reduce runtime failures.",
+      ],
+    },
   }),
   buildPortfolioItem({
     title: "Sonic Mobility",
@@ -471,6 +609,78 @@ const PROJECT_ITEMS: PortfolioItem[] = [
       "Build an all-in-one digital healthcare experience that centralizes appointments, medication access, urgent care services, discounts, and longitudinal patient records.",
     showcase:
       "Delivered a patient-centric health app integrating appointment booking, pharmacy delivery, emergency/home-care requests, consultation workflows, insurance-based discounts, and structured medical history management.",
+  }),
+  buildPortfolioItem({
+    title: "My Expenses",
+    category: "project",
+    description:
+      "A local-first personal finance app for tracking expenses, income, transfers, savings, and multi-currency cashflow with budgets and yearly analytics.",
+    ...projectMedia("MyExpenses"),
+    frameworks: ["Flutter", "Cubit (BLoC)", "SQLite (sqflite)", "Speech-to-Text", "Biometric Auth", "Encrypted Backup"],
+    languages: ["Dart"],
+    downloads: "100+",
+    rating: 4.4,
+    githubUrl: "https://github.com/AhmedShawkyAhmed/shawky.git",
+    screenshots: [
+      projectScreenshot("MyExpenses", "screenshot1"),
+      projectScreenshot("MyExpenses", "screenshot2"),
+      projectScreenshot("MyExpenses", "screenshot3"),
+      projectScreenshot("MyExpenses", "screenshot4"),
+      projectScreenshot("MyExpenses", "screenshot5"),
+      projectScreenshot("MyExpenses", "screenshot6"),
+      projectScreenshot("MyExpenses", "screenshot7"),
+      projectScreenshot("MyExpenses", "screenshot8"),
+    ],
+    features: [
+      "Local-first ledger built on SQLite with dedicated modules for accounts, cards, expenses, savings, gold holdings, and profiles.",
+      "Transaction engine covering expense, income, and account-to-account transfer flows with notes, tags, merchant, and fee handling.",
+      "Multi-currency support (EGP/USD) with normalized totals and explicit FX revaluation handling to avoid distorted net results.",
+      "Search and advanced filters by transaction type, category, account, date range, and min/max amount.",
+      "Monthly category budgets with usage tracking and over-budget alerts.",
+      "Recurring transaction rules with day-of-month scheduling and upcoming transaction forecasting.",
+      "Voice-assisted expense entry using speech-to-text plus parsing for amount, type, currency, category, and account hints.",
+      "Savings workflows including transfer to/from savings, current-value updates, and manual profit/loss adjustments.",
+      "Yearly reporting with month-by-month totals, net P/L (excluding FX), savings P/L, transfer totals, and transaction counts.",
+      "Privacy and resilience features: biometric app lock, hide-balances mode, and AES-GCM encrypted backup/restore files.",
+    ],
+    projectIdea:
+      "Build a privacy-first mobile finance system that remains reliable offline while still supporting real-world flows like recurring plans, savings valuation, and currency volatility.",
+    showcase:
+      "Delivered a modular Flutter finance product with Cubit-based architecture, local persistence, voice capture, budgeting, recurring automation, and reporting that separates operating cashflow from FX and savings effects.",
+    scanHighlights: {
+      scope: "Local-first finance app spanning expenses, income, transfers, savings, and multi-currency tracking.",
+      architecture: "Cubit feature modules with SQLite persistence, recurring engine, and voice parsing pipeline.",
+      impact: "Enabled reliable personal finance tracking with budgeting, yearly analytics, and secure encrypted backup/restore.",
+    },
+    caseStudy: {
+      problem:
+        "Personal finance tracking needed to stay reliable offline while still handling real-world complexity like multi-currency balances, recurring transactions, savings valuation, and fast capture.",
+      solution:
+        "Built a modular Flutter app with Cubit-based feature isolation on top of SQLite, including advanced filters, budget controls, recurring rules, voice-assisted entry parsing, and yearly reporting pipelines.",
+      impact:
+        "Produced a maintainable finance system that separates operating cashflow from FX effects, improves entry speed through voice capture, and increases user trust through biometric lock and encrypted backups.",
+      constraints: [
+        "Needed full local-first behavior with no dependency on network availability for core flows.",
+        "Financial calculations had to treat transfers, FX revaluation, and savings adjustments explicitly to keep analytics accurate.",
+        "Security requirements included app lock and encrypted backup/restore to protect sensitive data.",
+      ],
+      ownership: [
+        "Owned app architecture, module boundaries, and data model decisions across finance domains.",
+        "Implemented the transaction lifecycle for expense, income, transfer, recurring generation, and reporting.",
+        "Delivered privacy and resilience layers including biometric lock, hide-balances mode, and AES-GCM backup workflows.",
+      ],
+      architecture: [
+        "Feature-first Cubit architecture with dedicated modules for accounts, cards, expenses, savings, gold, and profiles.",
+        "SQLite-based local data layer with normalized currency conversion and reporting-friendly transaction types.",
+        "Voice expense parser pipeline that maps speech text into structured transaction fields before user confirmation.",
+      ],
+      tooling: [
+        "Integrated speech-to-text for faster data entry and improved day-to-day usability.",
+        "Implemented reporting summaries and yearly breakdowns to expose net P/L, savings P/L, and transfer totals clearly.",
+        "Added encrypted import/export backup tooling to improve data portability and disaster recovery readiness.",
+      ],
+    },
+    supportedPlatforms: ["Android", "iOS", "iPad"],
   }),
   buildPortfolioItem({
     title: "Blue Wave",
@@ -785,43 +995,6 @@ const PROJECT_ITEMS: PortfolioItem[] = [
     githubUrl: "https://github.com/AhmedShawkyAhmed/SedaDriver.git",
   }),
   buildPortfolioItem({
-    title: "My Expenses",
-    category: "project",
-    description:
-      "My Expenses is a powerful personal finance app for effortless expense tracking, income management, planning, and financial analysis on mobile devices.",
-    ...projectMedia("MyExpenses"),
-    frameworks: ["Flutter", "Data Export/Import", "Cloud Sync", "Security"],
-    languages: ["Dart"],
-    downloads: "100+",
-    rating: 4.4,
-    githubUrl: "https://github.com/AhmedShawkyAhmed/shawky.git",
-    screenshots: [
-      projectScreenshot("MyExpenses", "screenshot1"),
-      projectScreenshot("MyExpenses", "screenshot2"),
-      projectScreenshot("MyExpenses", "screenshot3"),
-      projectScreenshot("MyExpenses", "screenshot4"),
-      projectScreenshot("MyExpenses", "screenshot5"),
-    ],
-    features: [
-      "Effortless expense and income tracking across smartphone and tablet usage.",
-      "Flexible multi-account management, including transfers across different currencies.",
-      "Recurring transaction planning for streamlined long-term financial routines.",
-      "QIF and CSV export/import for portable and structured data management.",
-      "Enhanced security with password protection or device lock-screen authentication.",
-      "Customizable UI experience with adjustable themes and font sizes.",
-      "Bank statement reconciliation to compare and validate transaction status accurately.",
-      "Fast data entry via homescreen widgets and shortcuts.",
-      "Advanced filtering and dynamic charts for distribution and historical trend analysis.",
-      "Premium tiers: Contrib (ad-free + unlimited accounts), Extended (cloud sync + backup + advanced CSV), Professional (budgeting + receipt scanning + email support).",
-      "Permission-aware architecture for calendar-based recurring plans, internet sync/crash reporting, and account-based multi-device synchronization.",
-    ],
-    projectIdea:
-      "Build an all-in-one personal finance platform that combines fast daily tracking with advanced planning, analysis, and secure cross-device data management.",
-    showcase:
-      "Delivered a finance-focused mobile product with multi-account orchestration, recurring plans, reconciliation workflows, rich analytics, and scalable premium capability tiers.",
-    supportedPlatforms: ["Android", "iOS", "iPad"],
-  }),
-  buildPortfolioItem({
     title: "Steps Tracker",
     category: "project",
     description:
@@ -1094,8 +1267,9 @@ export const getPortfolioItemBySlug = (slug: string) =>
 
 export const NAV_LINKS = [
   { label: "About", href: "#about" },
+  { label: "Case Studies", href: "#projects" },
   { label: "Experience", href: "#experience" },
-  { label: "Projects", href: "#projects" },
+  { label: "All Projects", href: "#all-projects" },
   { label: "Packages", href: "#packages" },
   { label: "Skills", href: "#skills" },
   { label: "Contact", href: "#contact" },
@@ -1103,17 +1277,18 @@ export const NAV_LINKS = [
 
 export const PROFILE_DATA = {
   name: "Ahmed Shawky",
-  headline: "Senior Mobile Engineer focused on Flutter, SwiftUI, and Kotlin.",
-  bio: "Senior Mobile Engineer with 5+ years of experience building production mobile apps across Flutter, iOS, and Android. Delivered 30+ apps, improved release speed, modernized legacy iOS codebases, and built reusable systems that improved reliability and maintainability.",
+  headline:
+    "Senior Mobile Engineer shipping complex Flutter + native iOS/Android systems with architecture ownership, modernization leadership, and release automation.",
+  bio: "I design and deliver production mobile systems across Flutter, SwiftUI, and Kotlin with a focus on architecture quality, legacy modernization, CI/CD reliability, and measurable product outcomes.",
   email: "shawkyahmed392@gmail.com",
   phone: "+201154338430",
   location: "Cairo, Egypt",
   cvUrl: "https://drive.google.com/uc?export=view&id=1fCMZPHw5aH69eGm5m7RTAL1FbLuiLmBF",
   focusAreas: [
-    "Flutter architecture",
-    "SwiftUI modernization",
-    "Kotlin-native integrations",
-    "Realtime mobile systems",
+    "30+ mobile apps shipped",
+    "Objective-C -> Swift/SwiftUI modernization",
+    "CI/CD ownership (GitHub Actions + Codemagic)",
+    "Cross-platform + native integration depth",
   ],
   avatar,
   stats: [
@@ -1226,8 +1401,9 @@ export const SKILLS_DATA = {
 };
 
 export const EXPERIENCE_DATA = {
-  title: "Professional Experience",
-  description: "From native Android development to senior cross-platform engineering, with hands-on ownership of architecture, modernization, release workflows, and production mobile delivery.",
+  title: "Experience",
+  description:
+    "Senior-level delivery history across Flutter, iOS, and Android with direct ownership of architecture, modernization, quality standards, and release systems.",
   experiences: [
     {
       role: "Senior Mobile Engineer",
@@ -1274,19 +1450,19 @@ export const EXPERIENCE_DATA = {
 };
 
 export const PROJECTS_DATA = {
-  title: "Selected Case Studies",
+  title: "Projects",
   description: "Production mobile apps that show how I work: architecture ownership, native depth, product delivery, platform integration, and maintainable engineering decisions.",
   projects: PROJECT_ITEMS,
 };
 
 export const PACKAGES_DATA = {
-  title: "Reusable Systems & Tooling",
+  title: "Packages",
   description: "Packages and internal tools built to improve developer productivity, standardize mobile delivery, and reduce repeated engineering work across products.",
   packages: PACKAGE_ITEMS,
 };
 
 export const CONTACT_DATA = {
-  title: "Hiring / Contact",
+  title: "Contact",
   description:
     "Open to senior mobile engineering roles across Flutter, iOS, and Android, especially where architecture ownership, native depth, and production delivery matter.",
 };

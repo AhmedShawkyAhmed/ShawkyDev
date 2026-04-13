@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Download, Mail } from "lucide-react";
 
 export function Hero() {
-  const { name, headline, bio, avatar, social, stats, cvUrl, email } = PROFILE_DATA;
+  const { name, headline, bio, avatar, social, stats, cvUrl, email, focusAreas } = PROFILE_DATA;
   const heroStats = stats.slice(0, 4);
 
   return (
@@ -17,7 +17,7 @@ export function Hero() {
       <div className="container relative z-10 grid items-center gap-12 lg:grid-cols-[1.18fr_0.82fr]">
         <div className="space-y-8 text-center lg:text-left">
           <div className="stagger-in eyebrow-label justify-center lg:justify-start">
-            Senior Mobile Engineer • Flutter • iOS • Android
+            Senior Mobile Engineer • Architecture Ownership • Flutter + Native iOS/Android
           </div>
 
           <div className="space-y-4">
@@ -63,6 +63,17 @@ export function Hero() {
                   <span className="sr-only">{s.name}</span>
                 </Link>
               </Button>
+            ))}
+          </div>
+
+          <div className="stagger-in flex flex-wrap items-center justify-center gap-2 lg:justify-start">
+            {focusAreas.map((item) => (
+              <span
+                key={item}
+                className="rounded-full border border-border/70 bg-background/45 px-3 py-1.5 font-code text-[10px] uppercase tracking-[0.16em] text-muted-foreground"
+              >
+                {item}
+              </span>
             ))}
           </div>
 

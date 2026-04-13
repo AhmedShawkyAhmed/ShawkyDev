@@ -96,7 +96,7 @@ export function Contact() {
             <div className="space-y-6">
               <div>
                 <p className="font-code text-[11px] uppercase tracking-[0.18em] text-primary">Engagement scope</p>
-                <h3 className="mt-3 font-headline text-3xl font-semibold tracking-tight">What I can help with</h3>
+                <h3 className="mt-3 font-headline text-3xl font-semibold tracking-tight">Services</h3>
                 <p className="mt-2 text-sm leading-6 text-muted-foreground">
                   I work best on senior mobile engineering roles that need strong delivery, clean architecture decisions, native platform depth, and reliable production execution.
                 </p>

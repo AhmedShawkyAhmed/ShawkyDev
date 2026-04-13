@@ -5,12 +5,10 @@ import {
   ArrowLeft,
   BriefcaseBusiness,
   Cpu,
-  Download,
   Github,
   Laptop,
   ShieldCheck,
   Smartphone,
-  Star,
   Tablet,
   TrendingUp,
 } from "lucide-react";
@@ -42,27 +40,6 @@ export default async function ProjectDetailsPage({
     notFound();
   }
 
-  const hasStoreLinks = Boolean(item.appStoreUrl || item.playStoreUrl);
-  const ownershipPoints = [
-    "Owned end-to-end mobile delivery from technical scoping to production readiness.",
-    `Defined architecture boundaries using ${item.frameworks.join(", ")}.`,
-    hasStoreLinks
-      ? "Maintained release quality, app-store delivery, and production reliability."
-      : "Maintained engineering quality, maintainability, and long-term handoff readiness.",
-  ];
-
-  const architecturePoints = [
-    `Core stack: ${item.frameworks.join(", ")} with ${item.languages.join(", ")}.`,
-    "Applied reusable module boundaries to keep features scalable and easier to evolve.",
-    "Structured integration points for APIs, state, platform capabilities, and delivery workflows.",
-  ];
-
-  const qualityPoints = [
-    "Focused on predictable release behavior, maintainability, and production stability.",
-    "Used architecture-driven decisions to reduce implementation risk as the system scaled.",
-    "Balanced UX quality, engineering speed, and long-term codebase sustainability.",
-  ];
-
   const platformMeta = {
     Android: { label: "Android", icon: Smartphone },
     iOS: { label: "iOS", icon: Smartphone },
@@ -76,6 +53,12 @@ export default async function ProjectDetailsPage({
     { label: "Platforms", value: String(item.supportedPlatforms.length) },
     { label: "Downloads", value: item.downloads },
     { label: "Rating", value: item.rating.toFixed(1) },
+  ];
+
+  const problemSolutionImpact = [
+    { label: "Problem", value: item.caseStudy.problem },
+    { label: "Solution", value: item.caseStudy.solution },
+    { label: "Impact", value: item.caseStudy.impact },
   ];
 
   return (
@@ -143,6 +126,15 @@ export default async function ProjectDetailsPage({
                 ))}
               </div>
 
+              <div className="mt-6 grid gap-3 lg:grid-cols-3">
+                {problemSolutionImpact.map((entry) => (
+                  <div key={entry.label} className="rounded-[1.25rem] border border-border/70 bg-background/30 px-4 py-4">
+                    <p className="font-code text-[10px] uppercase tracking-[0.18em] text-primary">{entry.label}</p>
+                    <p className="mt-2 text-sm leading-7 text-muted-foreground">{entry.value}</p>
+                  </div>
+                ))}
+              </div>
+
               <div className="mt-6 flex flex-wrap gap-2">
                 {item.frameworks.map((framework) => (
                   <Badge key={framework} variant="secondary">
@@ -195,17 +187,14 @@ export default async function ProjectDetailsPage({
             </div>
           </div>
 
-          <div className="mt-8 grid gap-8 xl:grid-cols-[1.05fr_0.95fr]">
+          <div className="mt-8 grid gap-8 xl:grid-cols-2">
             <div className="surface-panel rounded-[1.8rem] p-6 md:p-8">
               <div className="flex items-center gap-2">
-                <BriefcaseBusiness className="h-5 w-5 text-primary" />
-                <h2 className="font-headline text-2xl font-semibold">Role & Ownership</h2>
+                <TrendingUp className="h-5 w-5 text-primary" />
+                <h2 className="font-headline text-2xl font-semibold">Context & Constraints</h2>
               </div>
-              <p className="mt-4 text-sm leading-8 text-muted-foreground md:text-base">
-                {item.projectIdea}
-              </p>
               <ul className="mt-6 grid gap-3">
-                {ownershipPoints.map((point) => (
+                {item.caseStudy.constraints.map((point) => (
                   <li
                     key={point}
                     className="rounded-[1.2rem] border border-border/60 bg-background/30 px-4 py-4 text-sm leading-7 text-muted-foreground"
@@ -218,19 +207,21 @@ export default async function ProjectDetailsPage({
 
             <div className="surface-panel rounded-[1.8rem] p-6 md:p-8">
               <div className="flex items-center gap-2">
-                <TrendingUp className="h-5 w-5 text-primary" />
-                <h2 className="font-headline text-2xl font-semibold">Product & Delivery Outcome</h2>
+                <BriefcaseBusiness className="h-5 w-5 text-primary" />
+                <h2 className="font-headline text-2xl font-semibold">Role & Ownership</h2>
               </div>
+              <p className="mt-4 text-sm leading-8 text-muted-foreground md:text-base">
+                {item.projectIdea}
+              </p>
               <ul className="mt-6 grid gap-3">
-                <li className="rounded-[1.2rem] border border-border/60 bg-background/30 px-4 py-4 text-sm leading-7 text-muted-foreground">
-                  Delivery footprint reflected by {item.downloads} and a {item.rating.toFixed(1)} rating profile.
-                </li>
-                <li className="rounded-[1.2rem] border border-border/60 bg-background/30 px-4 py-4 text-sm leading-7 text-muted-foreground">
-                  Implemented product flows aligned with production reliability, UX clarity, and maintainable engineering constraints.
-                </li>
-                <li className="rounded-[1.2rem] border border-border/60 bg-background/30 px-4 py-4 text-sm leading-7 text-muted-foreground">
-                  {item.showcase}
-                </li>
+                {item.caseStudy.ownership.map((point) => (
+                  <li
+                    key={point}
+                    className="rounded-[1.2rem] border border-border/60 bg-background/30 px-4 py-4 text-sm leading-7 text-muted-foreground"
+                  >
+                    {point}
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
@@ -239,10 +230,10 @@ export default async function ProjectDetailsPage({
             <div className="surface-panel rounded-[1.8rem] p-6">
               <div className="flex items-center gap-2">
                 <Cpu className="h-5 w-5 text-primary" />
-                <h2 className="font-headline text-xl font-semibold">Technical Architecture</h2>
+                <h2 className="font-headline text-xl font-semibold">Architecture Decisions</h2>
               </div>
               <ul className="mt-4 space-y-3">
-                {architecturePoints.map((point) => (
+                {item.caseStudy.architecture.map((point) => (
                   <li
                     key={point}
                     className="rounded-[1.2rem] border border-border/60 bg-background/30 px-4 py-4 text-sm leading-7 text-muted-foreground"
@@ -256,10 +247,10 @@ export default async function ProjectDetailsPage({
             <div className="surface-panel rounded-[1.8rem] p-6">
               <div className="flex items-center gap-2">
                 <ShieldCheck className="h-5 w-5 text-primary" />
-                <h2 className="font-headline text-xl font-semibold">Engineering Quality</h2>
+                <h2 className="font-headline text-xl font-semibold">Systems, Tooling & Quality</h2>
               </div>
               <ul className="mt-4 space-y-3">
-                {qualityPoints.map((point) => (
+                {item.caseStudy.tooling.map((point) => (
                   <li
                     key={point}
                     className="rounded-[1.2rem] border border-border/60 bg-background/30 px-4 py-4 text-sm leading-7 text-muted-foreground"
